@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Manrope:wght@200..800&family=Roboto:ital,wght@0,100..900;1,100..900&family=Orbitron:wght@400..900&display=swap');
+@import 'tailwindcss';
+@config "../../tailwind.config.ts";
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+h1 {
+  font-family: 'Manrope', sans-serif;
+}
+
+button {
+  cursor: pointer;
+}
+
+@layer components {
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full text-base font-medium whitespace-nowrap transition duration-200 cursor-pointer;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full text-lg font-medium whitespace-nowrap transition duration-200 cursor-pointer border-2 border-[#009FE3] bg-[#009FE3] text-white hover:bg-[#007ab0] focus:ring-4 focus:ring-[#009FE3]/50;
+  }
+
+  .btn-outline-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full text-lg font-medium whitespace-nowrap transition duration-200 cursor-pointer border-2 border-[#009FE3] text-[#009FE3] hover:bg-[#009FE3] hover:text-white focus:ring-4 focus:ring-[#009FE3]/50;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full text-lg font-medium whitespace-nowrap transition duration-200 cursor-pointer border-2 border-[#1D1D1B] bg-[#1D1D1B] text-white hover:bg-[#000000] focus:ring-4 focus:ring-[#1D1D1B]/50;
+  }
+
+  .btn-outline-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-full text-lg font-medium whitespace-nowrap transition duration-200 cursor-pointer border-2 border-[#1D1D1B] text-[#1D1D1B] hover:bg-[#1D1D1B] hover:text-white focus:ring-4 focus:ring-[#1D1D1B]/50;
+  }
+
+  .heading {
+    @apply font-semibold leading-[62px] text-[44px] md:text-[36px] md:leading-[52px] sm:text-[28px] sm:leading-[40px];
+  }
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.4) transparent;
+}
