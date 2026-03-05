@@ -7,7 +7,7 @@ import ServicesSection from '@/components/shared/home/ServicesSection'
 import WhyChooseSection from '@/components/shared/home/whyChooseSection'
 import BecomeVendor from '@/components/shared/home/BecomeVendor'
 import CreateWithKooji from '@/components/shared/home/CreateWithKooji'
-import Footer from '@/components/shared/footer/Footer'
+
 
 
 
@@ -22,7 +22,6 @@ const page = () => {
       <WhyChooseSection />
       <BecomeVendor />
       <CreateWithKooji /> 
-      <Footer />
     </main>
   )
 }
