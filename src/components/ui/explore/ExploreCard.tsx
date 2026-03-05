@@ -10,10 +10,10 @@ interface ExploreCardProps {
 
 const ExploreCard: React.FC<ExploreCardProps> = ({ title, description, image }) => {
     return (
-        <div className="relative group overflow-hidden rounded-xl h-[500px] cursor-pointer shadow-sm">
-            <img src={image} alt={title} className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:blur-[3px]"/>
+        <div className="relative group overflow-hidden rounded-xl h-[600px] cursor-pointer shadow-sm">
+            <img src={image} alt={title} className="absolute inset-0 w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:blur-[3px]" />
 
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-500"/>
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-60 group-hover:opacity-100 transition-opacity duration-500" />
 
             <div className="absolute inset-0 p-8 flex flex-col justify-end transition-all duration-500 transform translate-y-8 group-hover:translate-y-0">
 

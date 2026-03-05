@@ -28,7 +28,7 @@ const ExploreSection = () => {
         <section className="py-16 md:py-24 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-start mb-10">
-                    <p className="text-black-200 font-medium text-sm mb-4 bg-red-50 w-45 text-center rounded-sm">Explore Our Marketplace</p>
+                    <p className="text-black-200 font-medium text-sm mb-6 p-2 bg-red-50 w-fit px-4 text-center rounded-md">Explore Our Marketplace</p>
                     <h2 className="text-3xl md:text-4xl font-bold">Explore Our Full Range of Music Rentals and Services</h2>
                 </div>
 

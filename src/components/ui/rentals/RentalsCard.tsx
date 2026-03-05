@@ -25,7 +25,7 @@ const RentalsCard: React.FC<RentalsCardProps> = ({ rating, totalReviews, title, 
 
 
                 <div className="absolute top-1 left-2 right-2 flex items-center justify-between">
-                    <div className="flex items-center gap-1 bg-black/60 backdrop-blur-md px-2 py-1 rounded-sm shadow-sm">
+                    <div className="flex mb-3 items-center gap-1 bg-black/60 backdrop-blur-md px-2 py-1 rounded-sm shadow-sm">
                         <img src={ratingImg} alt="rating" className="w-4 h-4" />
                         <span className="text-sm  text-white">{rating}</span>
                         <span className="text-xs text-white font-medium">({totalReviews})</span>

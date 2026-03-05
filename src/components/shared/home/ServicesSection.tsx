@@ -37,7 +37,7 @@ const ServicesSection = () => {
         <section className="py-16 md:py-24 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-10">
-                    <h2 className="text-4xl font-bold mb-4">Professional Music & Event Services You can Book Instantly</h2>
+                    <h2 className="text-3xl font-bold mb-4">Professional Music & Event Services You can Book Instantly</h2>
                     <p className="text-xl text-black">From live performances to technical support, discover trusted music professionals and event services available near you - ready to book when you need them.</p>
                 </div>
 
@@ -49,6 +49,7 @@ const ServicesSection = () => {
                             images={services.images}
                             bgColor={services.bgColor}
                             tags={services.tags}
+                            cardIndex={index}
                         />
                     ))}
                 </div>
