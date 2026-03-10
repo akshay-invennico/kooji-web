@@ -1,9 +1,7 @@
-import React from 'react'
+import ListingsView from "@/components/listings/ListingsView";
 
-const page = () => {
+export default function ListingsPage() {
   return (
-    <div>Listings</div>
+    <ListingsView />
   )
 }
-
-export default page

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Toaster } from "react-hot-toast";
 import Header from "@/components/shared/header/Header";
+import Footer from "@/components/shared/footer/Footer";
 
 export const metadata: Metadata = {
   title: "Kooji Marketplace",
@@ -32,6 +33,7 @@ export default function RootLayout({
             }}
           />
         </main>
+        <Footer />
       </body>
     </html>
   );
