@@ -46,7 +46,7 @@ const DescriptionCard: React.FC<DescriptionCardProps> = ({
                 <>
                     {whatsIncluded && whatsIncluded.length > 0 && (
                         <div>
-                            <h4 className="text-[17px] font-bold text-gray-900 mb-3">What's Included</h4>
+                            <h4 className="text-[17px] font-bold text-gray-900 mb-3">What&apos;s Included</h4>
                             <ul className="space-y-2">
                                 {whatsIncluded.map((item, index) => (
                                     <li key={index} className="flex items-start gap-3 text-sm md:text-base text-gray-600">
@@ -60,7 +60,7 @@ const DescriptionCard: React.FC<DescriptionCardProps> = ({
 
                     {whatsNotIncluded && whatsNotIncluded.length > 0 && (
                         <div>
-                            <h4 className="text-[17px] font-bold text-gray-900 mb-3">What's Not Included</h4>
+                            <h4 className="text-[17px] font-bold text-gray-900 mb-3">What&apos;s Not Included</h4>
                             <ul className="space-y-2">
                                 {whatsNotIncluded.map((item, index) => (
                                     <li key={index} className="flex items-start gap-3 text-sm md:text-base text-gray-600">

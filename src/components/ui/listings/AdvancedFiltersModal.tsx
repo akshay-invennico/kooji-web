@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useRef, useEffect } from "react";
 import { SlidersHorizontal, Check } from "lucide-react";
 
@@ -67,7 +68,7 @@ export const AdvancedFiltersModal = ({ formik, isOpen, onClose, onToggle }: Adva
 
     const toggleFilter = (category: string, id: string) => {
         const current = formik.values.filters[category] as string[];
-        const next = current.includes(id) 
+        const next = current.includes(id)
             ? current.filter(item => item !== id)
             : [...current, id];
         formik.setFieldValue(`filters.${category}`, next);
@@ -86,7 +87,7 @@ export const AdvancedFiltersModal = ({ formik, isOpen, onClose, onToggle }: Adva
     };
 
     return (
-        <div 
+        <div
             className="flex-1 lg:flex-[0.7] flex items-center justify-between px-4 md:px-6 md:border-r border-gray-100 cursor-pointer hover:bg-gray-50 transition-colors py-2 lg:py-0 rounded-lg lg:rounded-none relative"
             ref={filtersRef}
             onClick={onToggle}
@@ -118,7 +119,7 @@ export const AdvancedFiltersModal = ({ formik, isOpen, onClose, onToggle }: Adva
                                 ))}
                             </div>
                             {!showAllCategories && (
-                                <div 
+                                <div
                                     className="text-blue-500 text-[14px] font-semibold cursor-pointer py-1 hover:underline"
                                     onClick={(e) => { e.stopPropagation(); setShowAllCategories(true); }}
                                 >
@@ -126,7 +127,7 @@ export const AdvancedFiltersModal = ({ formik, isOpen, onClose, onToggle }: Adva
                                 </div>
                             )}
                             {showAllCategories && (
-                                <div 
+                                <div
                                     className="text-blue-500 text-[14px] font-semibold cursor-pointer py-1 hover:underline"
                                     onClick={(e) => { e.stopPropagation(); setShowAllCategories(false); }}
                                 >
@@ -144,7 +145,7 @@ export const AdvancedFiltersModal = ({ formik, isOpen, onClose, onToggle }: Adva
                                 <span className="text-gray-500">To <span className="font-bold text-gray-900">${formik.values.filters.priceRange[1]}</span></span>
                             </div>
                             <div className="relative h-6 flex items-center px-2">
-                                <input 
+                                <input
                                     type="range"
                                     min="0"
                                     max="1000"
@@ -153,10 +154,10 @@ export const AdvancedFiltersModal = ({ formik, isOpen, onClose, onToggle }: Adva
                                         const val = Math.min(parseInt(e.target.value), formik.values.filters.priceRange[1] - 10);
                                         formik.setFieldValue("filters.priceRange", [val, formik.values.filters.priceRange[1]]);
                                     }}
-                                     className="absolute w-full h-1 bg-transparent rounded-full appearance-none pointer-events-none z-20 [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-red-500 [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:rounded-full"
+                                    className="absolute w-full h-1 bg-transparent rounded-full appearance-none pointer-events-none z-20 [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-red-500 [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:rounded-full"
                                     onClick={(e) => e.stopPropagation()}
                                 />
-                                <input 
+                                <input
                                     type="range"
                                     min="0"
                                     max="1000"
@@ -165,17 +166,17 @@ export const AdvancedFiltersModal = ({ formik, isOpen, onClose, onToggle }: Adva
                                         const val = Math.max(parseInt(e.target.value), formik.values.filters.priceRange[0] + 10);
                                         formik.setFieldValue("filters.priceRange", [formik.values.filters.priceRange[0], val]);
                                     }}
-                                     className="absolute w-full h-1 bg-transparent rounded-full appearance-none pointer-events-none z-30 [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-red-500 [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:rounded-full"
+                                    className="absolute w-full h-1 bg-transparent rounded-full appearance-none pointer-events-none z-30 [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-red-500 [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:rounded-full"
                                     onClick={(e) => e.stopPropagation()}
                                 />
-                                <div 
-                                     className="absolute h-1 bg-red-500 rounded-full z-10" 
-                                     style={{ 
-                                         left: `${(formik.values.filters.priceRange[0] / 1000) * 100}%`, 
-                                         right: `${100 - (formik.values.filters.priceRange[1] / 1000) * 100}%` 
-                                     }} 
-                                 />
-                                 <div className="absolute w-full h-1 bg-gray-100 rounded-full z-0" />
+                                <div
+                                    className="absolute h-1 bg-red-500 rounded-full z-10"
+                                    style={{
+                                        left: `${(formik.values.filters.priceRange[0] / 1000) * 100}%`,
+                                        right: `${100 - (formik.values.filters.priceRange[1] / 1000) * 100}%`
+                                    }}
+                                />
+                                <div className="absolute w-full h-1 bg-gray-100 rounded-full z-0" />
                             </div>
                         </div>
 
@@ -256,17 +257,17 @@ export const AdvancedFiltersModal = ({ formik, isOpen, onClose, onToggle }: Adva
                         </div>
 
                         <div className="flex items-center justify-between pt-4 mt-2">
-                            <button 
+                            <button
                                 className="text-[14px] font-semibold text-gray-500 hover:text-gray-900 underline underline-offset-4"
                                 onClick={(e) => { e.stopPropagation(); clearAllFilters(); }}
                             >
                                 Clear all filters
                             </button>
-                            <button 
+                            <button
                                 type="button"
                                 className="bg-[#FF4D4D] text-white px-8 py-3 rounded-lg font-bold hover:bg-red-600 transition-colors shadow-lg shadow-red-100"
-                                onClick={(e) => { 
-                                    e.stopPropagation(); 
+                                onClick={(e) => {
+                                    e.stopPropagation();
                                     formik.handleSubmit();
                                     // Make sure Formik touches all fields to show errors immediately if missing
                                     formik.setTouched({

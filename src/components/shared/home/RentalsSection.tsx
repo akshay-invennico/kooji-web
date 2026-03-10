@@ -90,7 +90,7 @@ const RentalsSection = () => {
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
                     <div className="text-start">
                         <p className="text-black-200 font-medium text-sm mb-6 p-2 bg-red-50 w-fit px-4 text-center rounded-md">Trending Rentals Near You</p>
-                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">Hot Rentals You Don't Want to Miss</h2>
+                        <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">Hot Rentals You Don&apos;t Want to Miss</h2>
                     </div>
 
 

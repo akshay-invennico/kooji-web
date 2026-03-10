@@ -18,7 +18,7 @@ import PriceBreakdownSection from "@/components/listings/details/PriceBreakdownS
 import VendorInfoSection from "@/components/listings/details/VendorInfoSection"
 import SpaceDetailSection from "@/components/listings/details/SpaceDetailSection"
 
-const page = () => {
+const Page = () => {
     const params = useParams();
     const id = params.id as string;
 
@@ -77,10 +77,10 @@ const page = () => {
 
                         <TrustSection />
 
-                        {isEventSpace ? (
-                            <SpaceDetailSection spaceDetails={(listing as any).spaceDetails} />
-                        ) : (listing as any).specification ? (
-                            <SpecificationSection specification={(listing as any).specification} />
+                        {isEventSpace && listing.spaceDetails ? (
+                            <SpaceDetailSection spaceDetails={listing.spaceDetails} />
+                        ) : listing.specification ? (
+                            <SpecificationSection specification={listing.specification} />
                         ) : null}
 
 
@@ -127,4 +127,4 @@ const page = () => {
     )
 }
 
-export default page;
+export default Page;

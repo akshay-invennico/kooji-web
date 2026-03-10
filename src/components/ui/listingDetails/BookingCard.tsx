@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useRef, useEffect } from "react";
 import { Calendar, Users, ChevronUp, ChevronDown } from "lucide-react";
 import { fmtSingleDate } from "@/utils/calendarUtils";

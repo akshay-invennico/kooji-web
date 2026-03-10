@@ -1,3 +1,5 @@
+import { Listing } from "@/types/listing";
+
 export const ITEMS_PER_PAGE = 40;
 
 const assetPool = [
@@ -23,7 +25,7 @@ const getRandomImages = (primary: string) => {
     return [primary, ...shuffled.slice(0, 3)];
 };
 
-export const LISTINGS_DATA = [
+export const LISTINGS_DATA: Listing[] = [
     {
         id: "ultimate-ears-boom-2",
         title: "Ultimate Ears Boom 2",

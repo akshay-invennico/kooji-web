@@ -33,12 +33,12 @@ const BookingSection: React.FC<BookingSectionProps> = ({ price, onDatesChange, o
     });
 
     // Wrap setFieldValue to emit values to parent
-    const handleSetFieldValue = (field: string, value: any, shouldValidate?: boolean) => {
+    const handleSetFieldValue = (field: string, value: string | number | Date | null, shouldValidate?: boolean) => {
         formik.setFieldValue(field, value, shouldValidate);
 
         if (field === "startDate" || field === "endDate") {
-            const updatedStart = field === "startDate" ? value : formik.values.startDate;
-            const updatedEnd = field === "endDate" ? value : formik.values.endDate;
+            const updatedStart = field === "startDate" ? (value as Date | null) : formik.values.startDate;
+            const updatedEnd = field === "endDate" ? (value as Date | null) : formik.values.endDate;
             onDatesChange(updatedStart, updatedEnd);
         }
 

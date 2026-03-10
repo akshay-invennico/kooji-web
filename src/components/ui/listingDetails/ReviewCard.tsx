@@ -15,23 +15,23 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ rating, comment, userName, user
             <div>
                 <div className="flex gap-1 mb-4">
                     {[...Array(5)].map((_, i) => (
-                        <Star 
-                            key={i} 
-                            size={18} 
-                            className={`${i < rating ? "text-orange-400 fill-orange-400" : "text-gray-200"}`} 
+                        <Star
+                            key={i}
+                            size={18}
+                            className={`${i < rating ? "text-orange-400 fill-orange-400" : "text-gray-200"}`}
                         />
                     ))}
                 </div>
                 <p className="text-[#111111] leading-relaxed mb-6 font-medium italic">
-                    "{comment}"
+                    &quot;{comment}&quot;
                 </p>
             </div>
-            
+
             <div className="flex items-center gap-3">
                 {userImage ? (
-                    <img 
-                        src={userImage} 
-                        alt={userName} 
+                    <img
+                        src={userImage}
+                        alt={userName}
                         className="w-12 h-12 rounded-full object-cover border border-gray-100"
                         onError={(e) => {
                             (e.target as HTMLImageElement).src = "https://ui-avatars.com/api/?name=" + encodeURIComponent(userName);

@@ -42,7 +42,7 @@ const Footer = () => {
                     <h3 className="font-bold mb-4">Support</h3>
                     <ul className="text-md text-gray-800 space-y-2">
                         <li>Contact Us</li>
-                        <li>FAQ's</li>
+                        <li>FAQ&apos;s</li>
                         <li>Log in</li>
                     </ul>
                 </div>

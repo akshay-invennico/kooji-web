@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
 import { getDaysInMonth, getFirstDay, CAL_MONTHS_FULL, WEEK_DAYS } from "@/utils/calendarUtils";
 
@@ -23,7 +24,7 @@ export const CalMonth: React.FC<CalMonthProps> = ({
 
     const isStart = (d: number) => !!(startDate && startDate.getFullYear() === year && startDate.getMonth() === month && startDate.getDate() === d);
     const isEnd = (d: number) => !!(endDate && endDate.getFullYear() === year && endDate.getMonth() === month && endDate.getDate() === d);
-    
+
     const inRange = (d: number) => {
         const date = new Date(year, month, d);
         const end = endDate || hoverDate;
@@ -75,11 +76,11 @@ interface CalendarDropdownProps {
 export const CalendarDropdown: React.FC<CalendarDropdownProps> = ({ formik, onClose }) => {
     const [hoverDate, setHoverDate] = useState<Date | null>(null);
     const [selecting, setSelecting] = useState(false);
-    
+
     const today = new Date();
     const [leftYear, setLeftYear] = useState(today.getFullYear());
     const [leftMonth, setLeftMonth] = useState(today.getMonth());
-    
+
     const rightMonth = (leftMonth + 1) % 12;
     const rightYear = leftMonth === 11 ? leftYear + 1 : leftYear;
 
@@ -94,7 +95,7 @@ export const CalendarDropdown: React.FC<CalendarDropdownProps> = ({ formik, onCl
             formik.setFieldValue("endDate", e);
             setSelecting(false);
             setTimeout(() => onClose(), 300);
-            
+
             formik.setFieldError("startDate", undefined);
             formik.setFieldError("endDate", undefined);
         }

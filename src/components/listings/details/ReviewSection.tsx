@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import ReviewCard from "@/components/ui/listingDetails/ReviewCard";
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import { ListingReview } from "@/types/listing";
 
 interface ReviewSectionProps {
     overallRating: number;
     totalReviews: number;
-    reviews: any[];
+    reviews: ListingReview[];
 }
 
 const ReviewSection: React.FC<ReviewSectionProps> = ({ overallRating, totalReviews, reviews }) => {
@@ -15,7 +16,7 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({ overallRating, totalRevie
     if (!overallRating && (!reviews || reviews.length === 0)) return null;
 
     const reviewList = reviews || [];
-    
+
     const handleNext = () => {
         if (currentIndex + 2 < reviewList.length) {
             setCurrentIndex(currentIndex + 2);
@@ -31,7 +32,7 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({ overallRating, totalRevie
     return (
         <section className="py-12 px-4 md:px-8 max-w-7xl mx-auto border-t border-gray-100">
             <h2 className="text-2xl font-bold text-[#111111] mb-8">Reviews & Ratings</h2>
-            
+
             <div className="bg-white border border-gray-100 rounded-xl p-8 mb-12">
                 <p className="text-gray-900 font-bold mb-6">Overall Rating</p>
                 <div className="flex items-center gap-4">
@@ -47,14 +48,14 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({ overallRating, totalRevie
                 <h3 className="text-lg font-bold text-[#111111]">Reviews</h3>
                 {!isShowAll && reviewList.length > 2 && (
                     <div className="flex gap-4">
-                        <button 
+                        <button
                             onClick={handlePrev}
                             disabled={currentIndex === 0}
                             className={`p-2 border border-gray-200 rounded-full transition-colors ${currentIndex === 0 ? "opacity-30 cursor-not-allowed" : "hover:bg-gray-50"}`}
                         >
                             <ChevronLeft size={20} className="text-gray-400" />
                         </button>
-                        <button 
+                        <button
                             onClick={handleNext}
                             disabled={currentIndex + 2 >= reviewList.length}
                             className={`p-2 border border-gray-200 rounded-full transition-colors ${currentIndex + 2 >= reviewList.length ? "opacity-30 cursor-not-allowed" : "hover:bg-gray-50"}`}
@@ -64,12 +65,12 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({ overallRating, totalRevie
                     </div>
                 )}
             </div>
-            
+
 
             <div className={`grid grid-cols-1 ${isShowAll ? "md:grid-cols-2" : "md:grid-cols-2"} lg:grid-cols-2 gap-6 mb-8`}>
                 {reviewList.length > 0 ? (
                     (isShowAll ? reviewList : reviewList.slice(currentIndex, currentIndex + 2)).map((review) => (
-                        <ReviewCard 
+                        <ReviewCard
                             key={review.id}
                             rating={review.rating}
                             comment={review.comment}
@@ -84,7 +85,7 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({ overallRating, totalRevie
             </div>
 
             {reviewList.length > 2 && (
-                <button 
+                <button
                     onClick={() => setIsShowAll(!isShowAll)}
                     className="bg-[#FFF5F5] text-[#FF5A5F] px-8 py-3 rounded-md font-bold text-sm hover:bg-[#FFEAEA] transition-colors"
                 >
