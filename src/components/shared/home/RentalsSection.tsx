@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import RentalsCard from "@/components/ui/rentals/RentalsCard";
+import RentalsCard from "@/components/ui/landing/RentalsCard";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 const RENTALS_DATA = [
@@ -56,7 +56,7 @@ const RENTALS_DATA = [
     {
         rating: 4.8,
         totalReviews: 142,
-        title: "QSC K12.2 Active Loudspeaker",
+        title: "QSC K12.2 Active",
         address: "Manchester City Center",
         price: "$55",
         image: "/assets/rentalsImg/rentalSound.svg"

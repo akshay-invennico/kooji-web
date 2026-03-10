@@ -1,5 +1,5 @@
 import React from "react";
-import WhyChooseCard from "@/components/ui/whyChoose/WhyChooseCard";
+import WhyChooseCard from "@/components/ui/landing/WhyChooseCard";
 
 const WHY_CHOOSE_DATA = [
     {

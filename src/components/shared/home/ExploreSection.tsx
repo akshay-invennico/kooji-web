@@ -1,5 +1,5 @@
 import React from "react";
-import ExploreCard from "@/components/ui/explore/ExploreCard";
+import ExploreCard from "@/components/ui/landing/ExploreCard";
 
 
 const EXPLORE_DATA = [

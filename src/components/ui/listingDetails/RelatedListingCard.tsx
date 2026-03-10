@@ -4,7 +4,7 @@ import Link from "next/link";
 const ratingImg = "/assets/rentalsImg/ratingIcon.svg";
 const addressImg = "/assets/rentalsImg/addressIcon.svg";
 
-interface ListingCardProps {
+interface RelatedListingCardProps {
     id: string;
     rating: number,
     totalReviews: number,
@@ -15,7 +15,7 @@ interface ListingCardProps {
 }
 
 
-const ListingCard: React.FC<ListingCardProps> = ({ id, rating, totalReviews, title, address, price, image }) => {
+const RealtedListingCard: React.FC<RelatedListingCardProps> = ({ id, rating, totalReviews, title, address, price, image }) => {
     return (
         <Link href={`/listings/${id}`}>
             <div className="w-full bg-white rounded-xl overflow-hidden border border-gray-100 group cursor-pointer h-full flex flex-col hover:shadow-md transition-shadow">
@@ -68,4 +68,4 @@ const ListingCard: React.FC<ListingCardProps> = ({ id, rating, totalReviews, tit
     )
 }
 
-export default ListingCard;
+export default RealtedListingCard;

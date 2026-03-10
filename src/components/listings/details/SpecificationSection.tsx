@@ -1,0 +1,16 @@
+import React from "react";
+import SpecificationCard from "@/components/ui/listingDetails/SpecificationCard";
+
+interface SpecificationSectionProps {
+    specification: Record<string, string | undefined>;
+}
+
+const SpecificationSection: React.FC<SpecificationSectionProps> = ({ specification }) => {
+    return (
+        <section className="px-4 py-12 mx-auto max-w-7xl">
+            <SpecificationCard specification={specification} />
+        </section>
+    );
+};
+
+export default SpecificationSection;
