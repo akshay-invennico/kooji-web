@@ -1,5 +1,5 @@
 import React from "react";
-import ServicesCard from "@/components/ui/servicesSection/ServicesCard";
+import ServicesCard from "@/components/ui/landing/ServicesCard";
 
 const SERVICES_DATA = [
     {

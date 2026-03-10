@@ -1,5 +1,5 @@
 import React from 'react'
-import FeatureCard from '@/components/ui/feature/FeatureCard'
+import FeatureCard from '@/components/ui/landing/FeatureCard'
 
 const FEATURES_DATA = [
     {

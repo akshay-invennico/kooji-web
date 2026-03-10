@@ -21,7 +21,7 @@ const page = () => {
       <ServicesSection />
       <WhyChooseSection />
       <BecomeVendor />
-      <CreateWithKooji /> 
+      <CreateWithKooji />
     </main>
   )
 }
