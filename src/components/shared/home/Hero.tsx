@@ -1,10 +1,9 @@
 "use client";
 
-import React from "react";
+import React, { useState, useRef } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import { Search, MapPin, Calendar, ShieldCheck, Tag, Star } from "lucide-react";
-import Button from "@/components/ui/button/Button";
 import Icon from "@/components/ui/icon/Icon";
 
 const searchSchema = Yup.object({
@@ -25,20 +24,47 @@ const FEATURES = [
 ];
 
 const Hero = () => {
+  const [activeSegment, setActiveSegment] = useState(0);
+  const [progress, setProgress] = useState(0);
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  const handleTimeUpdate = () => {
+    if (videoRef.current) {
+      const current = videoRef.current.currentTime;
+      const duration = videoRef.current.duration;
+      if (duration > 0) {
+        setProgress((current / duration) * 100);
+      }
+    }
+  };
+
+  const handleVideoEnded = () => {
+    setActiveSegment((prev) => (prev + 1) % 4);
+    setProgress(0);
+    if (videoRef.current) {
+      videoRef.current.currentTime = 0;
+      videoRef.current.play();
+    }
+  };
+
   return (
-    <div className="relative w-full min-h-[550px] md:min-h-[700px] flex items-center justify-center overflow-hidden">
+    <div className="relative w-full min-h-[550px] md:min-h-[700px] flex items-center justify-center overflow-hidden -mt-16 md:-mt-[95px] pt-16 md:pt-[95px]">
 
       <video
+        ref={videoRef}
         autoPlay
-        loop
         muted
         playsInline
-        className="absolute inset-0 w-full h-full object-cover"
+        onTimeUpdate={handleTimeUpdate}
+        onEnded={handleVideoEnded}
+        className="absolute inset-0 w-full h-full object-cover z-0"
       >
         <source src="/assets/hero-video.mp4" type="video/mp4" />
       </video>
 
-      <div className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16 flex flex-col items-center justify-center">
+      <div className="absolute inset-0 bg-[#022345BF] z-1"></div>
+
+      <div className="relative z-10 h-screen w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16 flex flex-col items-center justify-center">
 
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[56px] font-bold text-white text-center leading-[1.2] md:leading-[1.1] mb-4 tracking-tight">
           Your One-Stop Marketplace <br className="hidden md:block" />
@@ -153,14 +179,12 @@ const Hero = () => {
               </div>
 
               <div className="w-full md:w-auto px-2 md:px-0 py-2 md:py-0 md:mr-1 self-center shrink-0">
-                <Button
+                <button
                   type="submit"
-                  variant="primary"
-                  size="lg"
-                  className="w-full md:w-auto whitespace-nowrap"
+                  className="w-full md:w-auto whitespace-nowrap bg-[#FF385C] hover:bg-[#E31C5F] text-white px-8 py-3 rounded-full font-medium transition duration-200"
                 >
                   Search
-                </Button>
+                </button>
               </div>
             </Form>
           )}
@@ -175,6 +199,24 @@ const Hero = () => {
           ))}
         </div>
 
+      </div>
+
+      <div className="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 z-10 flex gap-2 w-full max-w-[280px]">
+        {[0, 1, 2, 3].map((index) => (
+          <div key={index} className="h-1 bg-white/30 rounded-full overflow-hidden flex-1">
+            <div
+              className={`h-full bg-red-500 ${activeSegment === index ? "transition-all duration-100 ease-linear" : ""}`}
+              style={{
+                width:
+                  activeSegment > index
+                    ? "100%"
+                    : activeSegment === index
+                      ? `${progress}%`
+                      : "0%",
+              }}
+            />
+          </div>
+        ))}
       </div>
     </div>
   );

@@ -2,7 +2,7 @@ import React from "react";
 
 const BecomeVendor = () => {
     return (
-        <section className="py-16 md:py-24 bg-white">
+        <section className="pb-16 md:pb-24 bg-white">
             <div className="max-w-7xl mx-auto shadow-sm rounded-xl overflow-hidden grid grid-cols-1 md:grid-cols-2 bg-white">
                 <div className="p-8 md:p-12 lg:p-16 flex flex-col justify-center">
                     <p className="text-black-200 font-medium text-sm mb-6 p-2 bg-red-50 w-fit px-4 text-center rounded-md">

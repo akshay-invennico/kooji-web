@@ -60,7 +60,7 @@ const ListingFilterBar: React.FC<ListingFilterBarProps> = ({ showMap, onShowMapC
     });
 
     return (
-        <div className="w-full bg-white border-b border-gray-100 shadow-sm sticky top-0 z-50">
+        <div className="w-full bg-white border-b border-gray-100 shadow-sm sticky top-[96px] z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-4 lg:h-20 flex flex-col lg:flex-row items-stretch lg:items-center gap-4 lg:gap-0">
 
                 <div className="flex flex-col md:flex-row flex-1 border-b md:border-b-0 md:border-r border-gray-100 lg:border-gray-200">
@@ -70,11 +70,11 @@ const ListingFilterBar: React.FC<ListingFilterBarProps> = ({ showMap, onShowMapC
 
                 <div className="flex flex-wrap items-center justify-between lg:flex-nowrap lg:flex-[1.5] gap-2 md:gap-0 mt-2 lg:mt-0">
                     <SortFilter formik={formik} />
-                    <AdvancedFiltersModal 
-                        formik={formik} 
-                        isOpen={isFiltersOpen} 
-                        onClose={() => setIsFiltersOpen(false)} 
-                        onToggle={() => setIsFiltersOpen(o => !o)} 
+                    <AdvancedFiltersModal
+                        formik={formik}
+                        isOpen={isFiltersOpen}
+                        onClose={() => setIsFiltersOpen(false)}
+                        onToggle={() => setIsFiltersOpen(o => !o)}
                     />
 
                     <div className="flex-1 lg:flex-[0.8] flex items-center justify-center gap-3 px-4 md:px-6 py-2 lg:py-0">

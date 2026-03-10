@@ -12,7 +12,7 @@ interface ServicesCardProps {
 const ServicesCard: React.FC<ServicesCardProps> = ({ title, images, bgColor, tags, cardIndex }) => {
     return (
         <div
-            className="rounded-xl p-2 md:p-12 mb-4 overflow-hidden relative group transition-all hover:shadow-md"
+            className="rounded-xl p-2 md:p-12 mb-[60px] overflow-hidden relative group"
             style={{ backgroundColor: bgColor }}
         >
             <div className="flex flex-col lg:flex-row items-center gap-8 md:gap-12 relative z-10">
