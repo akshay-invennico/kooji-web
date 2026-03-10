@@ -25,7 +25,7 @@ const EXPLORE_DATA = [
 
 const ExploreSection = () => {
     return (
-        <section className="py-16 md:py-24 bg-white">
+        <section className="pb-16 md:pb-24 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-start mb-10">
                     <p className="text-black-200 font-medium text-sm mb-6 p-2 bg-red-50 w-fit px-4 text-center rounded-md">Explore Our Marketplace</p>

@@ -85,7 +85,7 @@ const RentalsSection = () => {
     };
 
     return (
-        <section className="py-16 md:py-24 bg-white">
+        <section className="pb-16 md:pb-24 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10">
                     <div className="text-start">
@@ -112,7 +112,7 @@ const RentalsSection = () => {
 
                 <div
                     ref={scrollContainerRef}
-                    className="flex overflow-x-auto pb-8 gap-1 snap-x snap-mandatory -mx-4 px-4 sm:mx-0 sm:px-0"
+                    className="flex overflow-x-auto pb-8 gap-x-3 snap-x snap-mandatory -mx-4 px-4 sm:mx-0 sm:px-0"
                     style={{
                         scrollbarWidth: 'none',
                         msOverflowStyle: 'none',
@@ -126,7 +126,7 @@ const RentalsSection = () => {
                         `}
                     </style>
                     {RENTALS_DATA.map((rental, index) => (
-                        <div key={index} className="min-w-[280px] sm:min-w-[320px] md:min-w-[340px] snap-start flex-shrink-0">
+                        <div key={index} className="w-fit snap-start shrink-0">
                             <RentalsCard
                                 rating={rental.rating}
                                 totalReviews={rental.totalReviews}
