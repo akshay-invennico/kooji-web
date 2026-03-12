@@ -34,9 +34,8 @@ const AddressCard: React.FC<AddressCardProps> = ({
     return (
         <div
             onClick={() => onSelect(address.id)}
-            className={`p-4 rounded-xl border-2 transition-all cursor-pointer relative ${
-                isSelected ? "border-[#FF4D4D] bg-[#FFF5F5]" : "border-gray-100 bg-white"
-            }`}
+            className={`p-4 rounded-xl border-2 transition-all cursor-pointer relative ${isSelected ? "border-[#FF4D4D] bg-[#FFF5F5]" : "border-gray-100 bg-white"
+                }`}
         >
             <div className="flex items-center gap-2 mb-1">
                 <img src={labelImages[address.label]} alt={address.label} className="w-4 h-4" />

@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
+import { Formik, Form } from "formik";
 
 interface VendorServiceAreaProps {
     onPrev?: () => void;
@@ -8,99 +9,115 @@ interface VendorServiceAreaProps {
 }
 
 const VendorServiceArea = ({ onPrev, onNext }: VendorServiceAreaProps) => {
-    const [minDist, setMinDist] = useState(1);
-    const [maxDist, setMaxDist] = useState(880);
     const minRange = 1;
     const maxRange = 1000;
-
-    const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = Math.min(Number(e.target.value), maxDist - 1);
-        setMinDist(value);
-    };
-
-    const handleMaxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const value = Math.max(Number(e.target.value), minDist + 1);
-        setMaxDist(value);
-    };
-
-
-    const minPercent = ((minDist - minRange) / (maxRange - minRange)) * 100;
-    const maxPercent = ((maxDist - minRange) / (maxRange - minRange)) * 100;
 
     return (
         <section className="w-full min-h-screen bg-white py-8">
             <div className="max-w-[1200px] mx-auto px-6">
-
+                {/* Progress Bar */}
                 <div className="w-full h-[4px] bg-gray-100 mb-12">
-                    <div className="h-full bg-red-500 transition-all duration-500" style={{ width: "100%" }}></div>
+                    <div className="h-full bg-[#FF3A44] transition-all duration-500" style={{ width: "100%" }}></div>
                 </div>
 
                 <div className="mb-10 text-left">
-                    <h2 className="text-2xl font-semibold text-gray-900 mb-8">Define Your Service Area</h2>
+                    <h2 className="text-[24px] font-semibold text-[#000000] mb-8">Define Your Service Area</h2>
 
-                    <div className="space-y-6 max-w-[800px]">
-                        <div className="space-y-6">
-                            <h3 className="text-gray-900 font-semibold block">Distance Range</h3>
+                    <Formik
+                        initialValues={{
+                            minDist: 1,
+                            maxDist: 880,
+                        }}
+                        onSubmit={(values) => {
+                            console.log("Service Area values:", values);
+                            onNext?.();
+                        }}
+                    >
+                        {({ values, setFieldValue }) => {
+                            const minPercent = ((values.minDist - minRange) / (maxRange - minRange)) * 100;
+                            const maxPercent = ((values.maxDist - minRange) / (maxRange - minRange)) * 100;
 
-                            <div className="flex justify-between items-center text-sm">
-                                <span className="text-gray-400">From <span className="text-gray-900 font-bold ml-1">{minDist} mi</span></span>
-                                <span className="text-gray-400">To <span className="text-gray-900 font-bold ml-1">{maxDist} mi</span></span>
-                            </div>
+                            const handleMinChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+                                const value = Math.min(Number(e.target.value), values.maxDist - 1);
+                                setFieldValue("minDist", value);
+                            };
 
-                            <div className="relative h-2 flex items-center mt-2">
-                               
-                                <div className="absolute w-full h-1 bg-gray-100 rounded-full"></div>
+                            const handleMaxChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+                                const value = Math.max(Number(e.target.value), values.minDist + 1);
+                                setFieldValue("maxDist", value);
+                            };
 
-                            
-                                <div
-                                    className="absolute h-1 bg-red-500 rounded-full"
-                                    style={{
-                                        left: `${minPercent}%`,
-                                        right: `${100 - maxPercent}%`
-                                    }}
-                                ></div>
+                            return (
+                                <Form className="space-y-6 max-w-[800px] mb-32 text-left">
+                                    <div className="space-y-6">
+                                        <h3 className="text-[#000000] font-semibold block text-[18px]">Distance Range</h3>
 
-                           
-                                <input
-                                    type="range"
-                                    min={minRange}
-                                    max={maxRange}
-                                    value={minDist}
-                                    onChange={handleMinChange}
-                                    className="range-input z-20"
-                                />
-                                <input
-                                    type="range"
-                                    min={minRange}
-                                    max={maxRange}
-                                    value={maxDist}
-                                    onChange={handleMaxChange}
-                                    className="range-input z-20"
-                                />
-                            </div>
+                                        <div className="flex justify-between items-center text-sm">
+                                            <span className="text-[#686262]">From <span className="text-[#000000] font-bold ml-1">{values.minDist} mi</span></span>
+                                            <span className="text-[#686262]">To <span className="text-[#000000] font-bold ml-1">{values.maxDist} mi</span></span>
+                                        </div>
 
+                                        <div className="relative h-2 flex items-center mt-2">
+                                            {/* Background Track */}
+                                            <div className="absolute w-full h-1.5 bg-gray-100 rounded-full"></div>
 
-                            <div className="border-b border-gray-100 pt-10"></div>
-                        </div>
-                    </div>
-                </div>
+                                            {/* Active Range */}
+                                            <div
+                                                className="absolute h-1.5 bg-[#FF3A44] rounded-full"
+                                                style={{
+                                                    left: `${minPercent}%`,
+                                                    right: `${100 - maxPercent}%`
+                                                }}
+                                            ></div>
 
+                                            {/* Range Inputs */}
+                                            <input
+                                                type="range"
+                                                min={minRange}
+                                                max={maxRange}
+                                                value={values.minDist}
+                                                onChange={handleMinChange}
+                                                className="range-input z-20"
+                                            />
+                                            <input
+                                                type="range"
+                                                min={minRange}
+                                                max={maxRange}
+                                                value={values.maxDist}
+                                                onChange={handleMaxChange}
+                                                className="range-input z-20"
+                                            />
+                                        </div>
 
-                <div className="fixed bottom-10 left-10 right-10 lg:left-70 lg:right-70 flex items-center justify-between">
-                    <button
-                        onClick={onPrev}
-                        className="bg-white text-gray-600 px-10 py-3 rounded-md font-semibold border border-gray-200 hover:bg-gray-50 transition-colors shadow-sm">
-                        Previous
-                    </button>
-                    <button
-                        onClick={onNext}
-                        className="bg-red-500 text-white px-10 py-3 rounded-md font-semibold hover:bg-red-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-sm">
-                        Next
-                    </button>
+                                        <div className="border-b border-gray-100 pt-10"></div>
+                                    </div>
+
+                                    {/* Navigation Buttons */}
+                                    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 p-6 z-50">
+                                        <div className="max-w-[1200px] mx-auto flex items-center justify-between">
+                                            <button
+                                                type="button"
+                                                onClick={onPrev}
+                                                className="bg-white text-[#686262] px-10 py-3 rounded-md font-semibold border border-gray-200 hover:bg-gray-50 transition-colors shadow-sm"
+                                            >
+                                                Previous
+                                            </button>
+                                            <button
+                                                type="submit"
+                                                className="bg-[#FF3A44] text-white px-10 py-3 rounded-md font-semibold hover:bg-[#E0343C] transition-colors shadow-sm"
+                                            >
+                                                Finish
+                                            </button>
+                                        </div>
+                                    </div>
+                                </Form>
+                            );
+                        }}
+                    </Formik>
                 </div>
             </div>
         </section>
     );
 };
 
-export default VendorServiceArea;
+export default VendorServiceArea;

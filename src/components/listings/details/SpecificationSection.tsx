@@ -7,7 +7,7 @@ interface SpecificationSectionProps {
 
 const SpecificationSection: React.FC<SpecificationSectionProps> = ({ specification }) => {
     return (
-        <section className="px-4 py-12 mx-auto max-w-7xl">
+        <section className="px-4  py-12 mx-auto max-w-7xl">
             <SpecificationCard specification={specification} />
         </section>
     );

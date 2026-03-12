@@ -3,59 +3,30 @@ import { Plus } from "lucide-react";
 
 interface ServicesCardProps {
     title: string,
-    images: string[],
+    image: string,
     bgColor: string,
     tags: string[],
     cardIndex: number
 }
 
-const ServicesCard: React.FC<ServicesCardProps> = ({ title, images, bgColor, tags, cardIndex }) => {
+const ServicesCard: React.FC<ServicesCardProps> = ({ title, image, bgColor, tags, cardIndex }) => {
     return (
         <div
-            className="rounded-xl p-2 md:p-12 mb-[60px] overflow-hidden relative group"
-            style={{ backgroundColor: bgColor }}
+            className="rounded-xl overflow-hidden mb-[60px] group sticky top-[120px]"
+            style={{ backgroundColor: bgColor, zIndex: cardIndex + 10 }}
         >
-            <div className="flex flex-col lg:flex-row items-center gap-8 md:gap-12 relative z-10">
+            <div className="flex flex-col lg:flex-row items-center relative z-10 h-full">
 
-                <div className="w-full lg:w-1/2 relative min-h-[350px] md:min-h-[450px] flex items-center justify-center">
-                    <div className="relative w-full max-w-[400px] lg:max-w-[450px] aspect-square">
-                        {images.map((img, index) => {
-                            let imageClasses = "absolute object-cover transition-transform duration-300 hover:scale-[1.03] border-4 border-transparent  rounded-xl ";
-
-                            if (cardIndex === 0) {
-                                // 1. Instrumnet & Equipmet
-                                if (index === 0) imageClasses += "w-[65%] left-[-5%] lg:left-[-15%] top-[10%] lg:top-[15%] -rotate-[2deg] z-20";
-                                if (index === 1) imageClasses += "w-[60%] right-[0%] lg:right-[12%] bottom-[15%] rotate-[6deg] z-10";
-                            } else if (cardIndex === 1) {
-                                // 2. Musicians & Singers
-                                if (index === 0) imageClasses += "w-[48%] left-[-5%] lg:left-[-10%] top-[5%] rotate-[1deg] z-10";
-                                if (index === 1) imageClasses += "w-[45%] left-[20%] lg:left-[25%] bottom-[5%] lg:bottom-[0%] -rotate-[1deg] z-20";
-                                if (index === 2) imageClasses += "w-[48%] right-[-5%] lg:right-[-5%] top-[2%] -rotate-[2deg] z-10";
-                            } else if (cardIndex === 2) {
-                                // 3. Technicians
-                                if (index === 0) imageClasses += "w-[50%] left-[5%] lg:left-[10%] top-[28%] -rotate-[3deg] z-20";
-                                if (index === 1) imageClasses += "w-[50%] left-[35%] lg:left-[35%] bottom-[45%] lg:bottom-[45%] -rotate-[2deg] z-30";
-                                if (index === 2) imageClasses += "w-[55%] right-[-5%] lg:right-[-5%] top-[25%] lg:top-[30%] rotate-[4deg] z-10";
-                            } else if (cardIndex === 3) {
-                                // 4. Event Space
-                                if (index === 0) imageClasses += "w-[75%] left-[0%] lg:left-[10%] top-[5%] lg:top-[10%] z-20";
-                                if (index === 1) imageClasses += "w-[75%] right-[-5%] lg:right-[0%] bottom-[15%] lg:bottom-[10%] z-10";
-                            }
-
-                            return (
-                                <img
-                                    key={index}
-                                    src={img}
-                                    alt={`${title} image ${index + 1}`}
-                                    className={imageClasses}
-                                />
-                            );
-                        })}
-                    </div>
+                <div className="w-full lg:w-1/2 relative min-h-[350px] md:min-h-[480px]">
+                    <img
+                        src={image}
+                        alt={title}
+                        className="w-full h-full object-cover"
+                    />
                 </div>
 
-                <div className="w-full lg:w-1/2 space-y-6 lg:pl-8">
-                    <h2 className="text-2xl md:text-3xl font-bold text-gray-900">
+                <div className="w-full lg:w-1/2 space-y-6 p-8 md:p-12 lg:p-16">
+                    <h2 className="text-[24px] font-bold text-[#000000]">
                         {title}
                     </h2>
 
@@ -63,12 +34,12 @@ const ServicesCard: React.FC<ServicesCardProps> = ({ title, images, bgColor, tag
                         {tags.slice(0, 18).map((tag, index) => (
                             <button
                                 key={index}
-                                className="bg-white/90 border border-white/40 px-4 py-2.5 rounded-lg text-sm md:text-sm font-semibold text-gray-800 shadow-sm hover:shadow hover:bg-white transition-all"
+                                className="bg-[#EAFBFF] border border-[#B5E9F5] px-4 py-2.5 rounded-md text-[14px] md:text-[14px] font-semibold text-[#000000]"
                             >
                                 {tag}
                             </button>
                         ))}
-                        <button className="bg-white px-4 py-2.5 rounded-lg text-sm md:text-sm font-semibold text-[#20B2FF] shadow-sm hover:shadow transition-all flex items-center gap-1">
+                        <button className="bg-[#EAFBFF] px-4 py-2.5 rounded-md text-[14px] md:text-[14px] font-semibold text-[#009FFD]  flex items-center gap-1">
                             <Plus className="w-4 h-4" />
                             More
                         </button>

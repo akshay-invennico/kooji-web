@@ -9,8 +9,9 @@ const routes = {
     verify: '/verify',
     register: '/register',
     vendor: '/vendor',
+    myListings: '/my/listings',
     blogs: '/blogs',
-    privacyPolicy: '/privacy-policy',
+    privacyPolicy: '/privacy/policy',
     termsAndConditions: '/terms-and-conditions',
 };
 

@@ -85,10 +85,10 @@ const AddressBookModal: React.FC<AddressBookModalProps> = ({
     return (
         <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4">
             <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
-            
+
             <div className="relative bg-white rounded-3xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl">
                 <div className="flex items-center justify-between p-4 md:p-6 border-b border-gray-100 shrink-0">
-                    <h2 className="text-[18px] md:text-[20px] font-semibold text-gray-900">Address Book</h2>
+                    <h2 className="text-[18px] md:text-[20px] font-semibold text-[#000000]">Address Book</h2>
                     <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
                         <X size={20} className="text-gray-500" />
                     </button>
@@ -116,14 +116,14 @@ const AddressBookModal: React.FC<AddressBookModalProps> = ({
                         </div>
                     </div>
 
-                   
+
                     <div className="flex-1 p-4 md:p-8 md:overflow-y-auto">
                         <h3 className="text-[16px] md:text-[18px] font-semibold text-gray-900 mb-4 md:mb-6">
                             {editingAddress ? "Edit Address" : "Add new Address"}
                         </h3>
 
                         <form onSubmit={formik.handleSubmit} className="space-y-6">
-                            
+
                             <div>
                                 <label className="block text-[14px] font-semibold text-gray-900 mb-3">Address Label</label>
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
@@ -132,16 +132,14 @@ const AddressBookModal: React.FC<AddressBookModalProps> = ({
                                             key={opt.id}
                                             type="button"
                                             onClick={() => formik.setFieldValue("label", opt.id)}
-                                            className={`flex flex-col items-center justify-center gap-2 p-3 rounded-xl border-2 transition-all ${
-                                                formik.values.label === opt.id
-                                                    ? "border-[#FF4D4D] bg-[#FFF5F5]"
-                                                    : "border-gray-100 bg-white hover:border-gray-200"
-                                            }`}
+                                            className={`flex flex-col items-center justify-center gap-2 p-3 rounded-xl border-2 transition-all ${formik.values.label === opt.id
+                                                ? "border-[#FF4D4D] bg-[#FFF5F5]"
+                                                : "border-gray-100 bg-white hover:border-gray-200"
+                                                }`}
                                         >
                                             <img src={opt.icon} alt={opt.label} className="w-6 h-6" />
-                                            <span className={`text-[12px] font-semibold ${
-                                                formik.values.label === opt.id ? "text-[#FF4D4D]" : "text-gray-500"
-                                            }`}>
+                                            <span className={`text-[12px] font-semibold ${formik.values.label === opt.id ? "text-[#FF4D4D]" : "text-gray-500"
+                                                }`}>
                                                 {opt.label}
                                             </span>
                                         </button>
@@ -149,7 +147,7 @@ const AddressBookModal: React.FC<AddressBookModalProps> = ({
                                 </div>
                             </div>
 
-                           
+
                             <div>
                                 <h4 className="text-[14px] font-semibold text-gray-900 mb-4">Recipient Details</h4>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -184,7 +182,7 @@ const AddressBookModal: React.FC<AddressBookModalProps> = ({
                                 </div>
                             </div>
 
-                            
+
                             <div className="space-y-4">
                                 <h4 className="text-[14px] font-semibold text-gray-900">Address Location</h4>
                                 <div className="space-y-2">
@@ -286,7 +284,7 @@ const AddressBookModal: React.FC<AddressBookModalProps> = ({
                                 </button>
                                 <button
                                     type="submit"
-                                    className="px-10 py-3 rounded-lg text-[14px] font-bold text-white bg-[#FF4D4D] hover:bg-[#E64444] transition-all"
+                                    className="px-10 py-3 rounded-lg text-[14px] font-bold text-white bg-[#FF3A44]"
                                 >
                                     {editingAddress ? "Update Address" : "Save Address"}
                                 </button>

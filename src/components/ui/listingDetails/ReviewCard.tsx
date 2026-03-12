@@ -11,7 +11,7 @@ interface ReviewCardProps {
 
 const ReviewCard: React.FC<ReviewCardProps> = ({ rating, comment, userName, userLocation, userImage }) => {
     return (
-        <div className="bg-white border border-gray-100 rounded-md p-6 h-full flex flex-col justify-between">
+        <div className="bg-white border border-[#F0EFEF] rounded-lg p-6 h-full flex flex-col justify-between">
             <div>
                 <div className="flex gap-1 mb-4">
                     {[...Array(5)].map((_, i) => (
@@ -22,7 +22,7 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ rating, comment, userName, user
                         />
                     ))}
                 </div>
-                <p className="text-[#111111] leading-relaxed mb-6 font-medium italic">
+                <p className="text-[#000000] text-[14px] leading-relaxed mb-6 font-medium">
                     &quot;{comment}&quot;
                 </p>
             </div>
@@ -43,8 +43,8 @@ const ReviewCard: React.FC<ReviewCardProps> = ({ rating, comment, userName, user
                     </div>
                 )}
                 <div>
-                    <h4 className="text-[#111111] font-bold text-sm">{userName}</h4>
-                    <p className="text-gray-400 text-xs">{userLocation}</p>
+                    <h4 className="text-[#000000] font-medium text-[14px]">{userName}</h4>
+                    <p className="text-[#686262]  font-medium text-[14px]">{userLocation}</p>
                 </div>
             </div>
         </div>
