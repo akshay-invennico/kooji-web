@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { UserCircle, Menu, X, LogIn, Store, Headset } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import clsx from "clsx";
 import routes from "@/app/routes";
 import Button from "@/components/ui/button/Button";
@@ -17,9 +17,9 @@ const NAV_LINKS = [
 ] as const;
 
 const PROFILE_MENU = [
-  { label: "Login", icon: LogIn, href: routes.login },
-  { label: "Become a Vendor", icon: Store, href: routes.vendor },
-  { label: "Contact Support", icon: Headset, href: routes.contact },
+  { label: "Login / Sign up", iconSrc: "/icons/header/logIn.svg", href: routes.login },
+  { label: "Become a Vendor", iconSrc: "/icons/header/bacomeAVendor.svg", href: routes.vendor },
+  { label: "Contact Support", iconSrc: "/icons/header/contactSupport.svg", href: routes.contact },
 ] as const;
 
 const Header = () => {
@@ -68,14 +68,14 @@ const Header = () => {
   return (
     <header
       className={clsx(
-        "fixed top-0 left-0 w-full z-50 transition-all duration-300",
+        "fixed top-0 left-0 w-full z-100 transition-all duration-300",
         transparentHeader
           ? "bg-transparent"
           : "bg-white border-b border-[#F0EFEF]"
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-        <div className="flex items-center justify-between h-16 md:h-[95px]">
+        <div className="flex items-center justify-between h-14 md:h-[95px]">
 
           <Link href={routes.home} className="shrink-0" aria-label="Kooji home">
             <Image
@@ -94,8 +94,12 @@ const Header = () => {
                 key={href}
                 href={href}
                 className={clsx(
-                  "text-[14px] font-medium whitespace-nowrap transition-colors duration-200",
-                  transparentHeader ? "text-white" : "text-black"
+                  "text-[16px] font-bold whitespace-nowrap transition-colors duration-200 hover:text-[#C5161D]",
+                  pathname === href
+                    ? "text-[#C5161D]"
+                    : transparentHeader
+                      ? "text-white"
+                      : "text-black"
                 )}
               >
                 {label}
@@ -108,33 +112,39 @@ const Header = () => {
                 aria-expanded={profileOpen}
                 aria-haspopup="menu"
                 onClick={() => setProfileOpen((prev) => !prev)}
-                className="w-9 h-9 rounded-full bg-red-500 text-white flex items-center justify-center hover:bg-red-600 transition"
+                className="w-10 h-10 rounded-full overflow-hidden"
               >
-                <Icon component={UserCircle} size="lg" />
+                <Image
+                  src="/icons/header/userNavbar.svg"
+                  alt="User Profile"
+                  width={40}
+                  height={40}
+                  className="w-full h-full object-cover"
+                />
               </button>
 
               <div
                 role="menu"
                 className={clsx(
-                  "absolute right-0 mt-3 w-52 bg-white rounded-2xl shadow-xl overflow-hidden",
+                  "absolute right-0 mt-3 w-52 bg-white rounded-2xl shadow-xl overflow-hidden z-50",
                   "transition-all duration-200 origin-top-right",
                   profileOpen
                     ? "opacity-100 scale-100"
                     : "opacity-0 scale-95 pointer-events-none"
                 )}
               >
-                {PROFILE_MENU.map(({ label, icon, href }, i) => (
+                {PROFILE_MENU.map(({ label, iconSrc, href }, i) => (
                   <Link
                     key={label}
                     href={href}
                     role="menuitem"
                     onClick={closeAll}
                     className={clsx(
-                      "flex items-center gap-3 px-4 py-3 text-[14px] font-medium text-gray-800 hover:bg-gray-50",
+                      "flex items-center gap-3 px-4 py-3 text-[16px] font-medium text-[#000000] hover:text-[#C5161D] transition-colors duration-200",
                       i < PROFILE_MENU.length - 1 && "border-b border-gray-100"
                     )}
                   >
-                    <Icon component={icon} size="sm" className="text-primary" />
+                    <Image src={iconSrc} alt={label} width={24} height={24} className="w-6 h-6" />
                     {label}
                   </Link>
                 ))}
@@ -174,7 +184,10 @@ const Header = () => {
               key={href}
               href={href}
               onClick={closeAll}
-              className="block text-[15px] font-medium py-2.5 px-3 rounded-lg text-gray-300 hover:text-white hover:bg-white/5"
+              className={clsx(
+                "block text-[16px] font-bold py-2.5 px-3 rounded-lg transition-colors duration-200 hover:text-[#C5161D] hover:bg-white/5",
+                pathname === href ? "text-[#C5161D]" : "text-gray-300"
+              )}
             >
               {label}
             </Link>
@@ -182,20 +195,21 @@ const Header = () => {
 
           <div className="h-px bg-white/10 my-2" />
 
-          {PROFILE_MENU.map(({ label, icon, href }) => (
+          {PROFILE_MENU.map(({ label, iconSrc, href }) => (
             <Link
               key={label}
               href={href}
               onClick={closeAll}
-              className="flex items-center gap-3 py-2.5 px-3 rounded-lg text-[14px] font-medium text-gray-300 hover:text-white hover:bg-white/5"
+              className="flex items-center gap-3 py-2.5 px-3 rounded-lg text-[14px] font-medium text-gray-300 transition-colors duration-200 hover:text-[#C5161D] hover:bg-white/5"
             >
-              <Icon component={icon} size="sm" className="text-primary" />
+              <Image src={iconSrc} alt={label} width={24} height={24} className="w-6 h-6" />
               {label}
             </Link>
           ))}
 
         </div>
       </div>
+      <div className="w-full h-px bg-white/20" />
     </header>
   );
 };

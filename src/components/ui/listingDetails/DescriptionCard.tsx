@@ -20,21 +20,21 @@ const DescriptionCard: React.FC<DescriptionCardProps> = ({
     const isEventSpace = category?.toLowerCase() === "event space";
 
     return (
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-8">
             <div>
-                <h4 className="text-[17px] font-bold text-gray-900 mb-3">Overview</h4>
-                <p className="text-gray-600 leading-relaxed text-sm md:text-base">
+                <h4 className="text-[16px] font-semibold text-[#000000] mb-3">Overview</h4>
+                <p className="text-[#686262] leading-relaxed text-[14px] font-medium">
                     {overview}
                 </p>
             </div>
 
             {isEventSpace && venueHighlights && venueHighlights.length > 0 && (
                 <div>
-                    <h4 className="text-[17px] font-bold text-gray-900 mb-3">Venue Highlights</h4>
+                    <h4 className="text-[16px] font-semibold text-[#000000] mb-3">Venue Highlights</h4>
                     <ul className="space-y-3">
                         {venueHighlights.map((highlight, index) => (
-                            <li key={index} className="flex items-start gap-3 text-sm md:text-base text-gray-600">
-                                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gray-400 flex-shrink-0" />
+                            <li key={index} className="flex items-start gap-3 text-[14px] font-medium text-[#686262]">
+                                <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gray-400 shrink-0" />
                                 {highlight}
                             </li>
                         ))}
@@ -46,11 +46,11 @@ const DescriptionCard: React.FC<DescriptionCardProps> = ({
                 <>
                     {whatsIncluded && whatsIncluded.length > 0 && (
                         <div>
-                            <h4 className="text-[17px] font-bold text-gray-900 mb-3">What&apos;s Included</h4>
+                            <h4 className=" text-[16px] font-semibold text-[#000000] mb-3">What&apos;s Included</h4>
                             <ul className="space-y-2">
                                 {whatsIncluded.map((item, index) => (
-                                    <li key={index} className="flex items-start gap-3 text-sm md:text-base text-gray-600">
-                                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gray-400 flex-shrink-0" />
+                                    <li key={index} className="flex items-start gap-3 text-[14px] font-medium text-[#686262]">
+                                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gray-400 shrink-0" />
                                         {item}
                                     </li>
                                 ))}
@@ -60,11 +60,11 @@ const DescriptionCard: React.FC<DescriptionCardProps> = ({
 
                     {whatsNotIncluded && whatsNotIncluded.length > 0 && (
                         <div>
-                            <h4 className="text-[17px] font-bold text-gray-900 mb-3">What&apos;s Not Included</h4>
+                            <h4 className=" text-[16px] font-semibold text-[#000000] mb-3">What&apos;s Not Included</h4>
                             <ul className="space-y-2">
                                 {whatsNotIncluded.map((item, index) => (
-                                    <li key={index} className="flex items-start gap-3 text-sm md:text-base text-gray-600">
-                                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gray-400 flex-shrink-0" />
+                                    <li key={index} className="flex items-start gap-3 text-[14px] font-medium text-[#686262]">
+                                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gray-400 shrink-0" />
                                         {item}
                                     </li>
                                 ))}
@@ -74,11 +74,11 @@ const DescriptionCard: React.FC<DescriptionCardProps> = ({
 
                     {rulesAndUsageGuidelines && rulesAndUsageGuidelines.length > 0 && (
                         <div>
-                            <h4 className="text-[17px] font-bold text-gray-900 mb-3">Rules and Usages Guidline</h4>
+                            <h4 className=" text-[16px] font-semibold text-[#000000] mb-3">Rules and Usages Guidline</h4>
                             <ul className="space-y-2">
                                 {rulesAndUsageGuidelines.map((item, index) => (
-                                    <li key={index} className="flex items-start gap-3 text-sm md:text-base text-gray-600">
-                                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gray-400 flex-shrink-0" />
+                                    <li key={index} className="flex items-start gap-3 text-[14px] font-medium text-[#686262]">
+                                        <span className="mt-1.5 w-1.5 h-1.5 rounded-full bg-gray-400 shrink-0" />
                                         {item}
                                     </li>
                                 ))}

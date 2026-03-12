@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useRef, useEffect } from "react";
 import { ChevronDown, Check } from "lucide-react";
+import Image from "next/image";
 
 const SORT_OPTIONS = [
     { id: "relevance", label: "Most Relevance" },
@@ -34,27 +35,26 @@ export const SortFilter = ({ formik }: { formik: any }) => {
 
     return (
         <div
-            className="flex-1 lg:flex-[0.8] flex flex-col md:border-r border-gray-100 px-4 md:px-6 cursor-pointer hover:bg-gray-50 transition-colors py-2 lg:py-0 rounded-lg lg:rounded-none relative"
+            className="flex-1 flex flex-col border-r border-[#F0EFEF] px-4 md:px-8 cursor-pointer hover:bg-gray-50 transition-colors py-3 md:py-0 relative h-full justify-center"
             onClick={() => setIsSortOpen(!isSortOpen)}
             ref={sortRef}
         >
-            <label className="text-[12px] lg:text-[14px] font-semibold text-gray-900 mb-1">
+            <label className="text-[14px] font-medium text-[#000000] mb-2 truncate">
                 Sort by
             </label>
-            <div className="flex items-center justify-between">
-                <span className="text-[13px] lg:text-[14px] text-gray-900 font-medium">{formik.values.sortMode.label}</span>
-                <ChevronDown
-                    size={22}
-                    className={`text-gray-400 transition-transform duration-200 ${isSortOpen ? "rotate-180" : ""}`}
-                />
+            <div className="flex items-center justify-between gap-4">
+                <span className="text-[14px] text-[#000000] font-semibold truncate">{formik.values.sortMode.label}</span>
+                <div className={`transition-transform duration-200 ${isSortOpen ? "rotate-180" : ""}`}>
+                    <Image src="/icons/filters/filterIcon4.svg" alt="Sort" width={16} height={16} />
+                </div>
             </div>
 
             {isSortOpen && (
-                <div className="absolute top-full left-0 mt-2 w-full min-w-[200px] bg-white border border-gray-100 rounded-xl shadow-xl z-[60] py-2 overflow-hidden animate-in fade-in zoom-in duration-200 origin-top">
+                <div className="absolute top-full left-0 mt-2 w-full min-w-[200px] bg-white border border-gray-100 rounded-xl shadow-xl z-60 py-2 overflow-hidden animate-in fade-in zoom-in duration-200 origin-top">
                     {SORT_OPTIONS.map((option) => (
                         <div
                             key={option.id}
-                            className={`px-4 py-2.5 text-[13px] lg:text-[14px] flex items-center justify-between cursor-pointer hover:bg-gray-50 ${formik.values.sortMode.id === option.id ? "text-black-100 font-semibold " : "text-gray-600"}`}
+                            className={`px-4 py-2.5 text-[14px] font-medium lg:text-[14px] flex items-center justify-between cursor-pointer hover:bg-gray-50 ${formik.values.sortMode.id === option.id ? "text-black font-semibold " : "text-gray-600"}`}
                             onClick={(e) => {
                                 e.stopPropagation();
                                 formik.setFieldValue("sortMode", option);

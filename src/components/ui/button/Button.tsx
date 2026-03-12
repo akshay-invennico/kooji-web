@@ -4,7 +4,7 @@ import React from "react";
 import { Loader2 } from "lucide-react";
 import clsx from "clsx";
 
-export type ButtonVariant = "primary" | "secondary" | "ghost" | "danger";
+export type ButtonVariant = "primary" | "secondary" | "ghost" | "danger" | "outline";
 export type ButtonSize = "sm" | "md" | "lg";
 
 export interface ButtonProps
@@ -26,6 +26,8 @@ const VARIANT_STYLES: Record<ButtonVariant, string> = {
     "bg-transparent text-gray-700 hover:bg-gray-100 focus-visible:ring-gray-400 border border-gray-200",
   danger:
     "bg-red-600 text-white hover:bg-red-700 focus-visible:ring-red-500",
+  outline:
+    "bg-transparent text-gray-700 hover:bg-gray-50 focus-visible:ring-gray-400 border border-gray-200",
 };
 
 const SIZE_STYLES: Record<ButtonSize, string> = {

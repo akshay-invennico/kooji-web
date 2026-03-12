@@ -4,9 +4,9 @@ const CreateWithKooji = () => {
     return (
         <section className="py-16 md:py-24 bg-white relative">
             <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="text-center mb-12 relative z-20">
-                    <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">Created with Kooji</h2>
-                    <p className="text-gray-600 max-w-2xl mx-auto">
+                <div className="text-center  mb-12 relative z-20">
+                    <h2 className="text-[36px] md:text-4xl font-bold text-[#000000] mb-4">Created with Kooji</h2>
+                    <p className="text-[#585E61] font-regular text-[16px] max-w-2xl mx-auto">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem, expedita natus ipsum ex reiciendis corporis. Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora, odio.
                     </p>
                 </div>
@@ -19,36 +19,36 @@ const CreateWithKooji = () => {
                     <div className="grid grid-cols-5 gap-2 sm:gap-3 md:gap-4">
 
                         <div className="flex flex-col gap-2 sm:gap-3 md:gap-4 mt-6 sm:mt-12 md:mt-24">
-                            <img src="/assets/createWithKooji/create1.svg" alt="Created with Kooji 1" className="w-full rounded-[4px] sm:rounded-lg md:rounded-xl object-cover hover:scale-[1.02] transition-transform duration-300" />
-                            <img src="/assets/createWithKooji/create2.svg" alt="Created with Kooji 2" className="w-full rounded-[4px] sm:rounded-lg md:rounded-xl object-cover hover:scale-[1.02] transition-transform duration-300" />
+                            <img src="/assets/createWithKooji/create1.png" alt="Created with Kooji 1" className="w-full rounded-[4px] sm:rounded-lg md:rounded-xl object-cover hover:scale-[1.02] transition-transform duration-300" />
+                            <img src="/assets/createWithKooji/create2.png" alt="Created with Kooji 2" className="w-full rounded-[4px] sm:rounded-lg md:rounded-xl object-cover hover:scale-[1.02] transition-transform duration-300" />
                         </div>
 
 
                         <div className="flex flex-col gap-2 sm:gap-3 md:gap-4 mt-3 sm:mt-6 md:mt-12">
-                            <img src="/assets/createWithKooji/create3.svg" alt="Created with Kooji 3" className="w-full rounded-[4px] sm:rounded-lg md:rounded-xl object-cover hover:scale-[1.02] transition-transform duration-300" />
-                            <img src="/assets/createWithKooji/create4.svg" alt="Created with Kooji 4" className="w-full rounded-[4px] sm:rounded-lg md:rounded-xl object-cover hover:scale-[1.02] transition-transform duration-300" />
-                            <img src="/assets/createWithKooji/create5.svg" alt="Created with Kooji 5" className="w-full rounded-[4px] sm:rounded-lg md:rounded-xl object-cover hover:scale-[1.02] transition-transform duration-300" />
+                            <img src="/assets/createWithKooji/create3.png" alt="Created with Kooji 3" className="w-full rounded-[4px] sm:rounded-lg md:rounded-xl object-cover hover:scale-[1.02] transition-transform duration-300" />
+                            <img src="/assets/createWithKooji/create4.png" alt="Created with Kooji 4" className="w-full rounded-[4px] sm:rounded-lg md:rounded-xl object-cover hover:scale-[1.02] transition-transform duration-300" />
+                            <img src="/assets/createWithKooji/create5.png" alt="Created with Kooji 5" className="w-full rounded-[4px] sm:rounded-lg md:rounded-xl object-cover hover:scale-[1.02] transition-transform duration-300" />
                         </div>
 
 
                         <div className="flex flex-col gap-2 sm:gap-3 md:gap-4">
-                            <img src="/assets/createWithKooji/create6.svg" alt="Created with Kooji 6" className="w-full rounded-[4px] sm:rounded-lg md:rounded-xl object-cover hover:scale-[1.02] transition-transform duration-300" />
-                            <img src="/assets/createWithKooji/create7.svg" alt="Created with Kooji 7" className="w-full rounded-[4px] sm:rounded-lg md:rounded-xl object-cover hover:scale-[1.02] transition-transform duration-300" />
-                            <img src="/assets/createWithKooji/create8.svg" alt="Created with Kooji 8" className="w-full rounded-[4px] sm:rounded-lg md:rounded-xl object-cover hover:scale-[1.02] transition-transform duration-300" />
-                            <img src="/assets/createWithKooji/create9.svg" alt="Created with Kooji 9" className="w-full rounded-[4px] sm:rounded-lg md:rounded-xl object-cover hover:scale-[1.02] transition-transform duration-300" />
+                            <img src="/assets/createWithKooji/create6.png" alt="Created with Kooji 6" className="w-full rounded-[4px] sm:rounded-lg md:rounded-xl object-cover hover:scale-[1.02] transition-transform duration-300" />
+                            <img src="/assets/createWithKooji/create7.png" alt="Created with Kooji 7" className="w-full rounded-[4px] sm:rounded-lg md:rounded-xl object-cover hover:scale-[1.02] transition-transform duration-300" />
+                            <img src="/assets/createWithKooji/create8.png" alt="Created with Kooji 8" className="w-full rounded-[4px] sm:rounded-lg md:rounded-xl object-cover hover:scale-[1.02] transition-transform duration-300" />
+                            <img src="/assets/createWithKooji/create9.png" alt="Created with Kooji 9" className="w-full rounded-[4px] sm:rounded-lg md:rounded-xl object-cover hover:scale-[1.02] transition-transform duration-300" />
                         </div>
 
 
                         <div className="flex flex-col gap-2 sm:gap-3 md:gap-4 mt-3 sm:mt-6 md:mt-12">
-                            <img src="/assets/createWithKooji/create10.svg" alt="Created with Kooji 10" className="w-full rounded-[4px] sm:rounded-lg md:rounded-xl object-cover hover:scale-[1.02] transition-transform duration-300" />
-                            <img src="/assets/createWithKooji/create11.svg" alt="Created with Kooji 11" className="w-full rounded-[4px] sm:rounded-lg md:rounded-xl object-cover hover:scale-[1.02] transition-transform duration-300" />
-                            <img src="/assets/createWithKooji/create12.svg" alt="Created with Kooji 12" className="w-full rounded-[4px] sm:rounded-lg md:rounded-xl object-cover hover:scale-[1.02] transition-transform duration-300" />
+                            <img src="/assets/createWithKooji/create10.png" alt="Created with Kooji 10" className="w-full rounded-[4px] sm:rounded-lg md:rounded-xl object-cover hover:scale-[1.02] transition-transform duration-300" />
+                            <img src="/assets/createWithKooji/create11.png" alt="Created with Kooji 11" className="w-full rounded-[4px] sm:rounded-lg md:rounded-xl object-cover hover:scale-[1.02] transition-transform duration-300" />
+                            <img src="/assets/createWithKooji/create12.png" alt="Created with Kooji 12" className="w-full rounded-[4px] sm:rounded-lg md:rounded-xl object-cover hover:scale-[1.02] transition-transform duration-300" />
                         </div>
 
 
                         <div className="flex flex-col gap-2 sm:gap-3 md:gap-4 mt-6 sm:mt-12 md:mt-24">
-                            <img src="/assets/createWithKooji/create13.svg" alt="Created with Kooji 13" className="w-full rounded-[4px] sm:rounded-lg md:rounded-xl object-cover hover:scale-[1.02] transition-transform duration-300" />
-                            <img src="/assets/createWithKooji/create14.svg" alt="Created with Kooji 14" className="w-full rounded-[4px] sm:rounded-lg md:rounded-xl object-cover hover:scale-[1.02] transition-transform duration-300" />
+                            <img src="/assets/createWithKooji/create13.png" alt="Created with Kooji 13" className="w-full rounded-[4px] sm:rounded-lg md:rounded-xl object-cover hover:scale-[1.02] transition-transform duration-300" />
+                            <img src="/assets/createWithKooji/create14.png" alt="Created with Kooji 14" className="w-full rounded-[4px] sm:rounded-lg md:rounded-xl object-cover hover:scale-[1.02] transition-transform duration-300" />
                         </div>
                     </div>
 

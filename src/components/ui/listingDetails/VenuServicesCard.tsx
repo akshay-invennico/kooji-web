@@ -7,9 +7,9 @@ interface VenuServicesCardProps {
 
 const VenuServicesCard: React.FC<VenuServicesCardProps> = ({ icon, title }) => {
     return (
-        <div className="flex flex-col items-start gap-3 p-4 rounded-xl border border-gray-100 bg-white hover:border-gray-200 transition-colors">
+        <div className="flex flex-col items-start gap-4 p-4 rounded-lg border border-[#F0EFEF] bg-white">
             <img src={icon} alt={title} className="w-9 h-9" />
-            <p className="text-[13px] font-medium text-gray-700 leading-tight">{title}</p>
+            <p className="text-[12px] font-medium text-[#000000] leading-tight">{title}</p>
         </div>
     );
 };

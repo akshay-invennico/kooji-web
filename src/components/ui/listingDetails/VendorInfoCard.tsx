@@ -15,8 +15,8 @@ const VendorInfoCard: React.FC<VendorInfoCardProps> = ({ vendorName, vendorImage
     const fallbackSrc = `https://randomuser.me/api/portraits/men/${portraitIndex}.jpg`;
 
     return (
-        <div className="bg-white rounded-lg border border-gray-100 p-6 mt-2">
-            <h3 className="text-[18px] font-semibold text-gray-900 mb-5">Vendor Info</h3>
+        <div className="bg-[#F0EFEF] rounded-lg border border-[#F0EFEF] p-6 mt-2">
+            <h3 className="text-[18px] font-semibold text-[#000000] mb-5">Vendor Info</h3>
 
             <div className="flex items-start justify-between gap-4 mb-5">
                 <div className="flex items-center gap-4">
@@ -29,23 +29,23 @@ const VendorInfoCard: React.FC<VendorInfoCardProps> = ({ vendorName, vendorImage
                         }}
                     />
                     <div>
-                        <p className="text-[16px] font-semibold text-gray-900 leading-tight mb-1">{vendorName}</p>
-                        <div className="flex items-center gap-2 text-[13px] text-gray-500 font-medium mb-1">
+                        <p className="text-[18px] font-semibold text-[#000000] leading-tight mb-1">{vendorName}</p>
+                        <div className="flex items-center gap-2 text-[14px] text-[#686262] font-medium mb-1">
                             <span>Total Orders: {totalOrders}</span>
                             <span className="w-1 h-1 rounded-full bg-gray-400 inline-block" />
                             <Star size={14} className="text-yellow-400 fill-yellow-400" />
-                            <span className="font-semibold text-gray-700">{rating.toFixed(1)}</span>
+                            <span className="font-medium text-[14px] text-[#686262]">{rating.toFixed(1)}</span>
                         </div>
-                        <p className="text-[12px] text-gray-400 font-medium">Response time: Within an hour</p>
+                        <p className="text-[12px] text-[#686262] font-medium">Response time: Within an hour</p>
                     </div>
                 </div>
 
                 <img src="/icons/vendor/vendorVerify.svg" alt="verified" className="w-7 h-7 shrink-0" />
             </div>
 
-            <button className="w-full flex items-center justify-center gap-2 py-3.5 rounded-lg bg-white border border-gray-100">
+            <button className="w-full flex items-center justify-center gap-2 py-3.5 rounded-lg bg-white border border-[#F0EFEF]">
                 <img src="/icons/vendor/vendorMessage.svg" alt="message" className="w-5 h-5" />
-                <span className="text-[14px] font-semibold text-[#C5161D]">Message Vendor</span>
+                <span className="text-[14px] font-semibold text-[#FF3A44]">Message Vendor</span>
             </button>
         </div>
     );
