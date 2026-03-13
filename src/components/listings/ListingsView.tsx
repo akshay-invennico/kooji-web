@@ -27,14 +27,14 @@ const ListingsView = () => {
             <ListingFilterBar showMap={showMap} onShowMapChange={setShowMap} />
 
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:pb-8 py-8">
-                <h1 className="text-2xl font-bold text-gray-900 mb-8">Listings</h1>
+                <h1 className="text-[24px] font-bold text-[#000000] mb-8">Listings</h1>
 
                 <div className="flex flex-col lg:flex-row gap-8">
 
                     <div className={`flex-1 transition-all duration-300 ${showMap ? 'lg:w-3/5 xl:w-[65%]' : 'w-full'}`}>
-                        <div className={`grid gap-6 ${showMap
-                            ? "grid-cols-1 md:grid-cols-2 xl:grid-cols-3"
-                            : "grid-cols-1 md:grid-cols-3 xl:grid-cols-5"
+                        <div className={`grid gap-3 justify-items-center ${showMap
+                            ? "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3"
+                            : "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5"
                             }`}>
                             {paginatedListings.map((listings, index) => (
                                 <ListingCard
@@ -57,7 +57,7 @@ const ListingsView = () => {
                                 disabled={currentPage === 1}
                                 className="p-2 rounded-full border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                             >
-                                <ChevronLeft className="w-5 h-5" />
+                                <ChevronLeft className="w-6 h-6" />
                             </button>
 
                             <div className="flex items-center gap-1">
@@ -66,7 +66,7 @@ const ListingsView = () => {
                                         key={page}
                                         onClick={() => goToPage(page)}
                                         className={`w-10 h-10 rounded-full text-sm font-medium transition-colors ${currentPage === page
-                                            ? "bg-red-600 text-white"
+                                            ? "bg-[#FF3A44] text-white"
                                             : "bg-white border border-red-200 text-black shadow-sm hover:bg-gray-50"
                                             }`}
                                     >
@@ -80,7 +80,7 @@ const ListingsView = () => {
                                 disabled={currentPage === totalPages}
                                 className="p-2 rounded-full border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
                             >
-                                <ChevronRight className="w-5 h-5" />
+                                <ChevronRight className="w-6 h-6" />
                             </button>
                         </div>
                     </div>

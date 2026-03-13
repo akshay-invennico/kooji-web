@@ -3,6 +3,7 @@
 import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
+import Image from "next/image";
 
 import { SearchLocationFilter } from "../ui/listings/SearchLocationFilter";
 import { DateFilter } from "../ui/listings/DateFilter";
@@ -33,6 +34,7 @@ const filterSchema = Yup.object().shape({
 
 const ListingFilterBar: React.FC<ListingFilterBarProps> = ({ showMap, onShowMapChange }) => {
     const [isFiltersOpen, setIsFiltersOpen] = useState(false);
+    const [isMobileModalOpen, setIsMobileModalOpen] = useState(false);
 
     const formik = useFormik({
         initialValues: {
@@ -56,41 +58,93 @@ const ListingFilterBar: React.FC<ListingFilterBarProps> = ({ showMap, onShowMapC
         onSubmit: (values) => {
             console.log("Filter values submitted:", values);
             setIsFiltersOpen(false);
+            setIsMobileModalOpen(false);
         },
     });
 
-    return (
-        <div className="w-full bg-white border-b border-gray-100 shadow-sm sticky top-[96px] z-50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 py-4 lg:h-20 flex flex-col lg:flex-row items-stretch lg:items-center gap-4 lg:gap-0">
-
-                <div className="flex flex-col md:flex-row flex-1 border-b md:border-b-0 md:border-r border-gray-100 lg:border-gray-200">
-                    <SearchLocationFilter formik={formik} />
-                    <DateFilter formik={formik} />
-                </div>
-
-                <div className="flex flex-wrap items-center justify-between lg:flex-nowrap lg:flex-[1.5] gap-2 md:gap-0 mt-2 lg:mt-0">
-                    <SortFilter formik={formik} />
-                    <AdvancedFiltersModal
-                        formik={formik}
-                        isOpen={isFiltersOpen}
-                        onClose={() => setIsFiltersOpen(false)}
-                        onToggle={() => setIsFiltersOpen(o => !o)}
-                    />
-
-                    <div className="flex-1 lg:flex-[0.8] flex items-center justify-center gap-3 px-4 md:px-6 py-2 lg:py-0">
-                        <span className="text-[13px] lg:text-[14px] font-semibold text-gray-900 whitespace-nowrap">Show Map</span>
-                        <label className="relative inline-flex items-center cursor-pointer">
-                            <input
-                                type="checkbox"
-                                checked={showMap}
-                                onChange={(e) => onShowMapChange(e.target.checked)}
-                                className="sr-only peer"
-                            />
-                            <div className="w-10 h-5 md:w-11 md:h-6 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 md:after:h-5 md:after:w-5 after:transition-all peer-checked:bg-[green]"></div>
-                        </label>
+    const FilterContent = () => (
+        <>
+            <SearchLocationFilter formik={formik} />
+            <DateFilter formik={formik} />
+            <SortFilter formik={formik} />
+            <AdvancedFiltersModal
+                formik={formik}
+                isOpen={isFiltersOpen}
+                onClose={() => setIsFiltersOpen(false)}
+                onToggle={() => setIsFiltersOpen(o => !o)}
+            />
+            {/* Map Toggle (Included in both desktop and mobile modal) */}
+            <div className="flex items-center gap-3 px-4 md:px-8 py-3 md:py-0 min-w-[140px] h-full border-t md:border-t-0 md:border-l border-[#F0EFEF]">
+                <span className="text-[16px] font-bold text-black whitespace-nowrap">Show Map</span>
+                <div
+                    className="w-[46px] h-[26px] bg-[#F3F4F6] rounded-full relative cursor-pointer flex items-center overflow-hidden"
+                    onClick={() => onShowMapChange(!showMap)}
+                >
+                    <div
+                        className={`absolute top-px transition-transform duration-300 ease-in-out ${showMap ? 'translate-x-[21px]' : 'translate-x-px'}`}
+                    >
+                        <Image
+                            src={showMap ? "/icons/filters/toggleOff.svg" : "/icons/filters/toogleOn.svg"}
+                            alt="Toggle Map"
+                            width={24}
+                            height={24}
+                            className="shrink-0"
+                        />
                     </div>
                 </div>
             </div>
+        </>
+    );
+
+    return (
+        <div className="w-full bg-white border-b border-[#F0EFEF] lg:sticky lg:top-[95px] z-50">
+            <div className="max-w-7xl mx-auto px-4 h-auto md:h-[100px] flex items-center py-4 md:py-0">
+                <div className="flex items-center justify-end lg:justify-between w-full h-full">
+                    {/* Desktop Filters */}
+                    <div className="hidden lg:flex flex-1 h-full items-center">
+                        <FilterContent />
+                    </div>
+
+                    {/* Mobile Filter Button (Standalone at the right) */}
+                    <div className="flex lg:hidden items-center ml-auto">
+                        <button
+                            onClick={() => setIsMobileModalOpen(true)}
+                            className="flex items-center gap-2 px-4 py-2 border border-[#F0EFEF] rounded-lg hover:bg-gray-50 transition-colors"
+                        >
+                            <Image src="/icons/filters/filterIcon5.svg" alt="Filters" width={20} height={20} />
+                            <span className="text-[14px] font-semibold text-black">Filters</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            {/* Mobile Filter Modal */}
+            {isMobileModalOpen && (
+                <div className="fixed inset-0 z-100 bg-white flex flex-col animate-in slide-in-from-bottom duration-300">
+                    <div className="flex items-center justify-between p-4 border-b border-[#F0EFEF]">
+                        <h2 className="text-[18px] font-bold text-black">All Filters</h2>
+                        <button onClick={() => setIsMobileModalOpen(false)} className="p-2 text-black">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                                <line x1="18" y1="6" x2="6" y2="18"></line>
+                                <line x1="6" y1="6" x2="18" y2="18"></line>
+                            </svg>
+                        </button>
+                    </div>
+                    <div className="flex-1 overflow-y-auto p-4">
+                        <div className="flex flex-col gap-6">
+                            <FilterContent />
+                        </div>
+                    </div>
+                    <div className="p-4 border-t border-[#F0EFEF] bg-white">
+                        <button
+                            onClick={() => formik.handleSubmit()}
+                            className="w-full bg-[#FF3A44] text-white py-4 rounded font-bold text-[16px]"
+                        >
+                            Show Results
+                        </button>
+                    </div>
+                </div>
+            )}
         </div>
     );
 };

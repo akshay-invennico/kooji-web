@@ -15,15 +15,15 @@ const Page = () => {
   const [showPassword, setShowPassword] = useState(false)
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50 p-4 font-sans">
-      <div className="bg-white rounded-2xl shadow-xl p-8 w-full max-w-lg relative">
-        <button className="absolute right-6 top-6 text-gray-400 hover:text-gray-600">
+    <div className="min-h-screen flex items-center justify-center bg-[#F0EFEF] p-4 lg:p-8 font-sans">
+      <div className="bg-white rounded-xl p-8 lg:p-12 w-full max-w-xl lg:max-w-[500px] relative">
+        <button className="absolute right-6 top-6 text-gray-400">
           <X className="w-5 h-5" />
         </button>
 
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Welcome Back</h1>
-          <p className="text-gray-500 text-lg">Sign in to continue booking and managing your events.</p>
+          <h1 className="text-[20px] font-semibold text-[#000000] mb-2">Welcome Back</h1>
+          <p className="text-[#686262] text-[16px] font-medium">Sign in to continue booking and managing your events.</p>
         </div>
 
         <Formik
@@ -36,18 +36,18 @@ const Page = () => {
           {({ errors, touched }) => (
             <Form className="space-y-6">
               <div className="space-y-2">
-                <label className="text-sm font-semibold text-gray-700">Email</label>
+                <label className="text-[14px] font-medium text-[#000000] mb-4">Email</label>
                 <div className="relative">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[000000]">
                     <Mail className="w-5 h-5" />
                   </span>
                   <Field
                     name="email"
                     type="email"
                     placeholder="example@email.com"
-                    className={`w-full pl-12 pr-4 py-4 rounded-xl border focus:outline-none focus:ring-2 transition-all text-base ${errors.email && touched.email
-                      ? 'border-red-500 focus:ring-red-100'
-                      : 'border-gray-200 focus:ring-red-50/50 focus:border-[#FF4D4D]'
+                    className={`w-full pl-12 pr-4 py-4 rounded-md border focus:outline-none focus:ring-2 transition-all text-base ${errors.email && touched.email
+                      ? 'border-[#FF3A44] focus:ring-red-100'
+                      : 'border-gray-200 focus:ring-red-50/50 focus:border-[#FF3A44]'
                       }`}
                   />
                 </div>
@@ -55,18 +55,18 @@ const Page = () => {
               </div>
 
               <div className="space-y-2">
-                <label className="text-sm font-semibold text-gray-700">Password</label>
+                <label className="text-[14px] font-medium text-[#000000] mb-4">Password</label>
                 <div className="relative">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">
+                  <span className="absolute left-4 top-1/2 -translate-y-1/2 text-[#000000]">
                     <Lock className="w-5 h-5" />
                   </span>
                   <Field
                     name="password"
                     type={showPassword ? 'text' : 'password'}
                     placeholder="••••••••"
-                    className={`w-full pl-12 pr-12 py-4 rounded-xl border focus:outline-none focus:ring-2 transition-all text-base ${errors.password && touched.password
-                      ? 'border-red-500 focus:ring-red-100'
-                      : 'border-gray-200 focus:ring-red-50/50 focus:border-[#FF4D4D]'
+                    className={`w-full pl-12 pr-12 py-4 rounded-md border focus:outline-none focus:ring-2 transition-all text-base ${errors.password && touched.password
+                      ? 'border-[#FF3A44] focus:ring-red-100'
+                      : 'border-gray-200 focus:ring-red-50/50 focus:border-[#FF3A44]'
                       }`}
                   />
                   <button
@@ -86,16 +86,16 @@ const Page = () => {
                     <Field
                       type="checkbox"
                       name="rememberMe"
-                      className="w-5 h-5 rounded border-gray-300 text-[#FF4D4D] focus:ring-[#FF4D4D] cursor-pointer"
+                      className="w-5 h-5 rounded border-gray-300 text-[#FF3A44]  cursor-pointer"
                     />
                   </div>
-                  <span className="text-sm font-medium text-gray-600 group-hover:text-gray-900 transition-colors">
+                  <span className="text-[12px] font-medium text-[#000000]">
                     Remember me
                   </span>
                 </label>
                 <Link
                   href="/forgot-password"
-                  className="text-sm font-medium text-gray-500 hover:text-gray-900 transition-colors"
+                  className="text-[12px] font-medium text-[#686262] hover:text-[#FF3A44] transition-colors"
                 >
                   Forgot Password?
                 </Link>
@@ -103,7 +103,7 @@ const Page = () => {
 
               <button
                 type="submit"
-                className="w-full bg-[#FF4D4D] hover:bg-[#F04444] text-white font-bold py-4 rounded-xl shadow-lg shadow-red-100 transition-all active:scale-[0.99] text-lg mt-2"
+                className="w-full bg-[#FF3A44]  text-white font-medium text-[14px] py-4 rounded-md  mt-2"
               >
                 Log in
               </button>
@@ -120,14 +120,14 @@ const Page = () => {
               <div className="space-y-4">
                 <button
                   type="button"
-                  className="w-full flex items-center justify-center space-x-3 px-4 py-4 border border-gray-200 rounded-xl hover:bg-gray-50 transition-all font-semibold text-gray-700"
+                  className="w-full flex items-center justify-center space-x-3 px-4 py-4 border border-[#F0EFEF] rounded-md  font-medium text-[14px] text-[#534D4B]"
                 >
                   <img src="/icons/login/logoGoogle.svg" className="w-6 h-6" alt="Google" />
                   <span>Continue with Google</span>
                 </button>
                 <button
                   type="button"
-                  className="w-full flex items-center justify-center space-x-3 px-4 py-4 border border-gray-200 rounded-xl hover:bg-gray-50 transition-all font-semibold text-gray-700"
+                  className="w-full flex items-center justify-center space-x-3 px-4 py-4 border border-[#F0EFEF] rounded-md  font-medium text-[14px] text-[#534D4B]"
                 >
                   <img src="/icons/login/logoApple.svg" className="w-6 h-6" alt="Apple" />
                   <span>Continue with Apple</span>
@@ -138,9 +138,9 @@ const Page = () => {
         </Formik>
 
         <div className="mt-10 text-center">
-          <p className="text-gray-600 font-medium">
+          <p className="text-[#534D4B] text-[14px] font-semibold">
             Don&apos;t have an account?{' '}
-            <Link href="/signup" className="text-[#FF4D4D] font-bold hover:underline">
+            <Link href="/register" className="text-[#FF3A44] font-semibold text-[14px] hover:underline">
               Sign Up
             </Link>
           </p>

@@ -54,12 +54,12 @@ const Page = () => {
 
     return (
         <main className="min-h-screen bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <div className="max-w-7xl mx-auto sm:pb-6 lg:pb-8 pb-8">
                 <GallerySection images={listing.images || [listing.image]} />
 
-                <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-8 mt-8 items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-2 mt-2 items-start">
                     {/* Left: Main Content */}
-                    <div className="space-y-10 min-w-0">
+                    <div className="space-y-5 min-w-0">
                         <InfoSection listing={listing} />
 
                         {isEventSpace && (
@@ -96,7 +96,8 @@ const Page = () => {
                     </div>
 
 
-                    <div className="space-y-6">
+                    {/* right section */}
+                    <div className="space-y-6 px-8 sm:px-16 lg:px-0">
                         <BookingSection
                             price={listing.price}
                             category={listing.category}
@@ -119,7 +120,7 @@ const Page = () => {
                     </div>
                 </div>
 
-                <div className="mt-16">
+                <div className="mt-14">
                     <RelatedListingsSection currentListingId={listing.id} />
                 </div>
             </div>

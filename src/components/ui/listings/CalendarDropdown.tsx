@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState } from "react";
+import { X } from "lucide-react";
 import { getDaysInMonth, getFirstDay, CAL_MONTHS_FULL, WEEK_DAYS } from "@/utils/calendarUtils";
 
 interface CalMonthProps {
@@ -102,36 +103,54 @@ export const CalendarDropdown: React.FC<CalendarDropdownProps> = ({ formik, onCl
     };
 
     return (
-        <div
-            className="absolute top-full left-0 mt-2 bg-white border border-gray-100 rounded-2xl shadow-2xl z-[70] animate-in fade-in zoom-in duration-200 origin-top"
-            style={{ padding: "24px 28px", display: "flex", alignItems: "flex-start", gap: 0, minWidth: 510 }}
-            onMouseLeave={() => setHoverDate(null)}
-        >
-            <button
-                type="button"
-                onClick={(e) => { e.stopPropagation(); leftMonth === 0 ? (setLeftMonth(11), setLeftYear(y => y - 1)) : setLeftMonth(m => m - 1); }}
-                style={{ position: "absolute", left: 10, top: 22, background: "none", border: "none", cursor: "pointer", color: "#888", fontSize: 20, padding: "2px 8px", borderRadius: 6 }}
-            >‹</button>
-
-            <CalMonth
-                year={leftYear} month={leftMonth}
-                startDate={formik.values.startDate} endDate={formik.values.endDate} hoverDate={hoverDate}
-                onDayClick={handleDayClick} onDayHover={setHoverDate}
+        <>
+            {/* Mobile Overlay */}
+            <div
+                className="fixed inset-0 bg-black/50 z-100 md:hidden animate-in fade-in duration-200"
+                onClick={onClose}
             />
 
-            <div style={{ width: 1, background: "#f0f0f0", alignSelf: "stretch", margin: "0 20px" }} />
+            <div
+                className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:absolute md:top-full md:left-0 md:translate-x-0 md:translate-y-0 mt-0 md:mt-2 bg-white border border-gray-100 rounded-2xl shadow-2xl z-101 md:z-70 animate-in fade-in zoom-in duration-200 origin-center md:origin-top p-6 flex flex-col md:flex-row items-center md:items-start gap-0 min-w-[320px] md:min-w-[510px] w-[90vw] md:w-auto overflow-hidden"
+                onMouseLeave={() => setHoverDate(null)}
+            >
+                {/* Mobile Close Button */}
+                <button
+                    type="button"
+                    className="absolute right-4 top-4 p-2 text-gray-400 hover:text-gray-600 md:hidden"
+                    onClick={onClose}
+                >
+                    <X size={20} />
+                </button>
 
-            <CalMonth
-                year={rightYear} month={rightMonth}
-                startDate={formik.values.startDate} endDate={formik.values.endDate} hoverDate={hoverDate}
-                onDayClick={handleDayClick} onDayHover={setHoverDate}
-            />
+                <button
+                    type="button"
+                    className="absolute left-2 md:left-[10px] top-[22px] bg-none border-none cursor-pointer text-[#888] text-[24px] px-2 py-1 rounded-md hover:bg-gray-100 transition-colors"
+                    onClick={(e) => { e.stopPropagation(); leftMonth === 0 ? (setLeftMonth(11), setLeftYear(y => y - 1)) : setLeftMonth(m => m - 1); }}
+                >‹</button>
 
-            <button
-                type="button"
-                onClick={(e) => { e.stopPropagation(); leftMonth === 11 ? (setLeftMonth(0), setLeftYear(y => y + 1)) : setLeftMonth(m => m + 1); }}
-                style={{ position: "absolute", right: 10, top: 22, background: "none", border: "none", cursor: "pointer", color: "#888", fontSize: 20, padding: "2px 8px", borderRadius: 6 }}
-            >›</button>
-        </div>
+                <CalMonth
+                    year={leftYear} month={leftMonth}
+                    startDate={formik.values.startDate} endDate={formik.values.endDate} hoverDate={hoverDate}
+                    onDayClick={handleDayClick} onDayHover={setHoverDate}
+                />
+
+                <div className="hidden md:block w-px bg-[#f0f0f0] self-stretch mx-5" />
+
+                <div className="hidden md:block">
+                    <CalMonth
+                        year={rightYear} month={rightMonth}
+                        startDate={formik.values.startDate} endDate={formik.values.endDate} hoverDate={hoverDate}
+                        onDayClick={handleDayClick} onDayHover={setHoverDate}
+                    />
+                </div>
+
+                <button
+                    type="button"
+                    className="absolute right-2 md:right-[10px] top-[22px] bg-none border-none cursor-pointer text-[#888] text-[24px] px-2 py-1 rounded-md hover:bg-gray-100 transition-colors"
+                    onClick={(e) => { e.stopPropagation(); leftMonth === 11 ? (setLeftMonth(0), setLeftYear(y => y + 1)) : setLeftMonth(m => m + 1); }}
+                >›</button>
+            </div>
+        </>
     );
 };

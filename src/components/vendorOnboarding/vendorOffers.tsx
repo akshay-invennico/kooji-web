@@ -26,7 +26,11 @@ const VENDOR_OFFERS_DATA = [
     },
 ];
 
-const VendorOffers = () => {
+interface VendorOffersProps {
+    onNext?: () => void;
+}
+
+const VendorOffers = ({ onNext }: VendorOffersProps) => {
     const [selectedOffers, setSelectedOffers] = useState<string[]>([]);
 
     const toggleOffer = (id: string) => {
@@ -42,14 +46,14 @@ const VendorOffers = () => {
             <div className="max-w-[1200px] mx-auto px-6">
 
                 <div className="w-full h-[4px] bg-gray-100 mb-12">
-                    <div className="h-full bg-red-500 transition-all duration-500" style={{ width: "25%" }}></div>
+                    <div className="h-full bg-[#FF3A44] transition-all duration-500" style={{ width: "25%" }}></div>
                 </div>
 
                 <div className="mb-10 text-left">
-                    <h2 className="text-2xl font-semibold text-gray-900">What Do You Offer?</h2>
+                    <h2 className="text-[24px] font-semibold text-[#000000]">What Do You Offer?</h2>
                 </div>
 
-                <div className="flex flex-wrap justify-start gap-4 mb-24">
+                <div className="flex flex-wrap justify-start gap-4 mb-32">
                     {VENDOR_OFFERS_DATA.map((item) => (
                         <VendorCard
                             key={item.id}
@@ -61,10 +65,12 @@ const VendorOffers = () => {
                     ))}
                 </div>
 
-                <div className="fixed bottom-10 right-10 lg:right-70">
+                {/* Navigation Buttons */}
+                <div className="max-w-[1200px] mx-auto flex items-center justify-end">
                     <button
-                        className="bg-red-500 text-white px-10 py-3 rounded-md font-semibold hover:bg-red-600 transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
+                        className="bg-[#FF3A44] text-white px-10 py-3 rounded-md font-semibold hover:bg-[#E0343C] transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
                         disabled={selectedOffers.length === 0}
+                        onClick={onNext}
                     >
                         Next
                     </button>

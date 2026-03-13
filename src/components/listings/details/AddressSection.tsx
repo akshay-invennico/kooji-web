@@ -52,25 +52,23 @@ const AddressSection = ({ onAddressSelected }: { onAddressSelected?: (id: string
     };
 
     return (
-        <section className="bg-white rounded-lg border border-gray-100 p-6 mt-2">
+        <section className="bg-white rounded-lg border border-[#F0EFEF] p-4 md:p-6 mt-2">
             <div className="flex items-start gap-4 mb-6">
                 <div >
-                    <img src="/icons/address/truck.svg" alt="delivery" className="w-8 h-8" />
+                    <img src="/icons/address/truck.svg" alt="delivery" className="w-10 h-10" />
                 </div>
                 <div>
-                    <h3 className="text-[20px] font-semibold text-gray-900 leading-tight">Delivery Address</h3>
-                    <p className="text-[14px] text-gray-500 font-medium">Choose Where You Want To Receive This Booking</p>
+                    <h3 className="text-[12px] font-medium text-[#000000] leading-tight">Delivery Address</h3>
+                    <p className="text-[12px] text-[#686262] font-medium">Choose Where You Want To Receive This Booking</p>
                 </div>
             </div>
 
-            <div className="space-y-6 ml-12">
+            <div className="space-y-6 ml-0 md:ml-12">
                 <div>
-                    <label className="block text-[14px] font-semibold text-gray-400 mb-3">Delivery Address</label>
+                    <label className="block text-[14px] font-semibold text-[#686262] mb-3">Delivery Address</label>
                     <div className="flex items-center gap-3">
                         <div className="relative w-5 h-5 flex items-center justify-center shrink-0">
-                            <div className="w-5 h-5 rounded-full border-2 border-[#FF4D4D] bg-white">
-                                <div className="w-3.5 h-3.5  rounded-full bg-[#FF4D4D]" />
-                            </div>
+                            <img src="/icons/details/deliveryAddressIcon.svg" alt="" />
                         </div>
                         <p className="text-[14px] font-bold text-gray-900 truncate">
                             {selectedAddress.recipientName}, {selectedAddress.street1}, {selectedAddress.city}, {selectedAddress.zipCode}..
@@ -80,9 +78,9 @@ const AddressSection = ({ onAddressSelected }: { onAddressSelected?: (id: string
 
                 <button
                     onClick={() => setIsModalOpen(true)}
-                    className="flex items-center gap-2 text-[#32B4FF] text-[15px] font-semibold"
+                    className="flex items-center gap-2 text-[#009FFD] text-[14px] font-medium"
                 >
-                    <Plus size={18} /> Add New Address
+                    <Plus size={20} className="text-[#009FFD]" /> Add New Address
                 </button>
             </div>
 

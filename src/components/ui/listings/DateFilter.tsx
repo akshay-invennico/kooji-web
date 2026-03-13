@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useState, useRef, useEffect } from "react";
-import { Calendar, X } from "lucide-react";
+import Image from "next/image";
 import { fmtRange } from "@/utils/calendarUtils";
 import { CalendarDropdown } from "./CalendarDropdown";
 
@@ -32,10 +32,10 @@ export const DateFilter = ({ formik }: { formik: any }) => {
 
     return (
         <div
-            className="flex-1 flex flex-col md:border-r border-gray-100 px-4 md:px-6 py-2 md:py-0 relative"
+            className="flex-1 flex flex-col border-r border-[#F0EFEF] px-4 md:px-8 py-3 md:py-0 relative h-full justify-center"
             ref={dateRef}
         >
-            <label className="text-[12px] lg:text-[14px] font-semibold text-gray-900 mb-1">
+            <label className="text-[14px] font-medium text-[#000000] mb-2 truncate">
                 When?
             </label>
             <div className="flex flex-col relative w-full">
@@ -43,21 +43,28 @@ export const DateFilter = ({ formik }: { formik: any }) => {
                     className="flex items-center gap-2 cursor-pointer w-full"
                     onClick={() => setIsDateOpen((o) => !o)}
                 >
-                    <Calendar size={18} className="text-gray-500 shrink-0" />
-                    <span className={`text-[14px] font-semibold flex-1 truncate ${fmtRange(formik.values.startDate, formik.values.endDate) ? "text-gray-900" : "text-gray-400"}`}>
+                    <Image src="/icons/filters/filterIcon3.svg" alt="Calendar" width={20} height={20} className="shrink-0" />
+                    <span className={`text-[14px] font-medium flex-1 truncate ${fmtRange(formik.values.startDate, formik.values.endDate) ? "text-gray-900" : "text-[#9CA3AF]"}`}>
                         {fmtRange(formik.values.startDate, formik.values.endDate) || "Select a date"}
                     </span>
                     {(formik.values.startDate || formik.values.endDate) && (
-                        <X
-                            size={18}
-                            className="text-gray-900 hover:text-gray-700 shrink-0 transition-colors"
+                        <svg
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="#000000"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="cursor-pointer shrink-0 ml-auto"
                             onClick={clearDates}
-                        />
+                        >
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
                     )}
                 </div>
-                {((formik.touched.startDate && formik.errors.startDate) || (formik.touched.endDate && formik.errors.endDate)) && (
-                    <span className="text-red-500 text-xs font-medium absolute -bottom-5 left-0">{(formik.errors.startDate || formik.errors.endDate) as string}</span>
-                )}
             </div>
 
             {isDateOpen && (
