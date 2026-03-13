@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import ReviewCard from "@/components/ui/listingDetails/ReviewCard";
 import { Star, MoveRight, MoveLeft } from "lucide-react";
 import { ListingReview } from "@/types/listing";
+import { usePathname } from "next/navigation";
 
 interface ReviewSectionProps {
     overallRating: number;
@@ -12,6 +13,7 @@ interface ReviewSectionProps {
 const ReviewSection: React.FC<ReviewSectionProps> = ({ overallRating, totalReviews, reviews }) => {
     const [currentIndex, setCurrentIndex] = useState(0);
     const [isShowAll, setIsShowAll] = useState(false);
+    const pathname = usePathname();
 
     if (!overallRating && (!reviews || reviews.length === 0)) return null;
 
@@ -30,19 +32,23 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({ overallRating, totalRevie
     };
 
     return (
-        <section className="py-12 px-4 md:px-8 max-w-7xl mx-auto border-t border-[#F0EFEF]">
-            <h2 className="text-[20px] font-semibold text-[#000000] mb-6">Reviews & Ratings</h2>
+        <section className="py-6 md:py-12 px-4 md:px-8 max-w-7xl mx-auto border-t border-[#F0EFEF]">
+            {pathname !== "/my/profile" && (
+                <>
+                    <h2 className="text-[20px] font-semibold text-[#000000] mb-6">Reviews & Ratings</h2>
 
-            <div className="bg-white border border-[#F0EFEF] rounded-lg p-8 mb-6">
-                <p className="text-[#000000] text-[16px] font-semibold mb-6">Overall Rating</p>
-                <div className="flex items-center gap-4">
-                    <Star size={30} className="text-orange-400 fill-orange-400" />
-                    <div className="flex items-baseline gap-2">
-                        <span className="text-[40px] font-bold text-[#000000]">{overallRating}</span>
-                        <span className="text-[#686262] text-[14px] font-medium ml-2">Out of 5 (Based on {totalReviews} Reviews)</span>
+                    <div className="bg-white border border-[#F0EFEF] rounded-lg p-4 md:p-8 mb-6">
+                        <p className="text-[#000000] text-[16px] font-semibold mb-6">Overall Rating</p>
+                        <div className="flex items-center gap-4">
+                            <Star size={30} className="text-orange-400 fill-orange-400 shrink-0" />
+                            <div className="flex flex-col sm:flex-row sm:items-baseline gap-1 sm:gap-2">
+                                <span className="text-[32px] md:text-[40px] font-bold text-[#000000]">{overallRating}</span>
+                                <span className="text-[#686262] text-[12px] md:text-[14px] font-medium">Out of 5 (Based on {totalReviews} Reviews)</span>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
+                </>
+            )}
 
             <div className="flex justify-between items-center mb-4">
                 <h3 className="text-[16px] font-semibold text-[#000000]">Reviews</h3>

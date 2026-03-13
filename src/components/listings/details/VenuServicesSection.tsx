@@ -14,7 +14,7 @@ const VENU_SERVICES_DATA = [
 
 const VenuServicesSection = () => {
     return (
-        <section className="mb-7 ml-5">
+        <section className="mb-7 px-8 sm:px-16 md:px-0 md:pl-5">
             <h2 className="text-[20px] font-semibold text-[#000000] mb-5">Venue Services & Amenities</h2>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                 {VENU_SERVICES_DATA.map((item, index) => (

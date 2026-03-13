@@ -40,12 +40,12 @@ const Step1BasicInfo: React.FC<Step1BasicInfoProps> = ({
 }) => {
   return (
     <div className="w-full animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <h2 className="text-[28px] font-bold text-gray-900 mb-8 font-sans">Basic Info</h2>
+      <h2 className="text-[24px] font-semibold text-[#000000] mb-5 font-outfit">Basic Info</h2>
 
       <div className="flex flex-col gap-8">
         {/* Listing Type */}
         <div>
-          <label className="block text-[15px] font-bold text-gray-900 mb-3">Listing Type</label>
+          <label className="block text-[14px] font-medium text-[#000000] mb-3">Listing Type</label>
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4">
             {LISTING_TYPES.map((type) => {
               const isSelected = selectedType === type.id;

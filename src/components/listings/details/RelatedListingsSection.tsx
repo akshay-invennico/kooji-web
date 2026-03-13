@@ -15,8 +15,8 @@ const RelatedListingsSection: React.FC<RelatedListingsSectionProps> = ({ current
     }, [currentListingId]);
 
     return (
-        <section className="py-12 border-t border-gray-100">
-            <h2 className="text-[36px] font-bold text-[#000000] mb-8 font-outfit">
+        <section className="py-6 md:py-12 px-4 md:px-10 border-t border-gray-100">
+            <h2 className="text-[24px] md:text-[36px] font-bold text-[#000000] mb-6 md:mb-8 font-outfit">
                 You Might be also like
             </h2>
 

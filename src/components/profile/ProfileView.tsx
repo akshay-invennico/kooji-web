@@ -2,124 +2,130 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { CheckCircle2, Share2, MapPin, Star, Calendar } from "lucide-react";
 import clsx from "clsx";
+import ReviewSection from "@/components/listings/details/ReviewSection";
+import ListingCard from "@/components/listings/ListingCard";
+import { LISTINGS_DATA } from "@/data/listingsData";
+import { usePathname } from "next/navigation";
 
-const LISTINGS = [
+const MOCK_REVIEWS = [
   {
     id: "1",
-    title: "Google Nest Audio",
-    location: "Swansea Marina",
-    price: "$25",
-    image: "https://images.unsplash.com/photo-1589492477829-5e65395b66cc?q=80&w=400&auto=format&fit=crop",
+    rating: 5,
+    comment: "Excellent service and high-quality equipment. Mahavir was very professional and helpful throughout the rental process. Highly recommended!",
+    userName: "James Wilson",
+    userLocation: "Central London",
+    userImage: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=150&auto=format&fit=crop"
   },
   {
     id: "2",
-    title: "Yamaha PA Speaker System",
-    location: "Manchester City Centre",
-    price: "$45",
-    image: "https://images.unsplash.com/photo-1598488035139-bdbb2231ce04?q=80&w=400&auto=format&fit=crop",
+    rating: 4,
+    comment: "The speakers were great for our garden party. Clean and clear sound. Easy pickup and drop-off. Will definitely rent again.",
+    userName: "Sarah Jenkins",
+    userLocation: "Manchester",
+    userImage: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=150&auto=format&fit=crop"
   },
   {
     id: "3",
-    title: "Harman Kardon Onyx Studio",
-    location: "Leeds City Centre",
-    price: "$60",
-    image: "https://images.unsplash.com/photo-1545454675-3531b543be5d?q=80&w=400&auto=format&fit=crop",
+    rating: 5,
+    comment: "Very reliable and the equipment was in pristine condition. Exactly what we needed for our event.",
+    userName: "Robert Taylor",
+    userLocation: "Birmingham",
+    userImage: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=150&auto=format&fit=crop"
   },
   {
     id: "4",
-    title: "Bose SoundLink Revolve",
-    location: "London Borough",
-    price: "$30",
-    image: "https://images.unsplash.com/photo-1620803126742-995a12235940?q=80&w=400&auto=format&fit=crop",
-  },
+    rating: 5,
+    comment: "Great communication and fair pricing. The setup was easy and worked perfectly.",
+    userName: "Emily Davis",
+    userLocation: "Leeds",
+    userImage: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=150&auto=format&fit=crop"
+  }
 ];
 
 const ProfileView = () => {
   const [activeTab, setActiveTab] = useState("Listings");
+  const pathname = usePathname();
+
+  // Take first 4 listings for display as per user request
+  const listings = LISTINGS_DATA.slice(0, 4);
 
   return (
-    <div className="flex flex-col gap-10 w-full">
+    <div className="flex flex-col gap-5 w-full mb-10 relative">
       {/* Header Info */}
-      <div className="flex flex-col items-center text-center gap-4">
-        <div className="relative w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-lg bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center">
-            <img 
-                src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" 
-                alt="Profile" 
-                className="w-full h-full object-cover mix-blend-overlay opacity-80"
-            />
-            <div className="absolute inset-0 flex items-center justify-center text-white text-4xl font-bold">
-                <img 
-                   src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop" 
-                   alt="Profile" 
-                   className="w-full h-full object-cover"
-               />
-            </div>
+      <div className="flex flex-col gap-5 px-10 py-8 pb-10">
+        <div className="w-37 h-37 md:w-40 md:h-40 shrink-0">
+          <img
+            src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop"
+            alt="Profile"
+            className="w-full h-full object-cover rounded-full"
+          />
         </div>
-        
-        <div className="flex flex-col gap-1 items-center">
-          <div className="flex items-center gap-2">
-            <h1 className="text-2xl font-bold text-gray-900">Mahavir Singh</h1>
-            <CheckCircle2 className="w-5 h-5 text-green-500 fill-green-500 text-white p-0.5" />
-            <button className="p-1 hover:bg-gray-100 rounded-full transition-colors">
-              <Share2 className="w-4 h-4 text-gray-500" />
-            </button>
+
+        <div className="flex flex-col gap-4">
+          <div className="flex items-center justify-between gap-4">
+            <h1 className="text-[24px] font-semibold text-[#000000] font-outfit">Mahavir Singh</h1>
+            <div className="flex items-center gap-3">
+              <Image src="/icons/myprofile/verify.svg" alt="verified" width={40} height={40} />
+              <button className="p-2">
+                <Image src="/icons/myprofile/share.svg" alt="share" width={40} height={40} />
+              </button>
+            </div>
           </div>
-          <p className="max-w-2xl text-gray-500 text-sm leading-relaxed">
+          <p className="max-w-[900px] text-[14px] text-[#686262] font-medium leading-[1.6]">
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
           </p>
         </div>
       </div>
 
       {/* Info Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <div className="bg-white border border-gray-100 rounded-2xl p-6 flex flex-col gap-3 shadow-sm">
-          <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400">
-            <Calendar className="w-5 h-5" />
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-3 px-2">
+        <div className="bg-white border border-[#F0EFEF] rounded-lg p-6 flex flex-col items-start gap-4 h-[140px] justify-between">
+          <div className="w-10 h-10 flex items-center justify-center">
+            <Image src="/icons/myprofile/profileCalender.svg" alt="calendar" width={36} height={36} />
           </div>
           <div className="flex flex-col">
-            <span className="text-xs text-gray-400 font-medium">Member Since</span>
-            <span className="text-sm font-bold text-gray-900">24 Jan, 2025</span>
+            <span className="text-[12px] text-[#2F2F2F] font-medium opacity-60">Member Since</span>
+            <span className="text-[16px] font-semibold text-[#000000] font-outfit">24 Jan, 2025</span>
           </div>
         </div>
 
-        <div className="bg-white border border-gray-100 rounded-2xl p-6 flex flex-col gap-3 shadow-sm">
-          <div className="w-10 h-10 rounded-full bg-orange-50 flex items-center justify-center text-orange-400">
-            <Star className="w-5 h-5 fill-orange-400" />
+        <div className="bg-white border border-[#EFEFEF] rounded-lg p-6 flex flex-col items-start gap-4 h-[140px] justify-between">
+          <div className="w-10 h-10 flex items-center justify-center">
+            <Image src="/icons/myprofile/profileStar.svg" alt="star" width={36} height={36} />
           </div>
           <div className="flex flex-col">
-            <span className="text-xs text-gray-400 font-medium">Ratings</span>
-            <div className="flex items-center gap-1">
-                <span className="text-sm font-bold text-gray-900">4.8</span>
-                <span className="text-xs text-gray-400">138 Reviews</span>
+            <span className="text-[12px] text-[#2F2F2F] font-medium opacity-60">Ratings</span>
+            <div className="flex items-baseline gap-2">
+              <span className="text-[16px] font-semibold text-[#000000] font-outfit">4.8</span>
+              <span className="text-[12px] text-[#2F2F2F] font-medium opacity-60">135 Reviews</span>
             </div>
           </div>
         </div>
 
-        <div className="bg-white border border-gray-100 rounded-2xl p-6 flex flex-col gap-3 shadow-sm">
-          <div className="w-10 h-10 rounded-full bg-gray-50 flex items-center justify-center text-gray-400">
-            <MapPin className="w-5 h-5" />
+        <div className="bg-white border border-[#EFEFEF] rounded-lg p-6 flex flex-col items-start gap-4 h-[140px] justify-between">
+          <div className="w-10 h-10 flex items-center justify-center">
+            <Image src="/icons/myprofile/profileAddress.svg" alt="location" width={36} height={36} />
           </div>
           <div className="flex flex-col">
-            <span className="text-xs text-gray-400 font-medium">Location</span>
-            <span className="text-sm font-bold text-gray-900">Greater London</span>
+            <span className="text-[12px] text-[#2F2F2F] font-medium opacity-60">Location</span>
+            <span className="text-[16px] font-semibold text-[#000000] font-outfit">Greater London</span>
           </div>
         </div>
       </div>
 
       {/* Tabs and Content */}
-      <div className="flex flex-col gap-6">
-        <div className="flex items-center gap-4 border-b border-gray-100">
+      <div className="flex flex-col gap-8 px-4">
+        <div className="flex items-center gap-4">
           {["Listings", "Reviews"].map((tab) => (
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
               className={clsx(
-                "pb-4 px-2 text-sm font-bold transition-all duration-200 border-b-2",
-                activeTab === tab 
-                  ? "border-red-500 text-red-500" 
-                  : "border-transparent text-gray-400 hover:text-gray-600"
+                "py-3 px-10 text-[14px] font-medium transition-all duration-200 border rounded-md font-outfit",
+                activeTab === tab
+                  ? "border-[#FF3A44] text-[#FF3A44] bg-white"
+                  : "border-[#EFEFEF] text-[#626262] hover:bg-gray-50 bg-white"
               )}
             >
               {tab}
@@ -127,30 +133,28 @@ const ProfileView = () => {
           ))}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {activeTab === "Listings" && LISTINGS.map((item) => (
-            <div key={item.id} className="group flex flex-col gap-3 cursor-pointer">
-              <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-sm">
-                <img 
-                  src={item.image} 
-                  alt={item.title} 
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-              </div>
-              <div className="flex flex-col px-1">
-                <h3 className="text-sm font-bold text-gray-900 truncate">{item.title}</h3>
-                <div className="flex items-center gap-1 text-gray-400 text-xs">
-                  <MapPin className="w-3 h-3" />
-                  <span>{item.location}</span>
-                </div>
-                <div className="mt-1">
-                  <span className="text-red-500 font-bold text-sm">{item.price}</span>
-                  <span className="text-gray-400 text-[10px] ml-1">/day</span>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+        {activeTab === "Listings" ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {listings.map((item) => (
+              <ListingCard
+                key={item.id}
+                id={item.id}
+                title={item.title}
+                address={item.address}
+                price={item.price}
+                image={item.image}
+                rating={item.rating}
+                totalReviews={item.totalReviews}
+              />
+            ))}
+          </div>
+        ) : (
+          <ReviewSection
+            overallRating={4.8}
+            totalReviews={135}
+            reviews={MOCK_REVIEWS}
+          />
+        )}
       </div>
     </div>
   );

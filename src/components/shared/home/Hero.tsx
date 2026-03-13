@@ -94,7 +94,7 @@ const Hero = () => {
 
       <div className="absolute inset-0 bg-[#022345BF] z-1"></div>
 
-      <div className="relative z-10 h-screen w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16 flex flex-col items-center justify-center">
+      <div className="relative z-20 h-screen w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-10 pb-16 flex flex-col items-center justify-center">
 
         <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[60px] font-bold text-white text-center  mb-4">
           Your One-Stop Marketplace <br className="hidden md:block" />

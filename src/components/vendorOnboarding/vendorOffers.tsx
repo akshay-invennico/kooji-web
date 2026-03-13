@@ -66,16 +66,14 @@ const VendorOffers = ({ onNext }: VendorOffersProps) => {
                 </div>
 
                 {/* Navigation Buttons */}
-                <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 p-6 z-50">
-                    <div className="max-w-[1200px] mx-auto flex items-center justify-end">
-                        <button
-                            className="bg-[#FF3A44] text-white px-10 py-3 rounded-md font-semibold hover:bg-[#E0343C] transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
-                            disabled={selectedOffers.length === 0}
-                            onClick={onNext}
-                        >
-                            Next
-                        </button>
-                    </div>
+                <div className="max-w-[1200px] mx-auto flex items-center justify-end">
+                    <button
+                        className="bg-[#FF3A44] text-white px-10 py-3 rounded-md font-semibold hover:bg-[#E0343C] transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
+                        disabled={selectedOffers.length === 0}
+                        onClick={onNext}
+                    >
+                        Next
+                    </button>
                 </div>
             </div>
         </section>

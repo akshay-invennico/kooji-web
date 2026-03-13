@@ -93,22 +93,20 @@ const VendorServiceArea = ({ onPrev, onNext }: VendorServiceAreaProps) => {
                                     </div>
 
                                     {/* Navigation Buttons */}
-                                    <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 p-6 z-50">
-                                        <div className="max-w-[1200px] mx-auto flex items-center justify-between">
-                                            <button
-                                                type="button"
-                                                onClick={onPrev}
-                                                className="bg-white text-[#686262] px-10 py-3 rounded-md font-semibold border border-gray-200 hover:bg-gray-50 transition-colors shadow-sm"
-                                            >
-                                                Previous
-                                            </button>
-                                            <button
-                                                type="submit"
-                                                className="bg-[#FF3A44] text-white px-10 py-3 rounded-md font-semibold hover:bg-[#E0343C] transition-colors shadow-sm"
-                                            >
-                                                Finish
-                                            </button>
-                                        </div>
+                                    <div className="max-w-[1200px] mx-auto flex items-center justify-between">
+                                        <button
+                                            type="button"
+                                            onClick={onPrev}
+                                            className="bg-white text-[#686262] px-10 py-3 rounded-md font-semibold border border-gray-200 hover:bg-gray-50 transition-colors shadow-sm"
+                                        >
+                                            Previous
+                                        </button>
+                                        <button
+                                            type="submit"
+                                            className="bg-[#FF3A44] text-white px-10 py-3 rounded-md font-semibold hover:bg-[#E0343C] transition-colors shadow-sm"
+                                        >
+                                            Finish
+                                        </button>
                                     </div>
                                 </Form>
                             );
@@ -120,4 +118,4 @@ const VendorServiceArea = ({ onPrev, onNext }: VendorServiceAreaProps) => {
     );
 };
 
-export default VendorServiceArea;
+export default VendorServiceArea;
