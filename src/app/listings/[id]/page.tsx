@@ -96,7 +96,8 @@ const Page = () => {
                     </div>
 
 
-                    <div className="space-y-6">
+                    {/* right section */}
+                    <div className="space-y-6 px-8 sm:px-16 lg:px-0">
                         <BookingSection
                             price={listing.price}
                             category={listing.category}

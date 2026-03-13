@@ -31,7 +31,7 @@ const BookingCard: React.FC<BookingCardProps> = ({ price, formik, isEventSpace }
     }, [isDateOpen]);
 
     return (
-        <div className="bg-[#F5F3F4] rounded-lg p-6 border border-[#F0EFEF] max-w-md relative" ref={dateRef}>
+        <div className="bg-[#F5F3F4] rounded-lg p-4 md:p-6 border border-[#F0EFEF] max-w-md relative" ref={dateRef}>
             <div className="flex justify-between items-center mb-6">
                 <div className="flex items-center gap-1">
                     <span className="text-[#000000] font-semibold text-[16px]">Price:</span>

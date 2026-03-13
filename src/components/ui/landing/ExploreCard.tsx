@@ -20,7 +20,7 @@ const ExploreCard: React.FC<ExploreCardProps> = ({ title, description, image }) 
                 <h3 className="text-[20px] font-bold text-[#FFFFFF] mb-3">{title}</h3>
 
                 <div className="transition-all duration-500 opacity-0 max-h-0 group-hover:opacity-100 group-hover:max-h-50 overflow-hidden">
-                    <p className="text-[#FFFFFF] text-[16px] font-regular leading-relaxed mb-3">
+                    <p className="text-[#FFFFFF] text-[16px] font-regular leading-relaxed mb-2">
                         {description}
                     </p>
 

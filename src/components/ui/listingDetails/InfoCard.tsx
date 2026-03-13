@@ -18,8 +18,8 @@ const InfoCard: React.FC<InfoCardProps> = ({ title, category, type, rating, tota
     const [isMapOpen, setIsMapOpen] = useState(false);
 
     return (
-        <div className="w-[800px] pb-8 border-b border-[#F0EFEF]">
-            <div className="container mx-auto px-4 lg:px-10">
+        <div className="w-full max-w-4xl pb-8 border-b border-[#F0EFEF]">
+            <div className="container mx-auto px-4 md:px-10">
                 <div className="flex flex-col gap-4">
                     {/* Title and Action Buttons */}
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
@@ -52,7 +52,7 @@ const InfoCard: React.FC<InfoCardProps> = ({ title, category, type, rating, tota
                     {/* Address Line and Show on Map */}
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                         <div className="flex items-start gap-2 text-[#717171]">
-                            <Image src="/icons/details/locationIcon.svg" alt="Location" width={20} height={20} className="w-5 h-5 flex-shrink-0 mt-0.5" />
+                            <Image src="/icons/details/locationIcon.svg" alt="Location" width={20} height={20} className="w-5 h-5 shrink-0 mt-0.5" />
                             <p className="text-sm md:text-[16px] font-medium leading-relaxed">
                                 {address}
                             </p>
@@ -69,7 +69,7 @@ const InfoCard: React.FC<InfoCardProps> = ({ title, category, type, rating, tota
             </div>
 
             {isMapOpen && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 p-4 transition-opacity animate-in fade-in duration-200">
+                <div className="fixed inset-0 z-100 flex items-center justify-center bg-black/60 p-4 transition-opacity animate-in fade-in duration-200">
                     <div className="bg-white rounded-2xl shadow-2xl w-full max-w-4xl h-[70vh] flex flex-col relative overflow-hidden animate-in zoom-in-95 duration-200">
                         <div className="flex justify-between items-center p-5 border-b border-gray-100">
                             <h3 className="text-lg font-bold text-gray-900 flex items-center gap-2">

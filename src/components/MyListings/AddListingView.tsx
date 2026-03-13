@@ -251,11 +251,11 @@ const AddListingView: React.FC<AddListingViewProps> = ({ onClose }) => {
         <div className="w-full max-w-3xl px-4 sm:px-6 pt-8 pb-32 flex flex-col items-center">
 
           {/* Stepper */}
-          <div className="w-full max-w-xl mx-auto flex items-center gap-2 mb-12">
+          <div className="w-full max-w-2.5xl mx-auto flex items-center gap-2 mb-12">
             {Array.from({ length: totalSteps }).map((_, index) => (
               <div
                 key={index}
-                className={`flex-1 h-1 rounded-full ${index < currentStep ? "bg-red-500" : "bg-gray-100"}`}
+                className={`flex-1 h-1 rounded-full ${index < currentStep ? "bg-[#FF3A44]" : "bg-[#F5F3F4]"}`}
               />
             ))}
           </div>

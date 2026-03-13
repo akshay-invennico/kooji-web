@@ -52,7 +52,7 @@ const AddressSection = ({ onAddressSelected }: { onAddressSelected?: (id: string
     };
 
     return (
-        <section className="bg-white rounded-lg border border-[#F0EFEF] p-6 mt-2">
+        <section className="bg-white rounded-lg border border-[#F0EFEF] p-4 md:p-6 mt-2">
             <div className="flex items-start gap-4 mb-6">
                 <div >
                     <img src="/icons/address/truck.svg" alt="delivery" className="w-10 h-10" />
@@ -63,7 +63,7 @@ const AddressSection = ({ onAddressSelected }: { onAddressSelected?: (id: string
                 </div>
             </div>
 
-            <div className="space-y-6 ml-12">
+            <div className="space-y-6 ml-0 md:ml-12">
                 <div>
                     <label className="block text-[14px] font-semibold text-[#686262] mb-3">Delivery Address</label>
                     <div className="flex items-center gap-3">

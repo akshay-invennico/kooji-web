@@ -2,10 +2,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { Plus } from "lucide-react";
 
 import Button from "@/components/ui/button/Button";
-import Icon from "@/components/ui/icon/Icon";
 import MyListingCard from "@/components/ui/myListings/MyListingCard";
 import AddListingView from "@/components/MyListings/AddListingView";
 import { LISTINGS_DATA } from "@/data/listingsData";
@@ -42,14 +40,13 @@ const MyListingsSection = () => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">My Listings</h1>
-        <Button
-          variant="primary"
+        <button
           onClick={handleAddListing}
-          className="gap-2.5 shadow-sm rounded-lg sm:rounded-full bg-red-500 hover:bg-red-600 focus-visible:ring-red-500 border-none"
+          className="flex items-center gap-2 px-5 py-3.5 rounded-md bg-[#FF3A44] hover:bg-[#E0343C] transition-colors text-white text-[14px] font-medium font-outfit"
         >
-          <Icon component={Plus} size="sm" />
+          <img src="/icons/addListingIcon.svg" alt="add" className="w-5 h-5" />
           Add Listing
-        </Button>
+        </button>
       </div>
 
       {/* Grid */}
@@ -80,7 +77,7 @@ const MyListingsSection = () => {
             You haven&apos;t added any listings yet. Create your first listing to start earning.
           </p>
           <Button variant="primary" onClick={handleAddListing} className="gap-2 bg-red-500 hover:bg-red-600">
-
+            <img src="/icons/addListingIcon.svg" alt="add" className="w-4 h-4" />
             Add Listing
           </Button>
         </div>

@@ -55,11 +55,10 @@ const VendorBusiness = ({ onPrev, onNext }: VendorBusinessProps) => {
                                     name="country"
                                     type="text"
                                     placeholder="United Kingdom"
-                                    className={`w-full max-w-[500px] px-4 py-4 rounded-md border focus:outline-none focus:ring-2 transition-all text-base ${
-                                        errors.country && touched.country
+                                    className={`w-full max-w-[500px] px-4 py-4 rounded-md border focus:outline-none focus:ring-2 transition-all text-base ${errors.country && touched.country
                                             ? "border-[#FF3A44] focus:ring-red-100"
                                             : "border-gray-200 focus:ring-red-50/50 focus:border-[#FF3A44]"
-                                    }`}
+                                        }`}
                                 />
                                 <ErrorMessage name="country" component="div" className="text-[#FF3A44] text-xs font-medium" />
                             </div>
@@ -71,11 +70,10 @@ const VendorBusiness = ({ onPrev, onNext }: VendorBusinessProps) => {
                                     name="street"
                                     type="text"
                                     placeholder="Street/Apartment/Villa/Landmark..."
-                                    className={`w-full px-4 py-4 rounded-md border focus:outline-none focus:ring-2 transition-all text-base ${
-                                        errors.street && touched.street
+                                    className={`w-full px-4 py-4 rounded-md border focus:outline-none focus:ring-2 transition-all text-base ${errors.street && touched.street
                                             ? "border-[#FF3A44] focus:ring-red-100"
                                             : "border-gray-200 focus:ring-red-50/50 focus:border-[#FF3A44]"
-                                    }`}
+                                        }`}
                                 />
                                 <ErrorMessage name="street" component="div" className="text-[#FF3A44] text-xs font-medium" />
                             </div>
@@ -88,11 +86,10 @@ const VendorBusiness = ({ onPrev, onNext }: VendorBusinessProps) => {
                                         name="city"
                                         type="text"
                                         placeholder="e.g. Manchester"
-                                        className={`w-full px-4 py-4 rounded-md border focus:outline-none focus:ring-2 transition-all text-base ${
-                                            errors.city && touched.city
+                                        className={`w-full px-4 py-4 rounded-md border focus:outline-none focus:ring-2 transition-all text-base ${errors.city && touched.city
                                                 ? "border-[#FF3A44] focus:ring-red-100"
                                                 : "border-gray-200 focus:ring-red-50/50 focus:border-[#FF3A44]"
-                                        }`}
+                                            }`}
                                     />
                                     <ErrorMessage name="city" component="div" className="text-[#FF3A44] text-xs font-medium" />
                                 </div>
@@ -103,11 +100,10 @@ const VendorBusiness = ({ onPrev, onNext }: VendorBusinessProps) => {
                                         name="state"
                                         type="text"
                                         placeholder="e.g. Greater London"
-                                        className={`w-full px-4 py-4 rounded-md border focus:outline-none focus:ring-2 transition-all text-base ${
-                                            errors.state && touched.state
+                                        className={`w-full px-4 py-4 rounded-md border focus:outline-none focus:ring-2 transition-all text-base ${errors.state && touched.state
                                                 ? "border-[#FF3A44] focus:ring-red-100"
                                                 : "border-gray-200 focus:ring-red-50/50 focus:border-[#FF3A44]"
-                                        }`}
+                                            }`}
                                     />
                                     <ErrorMessage name="state" component="div" className="text-[#FF3A44] text-xs font-medium" />
                                 </div>
@@ -118,11 +114,10 @@ const VendorBusiness = ({ onPrev, onNext }: VendorBusinessProps) => {
                                         name="zipCode"
                                         type="text"
                                         placeholder="e.g. W1D 2EH"
-                                        className={`w-full px-4 py-4 rounded-md border focus:outline-none focus:ring-2 transition-all text-base ${
-                                            errors.zipCode && touched.zipCode
+                                        className={`w-full px-4 py-4 rounded-md border focus:outline-none focus:ring-2 transition-all text-base ${errors.zipCode && touched.zipCode
                                                 ? "border-[#FF3A44] focus:ring-red-100"
                                                 : "border-gray-200 focus:ring-red-50/50 focus:border-[#FF3A44]"
-                                        }`}
+                                            }`}
                                     />
                                     <ErrorMessage name="zipCode" component="div" className="text-[#FF3A44] text-xs font-medium" />
                                 </div>
@@ -135,32 +130,29 @@ const VendorBusiness = ({ onPrev, onNext }: VendorBusinessProps) => {
                                     name="mapUrl"
                                     type="text"
                                     placeholder="Copy and Paste Map URL here"
-                                    className={`w-full px-4 py-4 rounded-md border focus:outline-none focus:ring-2 transition-all text-base ${
-                                        errors.mapUrl && touched.mapUrl
+                                    className={`w-full px-4 py-4 rounded-md border focus:outline-none focus:ring-2 transition-all text-base ${errors.mapUrl && touched.mapUrl
                                             ? "border-[#FF3A44] focus:ring-red-100"
                                             : "border-gray-200 focus:ring-red-50/50 focus:border-[#FF3A44]"
-                                    }`}
+                                        }`}
                                 />
                                 <ErrorMessage name="mapUrl" component="div" className="text-[#FF3A44] text-xs font-medium" />
                             </div>
 
                             {/* Navigation Buttons */}
-                            <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-100 p-6 z-50">
-                                <div className="max-w-[1200px] mx-auto flex items-center justify-between">
-                                    <button
-                                        type="button"
-                                        onClick={onPrev}
-                                        className="bg-white text-[#686262] px-10 py-3 rounded-md font-semibold border border-gray-200 hover:bg-gray-50 transition-colors shadow-sm"
-                                    >
-                                        Previous
-                                    </button>
-                                    <button
-                                        type="submit"
-                                        className="bg-[#FF3A44] text-white px-10 py-3 rounded-md font-semibold hover:bg-[#E0343C] transition-colors shadow-sm"
-                                    >
-                                        Next
-                                    </button>
-                                </div>
+                            <div className="max-w-[1200px] mx-auto flex items-center justify-between">
+                                <button
+                                    type="button"
+                                    onClick={onPrev}
+                                    className="bg-white text-[#686262] px-10 py-3 rounded-md font-semibold border border-gray-200 hover:bg-gray-50 transition-colors shadow-sm"
+                                >
+                                    Previous
+                                </button>
+                                <button
+                                    type="submit"
+                                    className="bg-[#FF3A44] text-white px-10 py-3 rounded-md font-semibold hover:bg-[#E0343C] transition-colors shadow-sm"
+                                >
+                                    Next
+                                </button>
                             </div>
                         </Form>
                     )}
@@ -170,4 +162,4 @@ const VendorBusiness = ({ onPrev, onNext }: VendorBusinessProps) => {
     );
 };
 
-export default VendorBusiness;
+export default VendorBusiness;

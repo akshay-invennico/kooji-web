@@ -15,7 +15,7 @@ const DeliverySection: React.FC<DeliverySectionProps> = ({ pickupLocation }) => 
   ];
 
   return (
-    <section className=" pb-2 md:px-8 max-w-7xl mx-auto">
+    <section className="px-4 md:px-10 max-w-7xl mx-auto py-2">
       <h2 className="text-[20px] font-semibold text-[#000000] mb-4">Delivery & Fulfillment</h2>
 
       <div className="space-y-8">

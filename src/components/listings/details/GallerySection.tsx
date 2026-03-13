@@ -20,9 +20,9 @@ const GallerySection: React.FC<GallerySectionProps> = ({ images }) => {
     };
 
     return (
-        <section className="py-12 bg-white">
-            <div className="container mx-auto px-10">
-                <div className="flex flex-col md:flex-row gap-2 h-[350px] md:h-[520px]">
+        <section className="py-6 md:py-12 bg-white">
+            <div className="container mx-auto px-4 md:px-10">
+                <div className="flex flex-col md:flex-row gap-2 h-[450px] md:h-[520px]">
 
                     <div className="w-full md:w-3/5 h-full cursor-pointer" onClick={() => openModal(0)}>
                         <GalleryCard
