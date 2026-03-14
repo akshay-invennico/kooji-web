@@ -57,11 +57,11 @@ const SelectHighlightsModal: React.FC<SelectHighlightsModalProps> = ({
   return (
     <div className="fixed inset-0 z-200 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
       <div 
-        className="w-full max-w-[700px] bg-white rounded-3xl shadow-xl flex flex-col max-h-[90vh] overflow-hidden"
+        className="w-full max-w-[700px] bg-white rounded-md flex flex-col max-h-[90vh] overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="p-8 flex-none flex justify-between items-center border-b border-gray-50">
-          <h2 className="text-2xl font-bold text-gray-900 font-sans">Venue Highlights</h2>
+          <h2 className="text-[24px] font-semibold text-[#000000] font-outfit">Venue Highlights</h2>
           <button onClick={onClose} className="text-gray-400 hover:text-gray-600 transition-colors">
             <X size={24} />
           </button>
@@ -71,20 +71,20 @@ const SelectHighlightsModal: React.FC<SelectHighlightsModalProps> = ({
           <div className="flex flex-col gap-8">
             {HIGHLIGHT_CATEGORIES.map((category) => (
               <div key={category.title}>
-                <h3 className="text-[17px] font-bold text-gray-900 mb-6">{category.title}</h3>
+                <h3 className="text-[17px] font-semibold text-[#000000] mb-6 font-outfit">{category.title}</h3>
                 <div className="flex flex-col gap-4">
                   {category.options.map((option) => {
                     const isSelected = selected.includes(option);
                     return (
                       <div 
                         key={option} 
-                        className="flex items-center cursor-pointer group w-max"
+                        className="flex items-center cursor-pointer w-max"
                         onClick={() => toggleOption(option)}
                       >
-                        <div className={`relative flex items-center justify-center w-[20px] h-[20px] rounded border mr-3 transition-colors ${isSelected ? 'bg-[#FE3B4C] border-[#FE3B4C]' : 'bg-white border-gray-300 group-hover:border-[#FE3B4C]'}`}>
+                        <div className={`relative flex items-center justify-center w-[20px] h-[20px] rounded border mr-3 transition-colors ${isSelected ? 'bg-[#FF3A44] border-[#FF3A44]' : 'bg-white border-gray-300'}`}>
                           {isSelected && <Check size={14} className="text-white" strokeWidth={3} />}
                         </div>
-                        <span className={`text-[15px] font-bold transition-colors ${isSelected ? "text-red-500" : "text-gray-400 group-hover:text-gray-900"}`}>
+                        <span className={`text-[15px] font-bold transition-colors ${isSelected ? "text-[#FF3A44]" : "text-gray-400"}`}>
                           {option}
                         </span>
                       </div>
@@ -99,14 +99,14 @@ const SelectHighlightsModal: React.FC<SelectHighlightsModalProps> = ({
         <div className="p-8 flex-none flex items-center justify-end gap-6 bg-white border-t border-gray-50">
           <button 
             onClick={onClose}
-            className="text-gray-400 font-bold text-[15px] hover:text-gray-600 transition-colors"
+            className="text-[#000000] font-bold text-[15px] transition-colors"
           >
             Cancel
           </button>
           <Button 
             variant="primary" 
             onClick={() => onSave(selected)}
-            className="bg-[#FE3B4C] hover:bg-red-600 text-white rounded-[12px] px-12 py-3.5 shadow-md shadow-red-200/50 border-none font-bold transition-all h-full"
+            className="bg-[#FF3A44] text-white rounded-md px-12 py-3.5 border-none font-bold transition-all h-full"
           >
             Continue
           </Button>

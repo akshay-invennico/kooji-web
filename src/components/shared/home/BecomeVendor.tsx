@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 const BecomeVendor = () => {
     return (
@@ -14,9 +15,11 @@ const BecomeVendor = () => {
                     <p className="mb-8 text-[#000000] text-[14px] font-regular">
                         List your instruments, equipment, or services on KOOJI and earn from local bookings.
                     </p>
-                    <button className="w-fit text-[16px] px-8 py-3 bg-[#C5161D] rounded-lg text-white font-medium">
-                        Become a Vendor
-                    </button>
+                    <Link href="/vendor">
+                        <button className="w-fit text-[16px] px-8 py-3 bg-[#C5161D] rounded-lg text-white font-medium">
+                            Become a Vendor
+                        </button>
+                    </Link>
 
                     <p className="mt-12 text-[#FFFFFF] font-medium text-[16px]">No listing fees. Get paid securely.</p>
                 </div>

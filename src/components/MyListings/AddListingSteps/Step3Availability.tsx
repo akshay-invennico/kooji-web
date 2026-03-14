@@ -2,50 +2,44 @@
 "use client";
 
 import React from "react";
-import { Plus, Minus, Calendar, Check } from "lucide-react";
+import { Plus, Minus, Check } from "lucide-react";
 import Icon from "@/components/ui/icon/Icon";
 import { CalendarDropdown } from "@/components/ui/listings/CalendarDropdown";
 
 interface Step3AvailabilityProps {
+  formik: any;
   isDateRangeOpen: boolean;
   setIsDateRangeOpen: (open: boolean) => void;
-  isCalendarOpen: boolean;
-  setIsCalendarOpen: (open: boolean) => void;
-  startDate: Date | null;
-  endDate: Date | null;
-  formatDate: (date: Date | null) => string;
-  repeatMonthly: boolean;
-  setRepeatMonthly: (repeat: boolean) => void;
   isWeeklyOpen: boolean;
   setIsWeeklyOpen: (open: boolean) => void;
-  selectedDays: string[];
-  toggleDay: (day: string) => void;
-  repeatWeekly: boolean;
-  setRepeatWeekly: (repeat: boolean) => void;
-  fakeFormik: any;
+  isCalendarOpen: boolean;
+  setIsCalendarOpen: (open: boolean) => void;
+  formatDate: (date: Date | null) => string;
 }
 
 const Step3Availability: React.FC<Step3AvailabilityProps> = ({
+  formik,
   isDateRangeOpen,
   setIsDateRangeOpen,
-  isCalendarOpen,
-  setIsCalendarOpen,
-  startDate,
-  endDate,
-  formatDate,
-  repeatMonthly,
-  setRepeatMonthly,
   isWeeklyOpen,
   setIsWeeklyOpen,
-  selectedDays,
-  toggleDay,
-  repeatWeekly,
-  setRepeatWeekly,
-  fakeFormik,
+  isCalendarOpen,
+  setIsCalendarOpen,
+  formatDate,
 }) => {
+  const { values, setFieldValue, errors, touched } = formik;
+  const { startDate, endDate, repeatMonthly, selectedDays, repeatWeekly } = values;
+
+  const toggleDay = (day: string) => {
+    const newDays = selectedDays.includes(day)
+      ? selectedDays.filter((d: string) => d !== day)
+      : [...selectedDays, day];
+    setFieldValue("selectedDays", newDays);
+  };
+
   return (
     <div className="w-full animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <h2 className="text-[28px] font-bold text-gray-900 mb-8 font-sans">Set Availability</h2>
+      <h2 className="text-[24px] font-semibold text-[#000000] mb-5 font-outfit">Set Availability</h2>
 
       <div className="flex flex-col">
         {/* Date Range Accordion */}
@@ -54,8 +48,8 @@ const Step3Availability: React.FC<Step3AvailabilityProps> = ({
             className="flex justify-between items-center cursor-pointer mb-2"
             onClick={() => setIsDateRangeOpen(!isDateRangeOpen)}
           >
-            <h3 className="text-[17px] font-bold text-gray-900">Date Range</h3>
-            <Icon component={isDateRangeOpen ? Minus : Plus} size="sm" className="text-gray-900" />
+            <h3 className="text-[17px] font-semibold text-[#000000]">Date Range</h3>
+            <Icon component={isDateRangeOpen ? Minus : Plus} size="sm" className="text-[#000000]" />
           </div>
 
           {isDateRangeOpen && (
@@ -63,48 +57,63 @@ const Step3Availability: React.FC<Step3AvailabilityProps> = ({
               <div className="flex flex-col sm:flex-row gap-4 sm:gap-6 relative">
                 {/* From Date */}
                 <div className="flex-1">
-                  <label className="block text-[14px] font-bold text-gray-900 mb-3">From</label>
+                  <label className="block text-[14px] font-medium text-[#000000] mb-3">From</label>
                   <div
-                    className="w-full rounded-xl border border-gray-200 px-4 py-3.5 bg-white cursor-pointer hover:border-gray-300 transition-all flex items-center gap-3"
+                    className={`w-full rounded-md border px-4 py-3.5 bg-white cursor-pointer flex items-center gap-3 transition-colors ${touched.startDate && errors.startDate ? "border-red-500 bg-red-50" : "border-[#F0EFEF]"}`}
                     onClick={() => setIsCalendarOpen(true)}
                   >
-                    <Icon component={Calendar} size="sm" className="text-red-500" />
-                    <span className="text-gray-900 text-[15px]">
+                    <img 
+                      src="/icons/hero/calenderIcon.svg" 
+                      alt="calendar" 
+                      className={`w-5 h-5 shrink-0 ${touched.startDate && errors.startDate ? "" : ""}`} 
+                    />
+                    <span className={`${touched.startDate && errors.startDate ? "text-red-500" : "text-[#000000]"} text-[15px]`}>
                       {formatDate(startDate)}
                     </span>
                   </div>
+                  {touched.startDate && errors.startDate && (
+                    <p className="mt-1.5 text-xs text-red-500 font-medium">{errors.startDate}</p>
+                  )}
                 </div>
 
                 {/* To Date */}
                 <div className="flex-1">
-                  <label className="block text-[14px] font-bold text-gray-900 mb-3">To</label>
+                  <label className="block text-[14px] font-medium text-[#000000] mb-3">To</label>
                   <div
-                    className="w-full rounded-xl border border-gray-200 px-4 py-3.5 bg-white cursor-pointer hover:border-gray-300 transition-all flex items-center gap-3"
+                    className={`w-full rounded-md border px-4 py-3.5 bg-white cursor-pointer flex items-center gap-3 transition-colors ${touched.endDate && errors.endDate ? "border-red-500 bg-red-50" : "border-[#F0EFEF]"}`}
                     onClick={() => setIsCalendarOpen(true)}
                   >
-                    <Icon component={Calendar} size="sm" className="text-red-500" />
-                    <span className="text-gray-900 text-[15px]">
+                    <img 
+                      src="/icons/hero/calenderIcon.svg" 
+                      alt="calendar" 
+                      className={`w-5 h-5 shrink-0 ${touched.endDate && errors.endDate ? "" : ""}`} 
+                    />
+                    <span className={`${touched.endDate && errors.endDate ? "text-red-500" : "text-[#000000]"} text-[15px]`}>
                       {formatDate(endDate)}
                     </span>
                   </div>
+                  {touched.endDate && errors.endDate && (
+                    <p className="mt-1.5 text-xs text-red-500 font-medium">{errors.endDate}</p>
+                  )}
                 </div>
 
-                {/* Calendar Dropdown Wrapper */}
                 {isCalendarOpen && (
-                  <div className="absolute top-[85px] left-0 z-50 shadow-2xl rounded-2xl overflow-hidden border border-gray-100 bg-white">
-                    <CalendarDropdown formik={fakeFormik} onClose={() => setIsCalendarOpen(false)} />
-                  </div>
+                  <CalendarDropdown 
+                    formik={formik} 
+                    onClose={() => setIsCalendarOpen(false)} 
+                    variant="modal"
+                  />
                 )}
               </div>
 
               <div
                 className="mt-6 flex items-center cursor-pointer group w-max"
-                onClick={() => setRepeatMonthly(!repeatMonthly)}
+                onClick={() => setFieldValue("repeatMonthly", !repeatMonthly)}
               >
-                <div className={`relative flex items-center justify-center w-[18px] h-[18px] rounded border mr-3 transition-colors ${repeatMonthly ? 'bg-red-500 border-red-500' : 'bg-white border-gray-300 group-hover:border-red-500'}`}>
+                <div className={`relative flex items-center justify-center w-[18px] h-[18px] rounded border mr-3 transition-colors ${repeatMonthly ? 'bg-[#FF3A44] border-[#FF3A44]' : 'bg-white border-[#F0EFEF]'}`}>
                   {repeatMonthly && <Icon component={Check} size="xs" className="text-white" strokeWidth={3} />}
                 </div>
-                <span className="text-[15px] font-bold text-gray-500 group-hover:text-gray-900 transition-colors">Repeat this range for Every Month</span>
+                <span className="text-[14px] font-medium text-[#000000]">Repeat this range for Every Month</span>
               </div>
             </div>
           )}
@@ -116,8 +125,8 @@ const Step3Availability: React.FC<Step3AvailabilityProps> = ({
             className="flex justify-between items-center cursor-pointer"
             onClick={() => setIsWeeklyOpen(!isWeeklyOpen)}
           >
-            <h3 className="text-[17px] font-bold text-gray-900">Weekly Availability</h3>
-            <Icon component={isWeeklyOpen ? Minus : Plus} size="sm" className="text-gray-900" />
+            <h3 className="text-[17px] font-semibold text-[#000000]">Weekly Availability</h3>
+            <Icon component={isWeeklyOpen ? Minus : Plus} size="sm" className="text-[#000000]" />
           </div>
 
           {isWeeklyOpen && (
@@ -129,9 +138,9 @@ const Step3Availability: React.FC<Step3AvailabilityProps> = ({
                     <button
                       key={day}
                       onClick={() => toggleDay(day)}
-                      className={`flex-1 min-w-[70px] sm:min-w-[80px] h-12 flex items-center justify-center rounded-lg border text-[14px] font-bold transition-all ${isSelected
-                          ? "border-red-500 bg-red-50/10 text-red-500"
-                          : "border-gray-100 bg-white text-gray-900 hover:border-gray-200"
+                      className={`flex-1 min-w-[70px] sm:min-w-[80px] h-12 flex items-center justify-center rounded-md border text-[14px] font-bold transition-all ${isSelected
+                          ? "border-[#FF3A44] bg-[#FF3A44]/10 text-[#FF3A44]"
+                          : "border-[#F0EFEF] bg-white text-[#000000]"
                         }`}
                     >
                       {day}
@@ -142,12 +151,12 @@ const Step3Availability: React.FC<Step3AvailabilityProps> = ({
 
               <div
                 className="mt-6 flex items-center cursor-pointer group w-max"
-                onClick={() => setRepeatWeekly(!repeatWeekly)}
+                onClick={() => setFieldValue("repeatWeekly", !repeatWeekly)}
               >
-                <div className={`relative flex items-center justify-center w-[18px] h-[18px] rounded border mr-3 transition-colors ${repeatWeekly ? 'bg-red-500 border-red-500' : 'bg-white border-gray-300 group-hover:border-red-500'}`}>
+                <div className={`relative flex items-center justify-center w-[18px] h-[18px] rounded border mr-3 transition-colors ${repeatWeekly ? 'bg-[#FF3A44] border-[#FF3A44]' : 'bg-white border-[#F0EFEF]'}`}>
                   {repeatWeekly && <Icon component={Check} size="xs" className="text-white" strokeWidth={3} />}
                 </div>
-                <span className="text-[15px] font-bold text-gray-500 group-hover:text-gray-900 transition-colors">Repeat this for Every Week</span>
+                <span className="text-[14px] font-medium text-[#000000]">Repeat this for Every Week</span>
               </div>
             </div>
           )}

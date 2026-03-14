@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import React from "react";
@@ -7,117 +8,118 @@ import CategorySelect from "@/components/ui/myListings/CategorySelect";
 import CategoryMultiSelect from "@/components/ui/myListings/CategoryMultiSelect";
 
 interface Step2TechnicianProps {
-  techRole: string;
-  setTechRole: (val: string) => void;
-  techExperienceYears: string;
-  setTechExperienceYears: (val: string) => void;
-  techServiceType: string;
-  setTechServiceType: (val: string) => void;
-  techProvidesEquipment: boolean;
-  setTechProvidesEquipment: (val: boolean) => void;
-  techEquipmentCategories: string[];
-  setTechEquipmentCategories: (val: string[]) => void;
-  techHandlesSetup: boolean;
-  setTechHandlesSetup: (val: boolean) => void;
+  formik: any;
 }
 
 const Step2Technician: React.FC<Step2TechnicianProps> = ({
-  techRole,
-  setTechRole,
-  techExperienceYears,
-  setTechExperienceYears,
-  techServiceType,
-  setTechServiceType,
-  techProvidesEquipment,
-  setTechProvidesEquipment,
-  techEquipmentCategories,
-  setTechEquipmentCategories,
-  techHandlesSetup,
-  setTechHandlesSetup,
+  formik,
 }) => {
+  const { values, setFieldValue, handleChange, errors, touched } = formik;
+  const {
+    techRole,
+    techExperienceYears,
+    techServiceType,
+    techProvidesEquipment,
+    techEquipmentCategories,
+    techHandlesSetup,
+  } = values;
+
   return (
     <div className="w-full animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <h2 className="text-[28px] font-bold text-gray-900 mb-8 font-sans">Service Expertise</h2>
+      <h2 className="text-[24px] font-semibold text-[#000000] mb-5 font-outfit">Service Expertise</h2>
 
       <div className="flex flex-col gap-8">
         {/* Technician Role */}
         <div>
-          <label className="block text-[15px] font-bold text-gray-900 mb-3">Technician Role</label>
-          <CategorySelect
-            value={techRole}
-            onChange={setTechRole}
-            placeholder="Select Role"
-            options={[
-              "Sound Engineer",
-              "Lighting Technician",
-              "Stage Manager",
-              "Mixing Engineer",
-              "Recording Engineer",
-              "DJ Technician",
-              "Production Assistant",
-              "Other"
-            ]}
-          />
+          <label className="block text-[14px] font-medium text-[#000000] mb-3">Technician Role</label>
+          <div className={touched.techRole && errors.techRole ? "border border-red-500 rounded-md" : ""}>
+            <CategorySelect
+              value={techRole}
+              onChange={(val) => setFieldValue("techRole", val)}
+              placeholder="Select Role"
+              options={[
+                "Sound Engineer",
+                "Lighting Technician",
+                "Stage Manager",
+                "Mixing Engineer",
+                "Recording Engineer",
+                "DJ Technician",
+                "Production Assistant",
+                "Other"
+              ]}
+            />
+          </div>
+          {touched.techRole && errors.techRole && (
+            <p className="mt-1.5 text-xs text-red-500 font-medium">{errors.techRole}</p>
+          )}
         </div>
 
         {/* Experience and Service Type */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
           <div>
-            <label className="block text-[15px] font-bold text-gray-900 mb-3">Years of Experience</label>
-            <div className="w-full rounded-xl border border-gray-200 px-4 py-3.5 bg-white focus-within:border-gray-300 focus-within:ring-1 focus-within:ring-gray-300 transition-all">
+            <label className="block text-[14px] font-medium text-[#000000] mb-3">Years of Experience</label>
+            <div className={`w-full rounded-md border px-4 py-3.5 bg-white transition-colors ${touched.techExperienceYears && errors.techExperienceYears ? "border-red-500" : "border-[#F0EFEF]"}`}>
               <input
                 type="text"
+                name="techExperienceYears"
                 value={techExperienceYears}
-                onChange={(e) => setTechExperienceYears(e.target.value)}
+                onChange={handleChange}
                 placeholder="Enter Years of Experience"
-                className="w-full bg-transparent border-none outline-none text-[15px] text-gray-900 placeholder:text-gray-400"
+                className="w-full bg-transparent border-none outline-none text-[15px] text-[#000000] placeholder:text-[#F0EFEF]"
               />
             </div>
+            {touched.techExperienceYears && errors.techExperienceYears && (
+              <p className="mt-1.5 text-xs text-red-500 font-medium">{errors.techExperienceYears}</p>
+            )}
           </div>
           <div>
-            <label className="block text-[15px] font-bold text-gray-900 mb-3">Service Type</label>
-            <CategorySelect
-              value={techServiceType}
-              onChange={setTechServiceType}
-              placeholder="Select Type"
-              options={[
-                "Live Events",
-                "Studio Sessions",
-                "Both"
-              ]}
-            />
+            <label className="block text-[14px] font-medium text-[#000000] mb-3">Service Type</label>
+            <div className={touched.techServiceType && errors.techServiceType ? "border border-red-500 rounded-md" : ""}>
+              <CategorySelect
+                value={techServiceType}
+                onChange={(val) => setFieldValue("techServiceType", val)}
+                placeholder="Select Type"
+                options={[
+                  "Live Events",
+                  "Studio Sessions",
+                  "Both"
+                ]}
+              />
+            </div>
+            {touched.techServiceType && errors.techServiceType && (
+              <p className="mt-1.5 text-xs text-red-500 font-medium">{errors.techServiceType}</p>
+            )}
           </div>
         </div>
 
-        {/* Equipment Provision Toggle */}
-        <div className="flex items-center justify-between pb-2 border-b border-gray-50 mb-2">
-          <label className="text-[15px] font-bold text-gray-900">Do You Provide Technical Equipment?</label>
+
+        <div className="flex items-center justify-between pb-2 border-b border-[#F0EFEF] mb-2">
+          <label className="text-[14px] font-medium text-[#000000]">Do You Provide Technical Equipment?</label>
           <div className="flex items-center gap-3">
             <button
               onClick={() => {
-                setTechProvidesEquipment(false);
-                setTechEquipmentCategories([]);
+                setFieldValue("techProvidesEquipment", false);
+                setFieldValue("techEquipmentCategories", []);
               }}
-              className={`text-[15px] font-bold transition-all ${!techProvidesEquipment ? "text-red-500" : "text-gray-400 hover:text-gray-600"}`}
+              className={`text-[14px] font-medium transition-all ${!techProvidesEquipment ? "text-[#FF3A44]" : "text-[#F0EFEF]"}`}
             >
               No
             </button>
             <button
-              onClick={() => setTechProvidesEquipment(true)}
-              className={`text-[15px] font-bold transition-all ${techProvidesEquipment ? "text-green-500" : "text-gray-400 hover:text-gray-600"}`}
+              onClick={() => setFieldValue("techProvidesEquipment", true)}
+              className={`text-[14px] font-medium transition-all ${techProvidesEquipment ? "text-green-500" : "text-[#F0EFEF]"}`}
             >
               Yes
             </button>
           </div>
         </div>
 
-        {/* Equipment Category Multi Select */}
         {techProvidesEquipment && (
           <div className="animate-in fade-in slide-in-from-top-2">
-            <label className="block text-[15px] font-bold text-gray-900 mb-3">Equipment Category</label>
+            <label className="block text-[14px] font-medium text-[#000000] mb-3">Equipment Category</label>
             <CategoryMultiSelect
               value={techEquipmentCategories}
-              onChange={setTechEquipmentCategories}
+              onChange={(val) => setFieldValue("techEquipmentCategories", val)}
               placeholder="Select Category"
               options={[
                 "Theremin",
@@ -137,16 +139,15 @@ const Step2Technician: React.FC<Step2TechnicianProps> = ({
           </div>
         )}
 
-        {/* Setup & Breakdown Toggle */}
         <div className="flex items-center justify-between pb-2">
-          <label className="text-[15px] font-bold text-gray-900">Do You Handle Setup & Breakdown?</label>
+          <label className="text-[14px] font-medium text-[#000000]">Do You Handle Setup & Breakdown?</label>
           <button
             type="button"
-            onClick={() => setTechHandlesSetup(!techHandlesSetup)}
-            className={`relative inline-flex h-7 w-12 items-center rounded-full transition-colors duration-200 ease-in-out focus:outline-none ${techHandlesSetup ? "bg-[#FE3B4C]" : "bg-gray-200"}`}
+            onClick={() => setFieldValue("techHandlesSetup", !techHandlesSetup)}
+            className={`relative inline-flex h-7 w-12 items-center rounded-full transition-colors duration-200 ease-in-out focus:outline-none ${techHandlesSetup ? "bg-[#FF3A44]" : "bg-[#F0EFEF]"}`}
           >
             <span
-              className={`inline-block h-6 w-6 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out ${techHandlesSetup ? "translate-x-6" : "translate-x-1"}`}
+              className={`inline-block h-6 w-6 transform rounded-full bg-white transition duration-200 ease-in-out ${techHandlesSetup ? "translate-x-6" : "translate-x-1"}`}
             />
           </button>
         </div>

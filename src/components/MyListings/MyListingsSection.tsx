@@ -38,11 +38,11 @@ const MyListingsSection = () => {
   return (
     <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-8">
-        <h1 className="text-2xl sm:text-3xl font-bold text-gray-900">My Listings</h1>
+      <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-5">
+        <h1 className="text-[24px] font-semibold text-[#000000]">My Listings</h1>
         <button
           onClick={handleAddListing}
-          className="flex items-center gap-2 px-5 py-3.5 rounded-md bg-[#FF3A44] hover:bg-[#E0343C] transition-colors text-white text-[14px] font-medium font-outfit"
+          className="flex items-center gap-2 px-5 py-3.5 rounded-md bg-[#FF3A44] text-white text-[14px] font-medium font-outfit"
         >
           <img src="/icons/addListingIcon.svg" alt="add" className="w-5 h-5" />
           Add Listing

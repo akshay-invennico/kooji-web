@@ -55,8 +55,8 @@ const AVAILABLE_TAGS = [
 // Ensure unique tags for the internal state mapping
 const uniqueTags = Array.from(new Set(AVAILABLE_TAGS));
 
-const SelectTagsModal: React.FC<SelectTagsModalProps> = ({ 
-  onClose, 
+const SelectTagsModal: React.FC<SelectTagsModalProps> = ({
+  onClose,
   onSave,
   initialSelectedTags = [],
   title = "Select Tags"
@@ -64,7 +64,7 @@ const SelectTagsModal: React.FC<SelectTagsModalProps> = ({
   const [selectedTags, setSelectedTags] = useState<string[]>(initialSelectedTags);
 
   const toggleTag = (tag: string) => {
-    setSelectedTags((prev) => 
+    setSelectedTags((prev) =>
       prev.includes(tag)
         ? prev.filter((t) => t !== tag)
         : [...prev, tag]
@@ -78,12 +78,12 @@ const SelectTagsModal: React.FC<SelectTagsModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-60 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
-      <div 
-        className="w-full max-w-[800px] bg-white rounded-2xl shadow-xl flex flex-col max-h-[90vh] overflow-hidden"
+      <div
+        className="w-full max-w-[800px] bg-white rounded-xl shadow-xl flex flex-col max-h-[90vh] overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="p-6 sm:p-8 flex-none">
-          <h2 className="text-xl font-bold text-gray-900 font-sans">{title}</h2>
+          <h2 className="text-[14px] font-semibold text-[#000000] font-outfit">{title}</h2>
         </div>
 
         <div className="px-6 sm:px-8 pb-6 flex-1 overflow-y-auto">
@@ -95,11 +95,10 @@ const SelectTagsModal: React.FC<SelectTagsModalProps> = ({
                 <button
                   key={`${tag}-${index}`}
                   onClick={() => toggleTag(tag)}
-                  className={`px-4 py-2.5 rounded-md text-[13px] font-medium transition-colors border ${
-                    isSelected
-                      ? "border-red-400 text-red-500 bg-white"
-                      : "border-gray-100 text-gray-800 bg-white hover:border-gray-200"
-                  }`}
+                  className={`px-4 py-2.5 rounded-md text-[13px] font-medium transition-colors border ${isSelected
+                    ? "border-[#FF3A44] text-[#FF3A44] bg-white"
+                    : "border-[#F0EFEF] text-gray-800 bg-white hover:border-gray-200"
+                    }`}
                 >
                   {tag}
                 </button>
@@ -109,16 +108,16 @@ const SelectTagsModal: React.FC<SelectTagsModalProps> = ({
         </div>
 
         <div className="p-6 sm:p-8 flex-none flex items-center justify-end gap-6 bg-white border-t border-gray-50">
-          <button 
+          <button
             onClick={onClose}
-            className="text-gray-500 font-medium text-[15px] hover:text-gray-700 transition-colors"
+            className="text-[#000000] font-semibold text-[14px]  transition-colors"
           >
             Cancel
           </button>
-          <Button 
-            variant="primary" 
+          <Button
+            variant="primary"
             onClick={handleSave}
-            className="bg-red-500 hover:bg-red-600 px-8 py-2.5 rounded-lg shadow-sm border-none"
+            className="bg-[#FF3A44] hover:bg-red-600 px-8 py-2.5 rounded-md  border-none"
           >
             Continue
           </Button>
