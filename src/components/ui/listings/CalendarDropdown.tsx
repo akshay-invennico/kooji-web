@@ -72,9 +72,14 @@ export const CalMonth: React.FC<CalMonthProps> = ({
 interface CalendarDropdownProps {
     formik: any;
     onClose: () => void;
+    variant?: 'dropdown' | 'modal';
 }
 
-export const CalendarDropdown: React.FC<CalendarDropdownProps> = ({ formik, onClose }) => {
+export const CalendarDropdown: React.FC<CalendarDropdownProps> = ({ 
+    formik, 
+    onClose,
+    variant = 'dropdown'
+}) => {
     const [hoverDate, setHoverDate] = useState<Date | null>(null);
     const [selecting, setSelecting] = useState(false);
 
@@ -102,17 +107,23 @@ export const CalendarDropdown: React.FC<CalendarDropdownProps> = ({ formik, onCl
         }
     };
 
+    const isModal = variant === 'modal';
+
     return (
         <>
-            {/* Mobile Overlay */}
+            {/* Overlay / Backdrop */}
             <div
-                className="fixed inset-0 bg-black/50 z-100 md:hidden animate-in fade-in duration-200"
+                className={`fixed inset-0 z-100 transition-opacity duration-200 ${isModal ? 'bg-black/40 backdrop-blur-sm md:block' : 'bg-black/50 md:hidden'}`}
                 onClick={onClose}
             />
 
             <div
-                className="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:absolute md:top-full md:left-0 md:translate-x-0 md:translate-y-0 mt-0 md:mt-2 bg-white border border-gray-100 rounded-2xl shadow-2xl z-101 md:z-70 animate-in fade-in zoom-in duration-200 origin-center md:origin-top p-6 flex flex-col md:flex-row items-center md:items-start gap-0 min-w-[320px] md:min-w-[510px] w-[90vw] md:w-auto overflow-hidden"
+                className={`${isModal 
+                    ? 'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:z-101' 
+                    : 'fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 md:absolute md:top-full md:left-0 md:translate-x-0 md:translate-y-0 mt-0 md:mt-2'
+                } bg-white border border-gray-100 rounded-2xl shadow-2xl z-101 md:z-70 animate-in fade-in zoom-in duration-200 origin-center md:origin-top p-6 flex flex-col md:flex-row items-center md:items-start gap-0 min-w-[320px] md:min-w-[510px] w-[90vw] md:w-auto overflow-hidden`}
                 onMouseLeave={() => setHoverDate(null)}
+                onClick={(e) => e.stopPropagation()}
             >
                 {/* Mobile Close Button */}
                 <button

@@ -101,6 +101,7 @@ const MyBookings = () => {
                         paginated.map(booking => (
                             <RecentBookingCard
                                 key={booking.id}
+                                bookingId={booking.id}
                                 image={booking.image}
                                 title={booking.title}
                                 renterName={booking.renterName}
@@ -108,6 +109,9 @@ const MyBookings = () => {
                                 payment={booking.payment}
                                 location={booking.location}
                                 status={booking.status}
+                                onViewBooking={(id) => {
+                                    window.location.href = `/my/bookings/details?id=${id}`;
+                                }}
                             />
                         ))
                     ) : (

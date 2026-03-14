@@ -18,6 +18,11 @@ const NO_LAYOUT_ROUTES = [
   "/vendor",
 ];
 
+const NO_FOOTER_ROUTES = [
+  "/my/notifications",
+  "/my/messages"
+];
+
 export default function LayoutWrapper({
   children,
 }: {
@@ -25,6 +30,7 @@ export default function LayoutWrapper({
 }) {
   const pathname = usePathname();
   const showLayout = !NO_LAYOUT_ROUTES.includes(pathname);
+  const showFooter = !NO_FOOTER_ROUTES.includes(pathname);
 
   if (!showLayout) {
     return (
@@ -64,7 +70,7 @@ export default function LayoutWrapper({
           }}
         />
       </main>
-      <Footer />
+      {showFooter && <Footer />}
     </>
   );
 }

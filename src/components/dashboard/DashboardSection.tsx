@@ -104,7 +104,7 @@ const DashboardSection = () => {
                 {/* Bookings List */}
                 <div className="flex flex-col gap-6">
                     {RECENT_BOOKINGS.map((booking, index) => (
-                        <RecentBookingCard key={index} {...booking} />
+                        <RecentBookingCard key={index} bookingId={`DASH-${index}`} {...booking} />
                     ))}
                 </div>
             </div>

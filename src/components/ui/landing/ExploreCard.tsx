@@ -1,5 +1,6 @@
 import React from "react";
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 
 interface ExploreCardProps {
     title: string;
@@ -24,10 +25,12 @@ const ExploreCard: React.FC<ExploreCardProps> = ({ title, description, image }) 
                         {description}
                     </p>
 
-                    <button className="flex items-center gap-2 px-6 py-2.5 bg-[#FF3A44] text-[#FFFFFF] text-[14px] font-semibold rounded">
-                        Browse All
-                        <ArrowUpRight className="w-5 h-5" />
-                    </button>
+                    <Link href="/listings">
+                        <button className="flex items-center gap-2 px-6 py-2.5 bg-[#FF3A44] text-[#FFFFFF] text-[14px] font-semibold rounded">
+                            Browse All
+                            <ArrowUpRight className="w-5 h-5" />
+                        </button>
+                    </Link>
                 </div>
             </div>
         </div>

@@ -2,6 +2,9 @@
 "use client";
 
 import React, { useState } from "react";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Mic, Activity, PartyPopper, Music, HelpCircle, ArrowLeft, X, Minus, Plus, Check, Calendar, ChevronLeft, ChevronRight } from "lucide-react";
 import Button from "@/components/ui/button/Button";
@@ -30,156 +33,195 @@ interface AddListingViewProps {
 }
 
 const LISTING_TYPES = [
-  { id: "equipment", label: "Equipment Rental", icon: Music },
-  { id: "musician", label: "Musician & Singers", icon: Mic },
-  { id: "technician", label: "Technicians", icon: Activity },
-  { id: "event_space", label: "Event Space", icon: PartyPopper },
+  { id: "equipment", label: "Equipment Rental", icon: "/icons/vendor/vendorOnboard1.svg" },
+  { id: "musician", label: "Musician & Singers", icon: "/icons/vendor/vendorOnboard2.svg" },
+  { id: "technician", label: "Technicians", icon: "/icons/vendor/vendorOnboard3.svg" },
+  { id: "event_space", label: "Event Space", icon: "/icons/vendor/vendorOnboard4.svg" },
 ];
 
 const AddListingView: React.FC<AddListingViewProps> = ({ onClose }) => {
+  const router = useRouter();
+  // Formik Initialization
+  const formik = useFormik({
+    initialValues: {
+      selectedType: "equipment",
+      title: "",
+      description: "",
+      selectedTags: [] as string[],
+      address: "Building Number: 225, Bow Street, Royal Opera House, Greater, London, WC2E 7AW",
+      locationType: "saved_address" as "my_location" | "saved_address",
+
+      // Equipment Fields
+      equipmentCategory: "",
+      yearOfPurchase: "",
+      condition: "",
+      usageType: "",
+      brand: "",
+      model: "",
+      powerOutput: "",
+      weight: "",
+      accessories: "",
+      includes: ["2x PA speakers", "Mixer", "Power cables", "Speaker stands"] as string[],
+      notIncludes: [] as string[],
+
+      // Musician Fields
+      performerType: "",
+      musicGenres: ["Pop", "Rock", "Classical", "Jazz"] as string[],
+      yearsOfExperience: "",
+      performanceLanguages: "",
+      performanceDuration: "",
+      providesEquipment: false,
+      equipmentCategories: [] as string[],
+      technicalRequirements: "",
+
+      // Technician Fields
+      techRole: "",
+      techExperienceYears: "",
+      techServiceType: "",
+      techProvidesEquipment: false,
+      techEquipmentCategories: [] as string[],
+      techHandlesSetup: false,
+
+      // Event Space Fields
+      spaceHighlights: [] as string[],
+      spaceType: "",
+      allowedEventTypes: [] as string[],
+      propertySize: "",
+      maximumCapacity: "",
+      standingLimits: "",
+      sittingLimits: "",
+      noiseRestrictions: false,
+      noiseRestrictionFrom: "",
+      noiseRestrictionTo: "",
+      amenities: [] as string[],
+      parkingType: "On-Site Parking",
+      parkingCapacity: "",
+
+      // Availability Fields
+      startDate: null as Date | null,
+      endDate: null as Date | null,
+      repeatMonthly: true,
+      selectedDays: ["Mon"] as string[],
+      repeatWeekly: true,
+
+      // Pricing Fields
+      dailyRate: false,
+      dailyPrice: "99",
+      weeklyRate: false,
+      weeklyPrice: "299",
+      monthlyRate: false,
+      monthlyPrice: "2099",
+      selfDelivery: false,
+      selfDeliveryPrice: "99",
+      thirdPartyDelivery: false,
+      thirdPartyPrice: "299",
+      securityDeposit: false,
+      securityDepositValue: "10",
+      insurance: false,
+
+      // Media
+      coverPhoto: null as string | null,
+      galleryPhotos: [null, null, null, null] as (string | null)[],
+    },
+    validationSchema: Yup.object({
+      title: Yup.string().required("Title is required"),
+      description: Yup.string().required("Description is required"),
+      address: Yup.string().required("Address is required"),
+
+      // Step 2 Fields
+      equipmentCategory: Yup.string().when('selectedType', { is: 'equipment', then: (s) => s.required("Category is required") }),
+      brand: Yup.string().when('selectedType', { is: 'equipment', then: (s) => s.required("Brand is required") }),
+      model: Yup.string().when('selectedType', { is: 'equipment', then: (s) => s.required("Model is required") }),
+      condition: Yup.string().when('selectedType', { is: 'equipment', then: (s) => s.required("Condition is required") }),
+      usageType: Yup.string().when('selectedType', { is: 'equipment', then: (s) => s.required("Usage type is required") }),
+
+      performerType: Yup.string().when('selectedType', { is: 'musician', then: (s) => s.required("Performer type is required") }),
+      yearsOfExperience: Yup.string().when('selectedType', { is: 'musician', then: (s) => s.required("Experience is required") }),
+      performanceLanguages: Yup.string().when('selectedType', { is: 'musician', then: (s) => s.required("Languages are required") }),
+      performanceDuration: Yup.string().when('selectedType', { is: 'musician', then: (s) => s.required("Duration is required") }),
+
+      techRole: Yup.string().when('selectedType', { is: 'technician', then: (s) => s.required("Role is required") }),
+      techExperienceYears: Yup.string().when('selectedType', { is: 'technician', then: (s) => s.required("Experience is required") }),
+      techServiceType: Yup.string().when('selectedType', { is: 'technician', then: (s) => s.required("Service type is required") }),
+
+      spaceType: Yup.string().when('selectedType', { is: 'event_space', then: (s) => s.required("Space type is required") }),
+      propertySize: Yup.string().when('selectedType', { is: 'event_space', then: (s) => s.required("Property size is required") }),
+      maximumCapacity: Yup.string().when('selectedType', { is: 'event_space', then: (s) => s.required("Capacity is required") }),
+
+
+      // Availability (Step 3 or 4)
+      startDate: Yup.date().required("Start date is required").nullable(),
+      endDate: Yup.date().required("End date is required").nullable(),
+    }),
+    onSubmit: (values) => {
+      console.log("Form Submitted:", values);
+      setIsPublishedModalOpen(true);
+    },
+  });
+
+  const { values, setFieldValue, handleChange, errors, touched, setFieldTouched, validateForm } = formik;
+
   const [currentStep, setCurrentStep] = useState(1);
-  const [selectedType, setSelectedType] = useState("equipment");
-  const [equipmentCategory, setEquipmentCategory] = useState("Synthesizer");
-  const [yearOfPurchase, setYearOfPurchase] = useState("");
-  const [condition, setCondition] = useState("");
-  const [usageType, setUsageType] = useState("");
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-  const [selectedTags, setSelectedTags] = useState<string[]>([]);
   const [isTagsModalOpen, setIsTagsModalOpen] = useState(false);
   const [isAddressModalOpen, setIsAddressModalOpen] = useState(false);
-  const [address, setAddress] = useState("Building Number: 225, Bow Street, Royal Opera House, Greater, London, WC2E 7AW");
   const [isAddIncludesModalOpen, setIsAddIncludesModalOpen] = useState(false);
   const [isAddNotIncludesModalOpen, setIsAddNotIncludesModalOpen] = useState(false);
   const [isPublishedModalOpen, setIsPublishedModalOpen] = useState(false);
-  const [locationType, setLocationType] = useState<"my_location" | "saved_address">("saved_address");
-
-  // Step 2 Equipment States
-  const [brand, setBrand] = useState("");
-  const [model, setModel] = useState("");
-  const [powerOutput, setPowerOutput] = useState("");
-  const [weight, setWeight] = useState("");
-  const [accessories, setAccessories] = useState("");
-
-  // Step 2 Musician States
-  const [performerType, setPerformerType] = useState("");
-  const [musicGenres, setMusicGenres] = useState<string[]>(["Pop", "Rock", "Classical", "Jazz"]);
-  const [yearsOfExperience, setYearsOfExperience] = useState("");
-  const [performanceLanguages, setPerformanceLanguages] = useState("");
-  const [performanceDuration, setPerformanceDuration] = useState("");
-  const [providesEquipment, setProvidesEquipment] = useState(false);
-  const [equipmentCategories, setEquipmentCategories] = useState<string[]>([]);
-  const [technicalRequirements, setTechnicalRequirements] = useState("");
+  const [isDateRangeOpen, setIsDateRangeOpen] = useState(true);
+  const [isWeeklyOpen, setIsWeeklyOpen] = useState(false);
+  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
   const [isGenresModalOpen, setIsGenresModalOpen] = useState(false);
-
-  // Step 2 Event Space States
-  const [venueHighlights, setVenueHighlights] = useState<string[]>([]);
-  const [spaceType, setSpaceType] = useState("");
-  const [allowedEventTypes, setAllowedEventTypes] = useState<string[]>([]);
-  const [propertySize, setPropertySize] = useState("");
-  const [maximumCapacity, setMaximumCapacity] = useState("");
-  const [standingLimits, setStandingLimits] = useState("");
-  const [sittingLimits, setSittingLimits] = useState("");
-  const [noiseRestrictions, setNoiseRestrictions] = useState(false);
-  const [noiseRestrictionFrom, setNoiseRestrictionFrom] = useState("");
-  const [noiseRestrictionTo, setNoiseRestrictionTo] = useState("");
-  const [amenities, setAmenities] = useState<string[]>([]);
-  const [parkingType, setParkingType] = useState("On-Site Parking");
-  const [parkingCapacity, setParkingCapacity] = useState("");
   const [isHighlightsModalOpen, setIsHighlightsModalOpen] = useState(false);
   const [isAmenitiesModalOpen, setIsAmenitiesModalOpen] = useState(false);
   const [isAllowedEventTypesModalOpen, setIsAllowedEventTypesModalOpen] = useState(false);
 
-  // Step 2 Technician States
-  const [techRole, setTechRole] = useState("");
-  const [techExperienceYears, setTechExperienceYears] = useState("");
-  const [techServiceType, setTechServiceType] = useState("");
-  const [techProvidesEquipment, setTechProvidesEquipment] = useState(false);
-  const [techEquipmentCategories, setTechEquipmentCategories] = useState<string[]>([]);
-  const [techHandlesSetup, setTechHandlesSetup] = useState(false);
+  const totalSteps = values.selectedType === "event_space" ? 7 : 6;
 
-  // Step 3 State
-  const [startDate, setStartDate] = useState<Date | null>(null);
-  const [endDate, setEndDate] = useState<Date | null>(null);
-  const [repeatMonthly, setRepeatMonthly] = useState(true);
-  const [isDateRangeOpen, setIsDateRangeOpen] = useState(true);
-  const [isWeeklyOpen, setIsWeeklyOpen] = useState(false);
-  const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const handleNext = async () => {
+    const stepErrors = await validateForm();
 
-  // Step 3 Weekly Availability State
-  const [selectedDays, setSelectedDays] = useState<string[]>(["Mon"]);
-  const [repeatWeekly, setRepeatWeekly] = useState(true);
+    // Define fields for each step to mark as touched
+    let fieldsToValidate: string[] = [];
 
-  const toggleDay = (day: string) => {
-    setSelectedDays(prev =>
-      prev.includes(day) ? prev.filter(d => d !== day) : [...prev, day]
-    );
-  };
-
-  // Step 4 Pricing State
-  const [pricing, setPricing] = useState({
-    dailyRate: true,
-    dailyPrice: "99",
-    weeklyRate: false,
-    weeklyPrice: "299",
-    monthlyRate: false,
-    monthlyPrice: "2099",
-    selfDelivery: true,
-    selfDeliveryPrice: "99",
-    thirdPartyDelivery: false,
-    thirdPartyPrice: "299",
-    securityDeposit: true,
-    securityDepositValue: "10",
-    insurance: false
-  });
-
-  const updatePricing = (field: string, value: any) => {
-    setPricing(prev => ({ ...prev, [field]: value }));
-  };
-
-  // Step 5 Photos & Media State
-  const [coverPhoto, setCoverPhoto] = useState<string | null>(null);
-  const [galleryPhotos, setGalleryPhotos] = useState<(string | null)[]>([null, null, null, null]);
-
-  const handleImageUpload = (index: number | 'cover', e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        if (index === 'cover') {
-          setCoverPhoto(reader.result as string);
-        } else {
-          setGalleryPhotos(prev => {
-            const next = [...prev];
-            next[index] = reader.result as string;
-            return next;
-          });
-        }
-      };
-      reader.readAsDataURL(file);
+    if (currentStep === 1) {
+      fieldsToValidate = ['title', 'description', 'address'];
+    } else if (currentStep === 2) {
+      if (values.selectedType === 'equipment') {
+        fieldsToValidate = ['equipmentCategory', 'brand', 'model', 'condition', 'usageType'];
+      } else if (values.selectedType === 'musician') {
+        fieldsToValidate = ['performerType', 'yearsOfExperience', 'performanceLanguages', 'performanceDuration'];
+      } else if (values.selectedType === 'technician') {
+        fieldsToValidate = ['techRole', 'techExperienceYears', 'techServiceType'];
+      } else if (values.selectedType === 'event_space') {
+        fieldsToValidate = ['spaceType', 'propertySize', 'maximumCapacity'];
+      }
+    } else if (currentStep === 3 && values.selectedType !== 'event_space') {
+      fieldsToValidate = ['startDate', 'endDate'];
+    } else if (currentStep === 4 && values.selectedType === 'event_space') {
+      fieldsToValidate = ['startDate', 'endDate'];
     }
-  };
 
-  const removeImage = (index: number | 'cover') => {
-    if (index === 'cover') {
-      setCoverPhoto(null);
+    // Check if any of the fields to validate for the current step have errors
+    const hasErrors = fieldsToValidate.some(field => {
+      setFieldTouched(field, true, true);
+      return !!(stepErrors as any)[field];
+    });
+
+    if (hasErrors) {
+      // Scroll to top of form to show errors if needed
+      return;
+    }
+
+    if (currentStep === totalSteps) {
+      formik.handleSubmit();
     } else {
-      setGalleryPhotos(prev => {
-        const next = [...prev];
-        next[index] = null;
-        return next;
-      });
+      setCurrentStep(currentStep + 1);
     }
   };
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const fakeFormik: any = {
-    values: { startDate, endDate },
-    setFieldValue: (field: string, value: any) => {
-      if (field === "startDate") setStartDate(value);
-      if (field === "endDate") setEndDate(value);
-    },
-    setFieldError: () => { }
+
+  const handlePrev = () => {
+    if (currentStep > 1) setCurrentStep(currentStep - 1);
   };
 
   const formatDate = (date: Date | null) => {
@@ -187,29 +229,6 @@ const AddListingView: React.FC<AddListingViewProps> = ({ onClose }) => {
     return date.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" });
   };
 
-  const handleRemoveTag = (tagToRemove: string) => {
-    setSelectedTags((prev) => prev.filter((tag) => tag !== tagToRemove));
-  };
-
-  const [includes, setIncludes] = useState<string[]>(["2x PA speakers", "Mixer", "Power cables", "Speaker stands"]);
-  const [notIncludes, setNotIncludes] = useState<string[]>([]);
-
-  const removeInclude = (item: string) => setIncludes(prev => prev.filter(i => i !== item));
-  const removeNotInclude = (item: string) => setNotIncludes(prev => prev.filter(i => i !== item));
-
-  const totalSteps = selectedType === "event_space" ? 7 : 6;
-
-  const handleNext = () => {
-    if (currentStep === totalSteps) {
-      setIsPublishedModalOpen(true);
-    } else {
-      setCurrentStep(currentStep + 1);
-    }
-  };
-
-  const handlePrev = () => {
-    if (currentStep > 1) setCurrentStep(currentStep - 1);
-  };
 
   return (
     <div className="fixed inset-0 z-200 bg-white flex flex-col h-screen overflow-hidden">
@@ -264,215 +283,78 @@ const AddListingView: React.FC<AddListingViewProps> = ({ onClose }) => {
           <div className="w-full">
             {currentStep === 1 && (
               <Step1BasicInfo
-                selectedType={selectedType}
-                setSelectedType={setSelectedType}
-                title={title}
-                setTitle={setTitle}
-                description={description}
-                setDescription={setDescription}
-                selectedTags={selectedTags}
-                setIsTagsModalOpen={setIsTagsModalOpen}
-                address={address}
-                setIsAddressModalOpen={setIsAddressModalOpen}
-                setAddress={setAddress}
-                locationType={locationType}
-                setLocationType={setLocationType}
+                formik={formik}
                 LISTING_TYPES={LISTING_TYPES}
+                setIsTagsModalOpen={setIsTagsModalOpen}
+                setIsAddressModalOpen={setIsAddressModalOpen}
               />
             )}
 
             {currentStep === 2 && (
               <>
-                {selectedType === 'equipment' && (
+                {values.selectedType === 'equipment' && (
                   <Step2Equipment
-                    equipmentCategory={equipmentCategory}
-                    setEquipmentCategory={setEquipmentCategory}
-                    brand={brand}
-                    setBrand={setBrand}
-                    model={model}
-                    setModel={setModel}
-                    powerOutput={powerOutput}
-                    setPowerOutput={setPowerOutput}
-                    weight={weight}
-                    setWeight={setWeight}
-                    yearOfPurchase={yearOfPurchase}
-                    setYearOfPurchase={setYearOfPurchase}
-                    condition={condition}
-                    setCondition={setCondition}
-                    usageType={usageType}
-                    setUsageType={setUsageType}
-                    accessories={accessories}
-                    setAccessories={setAccessories}
-                    includes={includes}
-                    removeInclude={removeInclude}
+                    formik={formik}
                     setIsAddIncludesModalOpen={setIsAddIncludesModalOpen}
-                    notIncludes={notIncludes}
-                    removeNotInclude={removeNotInclude}
                     setIsAddNotIncludesModalOpen={setIsAddNotIncludesModalOpen}
                   />
                 )}
-                {selectedType === 'musician' && (
+                {values.selectedType === 'musician' && (
                   <Step2Musician
-                    performerType={performerType}
-                    setPerformerType={setPerformerType}
-                    musicGenres={musicGenres}
-                    setMusicGenres={setMusicGenres}
-                    yearsOfExperience={yearsOfExperience}
-                    setYearsOfExperience={setYearsOfExperience}
-                    performanceLanguages={performanceLanguages}
-                    setPerformanceLanguages={setPerformanceLanguages}
-                    performanceDuration={performanceDuration}
-                    setPerformanceDuration={setPerformanceDuration}
-                    providesEquipment={providesEquipment}
-                    setProvidesEquipment={setProvidesEquipment}
-                    equipmentCategories={equipmentCategories}
-                    setEquipmentCategories={setEquipmentCategories}
-                    technicalRequirements={technicalRequirements}
-                    setTechnicalRequirements={setTechnicalRequirements}
+                    formik={formik}
                     setIsGenresModalOpen={setIsGenresModalOpen}
                   />
                 )}
-                {selectedType === 'technician' && (
+                {values.selectedType === 'technician' && (
                   <Step2Technician
-                    techRole={techRole}
-                    setTechRole={setTechRole}
-                    techExperienceYears={techExperienceYears}
-                    setTechExperienceYears={setTechExperienceYears}
-                    techServiceType={techServiceType}
-                    setTechServiceType={setTechServiceType}
-                    techProvidesEquipment={techProvidesEquipment}
-                    setTechProvidesEquipment={setTechProvidesEquipment}
-                    techEquipmentCategories={techEquipmentCategories}
-                    setTechEquipmentCategories={setTechEquipmentCategories}
-                    techHandlesSetup={techHandlesSetup}
-                    setTechHandlesSetup={setTechHandlesSetup}
+                    formik={formik}
                   />
                 )}
-                {selectedType === 'event_space' && (
+                {values.selectedType === 'event_space' && (
                   <Step2EventSpace
-                    spaceType={spaceType}
-                    setSpaceType={setSpaceType}
-                    allowedEventTypes={allowedEventTypes}
-                    setAllowedEventTypes={setAllowedEventTypes}
-                    propertySize={propertySize}
-                    setPropertySize={setPropertySize}
-                    maximumCapacity={maximumCapacity}
-                    setMaximumCapacity={setMaximumCapacity}
-                    standingLimits={standingLimits}
-                    setStandingLimits={setStandingLimits}
-                    sittingLimits={sittingLimits}
-                    setSittingLimits={setSittingLimits}
-                    noiseRestrictions={noiseRestrictions}
-                    setNoiseRestrictions={setNoiseRestrictions}
-                    noiseRestrictionFrom={noiseRestrictionFrom}
-                    setNoiseRestrictionFrom={setNoiseRestrictionFrom}
-                    noiseRestrictionTo={noiseRestrictionTo}
-                    setNoiseRestrictionTo={setNoiseRestrictionTo}
+                    formik={formik}
                   />
                 )}
               </>
             )}
 
             {/* Step 3 & Beyond: Shift steps for Event Space */}
-            {selectedType === 'event_space' ? (
+            {values.selectedType === 'event_space' ? (
               <>
                 {currentStep === 3 && (
                   <Step3EventSpace
-                    amenities={amenities}
-                    setAmenities={setAmenities}
-                    spaceHighlights={venueHighlights}
-                    setSpaceHighlights={setVenueHighlights}
-                    parkingType={parkingType}
-                    setParkingType={setParkingType}
-                    parkingCapacity={parkingCapacity}
-                    setParkingCapacity={setParkingCapacity}
+                    formik={formik}
                     onOpenAmenities={() => setIsAmenitiesModalOpen(true)}
                     onOpenHighlights={() => setIsHighlightsModalOpen(true)}
                   />
                 )}
                 {currentStep === 4 && (
                   <Step3Availability
+                    formik={formik}
                     isDateRangeOpen={isDateRangeOpen}
                     setIsDateRangeOpen={setIsDateRangeOpen}
                     isCalendarOpen={isCalendarOpen}
                     setIsCalendarOpen={setIsCalendarOpen}
-                    startDate={startDate}
-                    endDate={endDate}
-                    formatDate={formatDate}
-                    repeatMonthly={repeatMonthly}
-                    setRepeatMonthly={setRepeatMonthly}
                     isWeeklyOpen={isWeeklyOpen}
                     setIsWeeklyOpen={setIsWeeklyOpen}
-                    selectedDays={selectedDays}
-                    toggleDay={toggleDay}
-                    repeatWeekly={repeatWeekly}
-                    setRepeatWeekly={setRepeatWeekly}
-                    fakeFormik={fakeFormik}
+                    formatDate={formatDate}
                   />
                 )}
                 {currentStep === 5 && (
                   <Step4Pricing
-                    pricing={pricing}
-                    updatePricing={updatePricing}
+                    formik={formik}
+                    selectedType={values.selectedType}
                   />
                 )}
                 {currentStep === 6 && (
                   <Step5Photos
-                    coverPhoto={coverPhoto}
-                    galleryPhotos={galleryPhotos}
-                    handleImageUpload={handleImageUpload}
-                    removeImage={removeImage}
+                    formik={formik}
                   />
                 )}
                 {currentStep === 7 && (
                   <Step6Review
-                    title={title}
-                    equipmentCategory={equipmentCategory}
-                    usageType={usageType}
-                    address={address}
-                    pricing={pricing}
-                    startDate={startDate}
-                    endDate={endDate}
+                    formik={formik}
                     formatDate={formatDate}
-                    description={description}
-                    includes={includes}
-                    notIncludes={notIncludes}
-                    brand={brand}
-                    model={model}
-                    powerOutput={powerOutput}
-                    weight={weight}
-                    condition={condition}
-                    accessories={accessories}
-                    coverPhoto={coverPhoto}
-                    galleryPhotos={galleryPhotos}
-                    selectedType={selectedType}
-                    performerType={performerType}
-                    musicGenres={musicGenres}
-                    yearsOfExperience={yearsOfExperience}
-                    performanceLanguages={performanceLanguages}
-                    performanceDuration={performanceDuration}
-                    providesEquipment={providesEquipment}
-                    equipmentCategories={equipmentCategories}
-                    technicalRequirements={technicalRequirements}
-                    techRole={techRole}
-                    techExperienceYears={techExperienceYears}
-                    techServiceType={techServiceType}
-                    techProvidesEquipment={techProvidesEquipment}
-                    techEquipmentCategories={techEquipmentCategories}
-                    techHandlesSetup={techHandlesSetup}
-                    venueHighlights={venueHighlights}
-                    amenities={amenities}
-                    parkingType={parkingType}
-                    parkingCapacity={parkingCapacity}
-                    spaceType={spaceType}
-                    allowedEventTypes={allowedEventTypes}
-                    propertySize={propertySize}
-                    maximumCapacity={maximumCapacity}
-                    standingLimits={standingLimits}
-                    sittingLimits={sittingLimits}
-                    noiseRestrictions={noiseRestrictions}
-                    noiseRestrictionFrom={noiseRestrictionFrom}
-                    noiseRestrictionTo={noiseRestrictionTo}
                   />
                 )}
               </>
@@ -480,84 +362,31 @@ const AddListingView: React.FC<AddListingViewProps> = ({ onClose }) => {
               <>
                 {currentStep === 3 && (
                   <Step3Availability
+                    formik={formik}
                     isDateRangeOpen={isDateRangeOpen}
                     setIsDateRangeOpen={setIsDateRangeOpen}
                     isCalendarOpen={isCalendarOpen}
                     setIsCalendarOpen={setIsCalendarOpen}
-                    startDate={startDate}
-                    endDate={endDate}
-                    formatDate={formatDate}
-                    repeatMonthly={repeatMonthly}
-                    setRepeatMonthly={setRepeatMonthly}
                     isWeeklyOpen={isWeeklyOpen}
                     setIsWeeklyOpen={setIsWeeklyOpen}
-                    selectedDays={selectedDays}
-                    toggleDay={toggleDay}
-                    repeatWeekly={repeatWeekly}
-                    setRepeatWeekly={setRepeatWeekly}
-                    fakeFormik={fakeFormik}
+                    formatDate={formatDate}
                   />
                 )}
                 {currentStep === 4 && (
                   <Step4Pricing
-                    pricing={pricing}
-                    updatePricing={updatePricing}
+                    formik={formik}
+                    selectedType={values.selectedType}
                   />
                 )}
                 {currentStep === 5 && (
                   <Step5Photos
-                    coverPhoto={coverPhoto}
-                    galleryPhotos={galleryPhotos}
-                    handleImageUpload={handleImageUpload}
-                    removeImage={removeImage}
+                    formik={formik}
                   />
                 )}
                 {currentStep === 6 && (
                   <Step6Review
-                    title={title}
-                    equipmentCategory={equipmentCategory}
-                    usageType={usageType}
-                    address={address}
-                    pricing={pricing}
-                    startDate={startDate}
-                    endDate={endDate}
+                    formik={formik}
                     formatDate={formatDate}
-                    description={description}
-                    includes={includes}
-                    notIncludes={notIncludes}
-                    brand={brand}
-                    model={model}
-                    powerOutput={powerOutput}
-                    weight={weight}
-                    condition={condition}
-                    accessories={accessories}
-                    coverPhoto={coverPhoto}
-                    galleryPhotos={galleryPhotos}
-                    selectedType={selectedType}
-                    performerType={performerType}
-                    musicGenres={musicGenres}
-                    yearsOfExperience={yearsOfExperience}
-                    performanceLanguages={performanceLanguages}
-                    performanceDuration={performanceDuration}
-                    providesEquipment={providesEquipment}
-                    equipmentCategories={equipmentCategories}
-                    technicalRequirements={technicalRequirements}
-                    techRole={techRole}
-                    techExperienceYears={techExperienceYears}
-                    techServiceType={techServiceType}
-                    techProvidesEquipment={techProvidesEquipment}
-                    techEquipmentCategories={techEquipmentCategories}
-                    techHandlesSetup={techHandlesSetup}
-                    venueHighlights={venueHighlights}
-                    spaceType={spaceType}
-                    allowedEventTypes={allowedEventTypes}
-                    propertySize={propertySize}
-                    maximumCapacity={maximumCapacity}
-                    standingLimits={standingLimits}
-                    sittingLimits={sittingLimits}
-                    noiseRestrictions={noiseRestrictions}
-                    noiseRestrictionFrom={noiseRestrictionFrom}
-                    noiseRestrictionTo={noiseRestrictionTo}
                   />
                 )}
               </>
@@ -568,12 +397,12 @@ const AddListingView: React.FC<AddListingViewProps> = ({ onClose }) => {
 
       {/* Footer */}
       <footer className="flex-none bg-white border-t border-gray-100 w-full relative z-10">
-        <div className="max-w-4xl mx-auto px-4 sm:px-0 py-6 flex items-center justify-end gap-5">
+        <div className={`max-w-4xl mx-auto px-4 sm:px-0 py-6 flex items-center gap-5 ${currentStep > 1 ? "justify-between" : "justify-end"}`}>
           {currentStep > 1 && (
             <Button
               variant="outline"
               onClick={handlePrev}
-              className="border border-gray-100 text-gray-400 bg-white hover:bg-gray-50 hover:text-gray-900 rounded-[12px] px-12 py-3.5 font-bold shadow-sm transition-all ml-20"
+              className="border border-gray-100 text-gray-400 bg-white hover:bg-gray-50 hover:text-gray-900 rounded-md px-12 py-3.5 font-semibold text-[16px]"
             >
               Previous
             </Button>
@@ -582,7 +411,7 @@ const AddListingView: React.FC<AddListingViewProps> = ({ onClose }) => {
           <Button
             variant="primary"
             onClick={handleNext}
-            className="bg-[#FE3B4C] hover:bg-red-600 text-white rounded-[12px] px-14 py-3.5 shadow-md shadow-red-200/50 border-none font-bold min-w-[160px] transition-all"
+            className="bg-[#FF3A44]  text-white rounded-md px-14 py-3.5  font-semibold text-[16px] min-w-[160px] "
           >
             {currentStep === totalSteps ? "Publish" : "Next"}
           </Button>
@@ -593,8 +422,8 @@ const AddListingView: React.FC<AddListingViewProps> = ({ onClose }) => {
       {isTagsModalOpen && (
         <SelectTagsModal
           onClose={() => setIsTagsModalOpen(false)}
-          onSave={(tags) => setSelectedTags(tags)}
-          initialSelectedTags={selectedTags}
+          onSave={(tags) => setFieldValue("selectedTags", tags)}
+          initialSelectedTags={values.selectedTags}
         />
       )}
 
@@ -602,8 +431,7 @@ const AddListingView: React.FC<AddListingViewProps> = ({ onClose }) => {
         <AddAddressModal
           onClose={() => setIsAddressModalOpen(false)}
           onSave={(addr) => {
-            console.log("Saved Address:", addr);
-            setAddress(`${addr.buildingNumber}, ${addr.street}, ${addr.area}, ${addr.city}, ${addr.pincode}`);
+            setFieldValue("address", `${addr.buildingNumber}, ${addr.street}, ${addr.area}, ${addr.city}, ${addr.pincode}`);
             setIsAddressModalOpen(false);
           }}
         />
@@ -612,26 +440,26 @@ const AddListingView: React.FC<AddListingViewProps> = ({ onClose }) => {
       {isAddIncludesModalOpen && (
         <AddItemsModal
           title="What it Includes"
-          initialItems={includes}
+          initialItems={values.includes}
           onClose={() => setIsAddIncludesModalOpen(false)}
-          onSave={(items) => setIncludes(items)}
+          onSave={(items) => setFieldValue("includes", items)}
         />
       )}
 
       {isAddNotIncludesModalOpen && (
         <AddItemsModal
           title="What not Included"
-          initialItems={notIncludes}
+          initialItems={values.notIncludes}
           onClose={() => setIsAddNotIncludesModalOpen(false)}
-          onSave={(items) => setNotIncludes(items)}
+          onSave={(items) => setFieldValue("notIncludes", items)}
         />
       )}
 
       {isGenresModalOpen && (
         <SelectTagsModal
           onClose={() => setIsGenresModalOpen(false)}
-          onSave={(tags) => setMusicGenres(tags)}
-          initialSelectedTags={musicGenres}
+          onSave={(tags) => setFieldValue("musicGenres", tags)}
+          initialSelectedTags={values.musicGenres}
           title="Select Music Genres"
         />
       )}
@@ -640,10 +468,10 @@ const AddListingView: React.FC<AddListingViewProps> = ({ onClose }) => {
         <SelectHighlightsModal
           onClose={() => setIsHighlightsModalOpen(false)}
           onSave={(tags) => {
-            setVenueHighlights(tags);
+            setFieldValue("spaceHighlights", tags);
             setIsHighlightsModalOpen(false);
           }}
-          initialSelected={venueHighlights}
+          initialSelected={values.spaceHighlights}
         />
       )}
 
@@ -651,18 +479,18 @@ const AddListingView: React.FC<AddListingViewProps> = ({ onClose }) => {
         <SelectAmenitiesModal
           onClose={() => setIsAmenitiesModalOpen(false)}
           onSave={(items) => {
-            setAmenities(items);
+            setFieldValue("amenities", items);
             setIsAmenitiesModalOpen(false);
           }}
-          initialSelected={amenities}
+          initialSelected={values.amenities}
         />
       )}
 
       {isAllowedEventTypesModalOpen && (
         <SelectTagsModal
           onClose={() => setIsAllowedEventTypesModalOpen(false)}
-          onSave={(tags) => setAllowedEventTypes(tags)}
-          initialSelectedTags={allowedEventTypes}
+          onSave={(tags) => setFieldValue("allowedEventTypes", tags)}
+          initialSelectedTags={values.allowedEventTypes}
           title="Select Allowed Event Types"
         />
       )}
@@ -676,7 +504,7 @@ const AddListingView: React.FC<AddListingViewProps> = ({ onClose }) => {
           }}
           onGoToDashboard={() => {
             setIsPublishedModalOpen(false);
-            onClose(); // Same for now, as user requested "view listing button ... redirect of mylistings"
+            router.push("/my/dashboard");
           }}
         />
       )}
