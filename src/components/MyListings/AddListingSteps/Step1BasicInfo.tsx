@@ -20,13 +20,13 @@ const Step1BasicInfo: React.FC<Step1BasicInfoProps> = ({
   setIsAddressModalOpen,
 }) => {
   const { values, setFieldValue, handleChange, errors, touched } = formik;
-  const { 
-    selectedType, 
-    title, 
-    description, 
-    selectedTags, 
-    address, 
-    locationType 
+  const {
+    selectedType,
+    title,
+    description,
+    selectedTags,
+    address,
+    locationType
   } = values;
 
   return (
@@ -77,7 +77,7 @@ const Step1BasicInfo: React.FC<Step1BasicInfoProps> = ({
               value={title}
               onChange={handleChange}
               placeholder="Enter a clear, descriptive title"
-              className="w-full bg-transparent border-none outline-none text-[15px] text-[#000000] placeholder:text-[#F0EFEF]"
+              className="w-full bg-transparent border-none outline-none text-[15px] text-[#000000] placeholder:text-[#B9BFC3]"
             />
           </div>
           {touched.title && errors.title && (
@@ -95,8 +95,9 @@ const Step1BasicInfo: React.FC<Step1BasicInfoProps> = ({
               name="description"
               value={description}
               onChange={handleChange}
+              rows={3}
               placeholder="Describe your offering in detail, including features, experience, or specifications."
-              className="w-full min-h-[140px] bg-transparent border-none outline-none text-[15px] text-gray-900 placeholder:text-gray-400 resize-none"
+              className="w-full min-h-[140px] bg-transparent border-none outline-none text-[15px] text-[#000000] placeholder:text-[#B9BFC3] resize-none"
               maxLength={500}
             />
           </div>
@@ -168,7 +169,7 @@ const Step1BasicInfo: React.FC<Step1BasicInfoProps> = ({
                     onClick={() => setFieldValue("address", "")}
                     className="p-1 text-[#F0EFEF] ml-4"
                   >
-                    <Icon component={X} size="md" />
+                    <Icon component={X} className=" w-4 h-4 text-[#000000]" />
                   </button>
                 </div>
                 {touched.address && errors.address && (

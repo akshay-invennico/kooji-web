@@ -81,7 +81,7 @@ const BookingDetailsPage = () => {
                 </div>
 
                 {/* Progress Stepper */}
-                <div className="flex justify-between items-start mb-12 relative px-4">
+                <div className="flex justify-between items-start mb-12 relative ">
                     {/* Line Background */}
                     <div className="absolute top-6 left-0 right-0 h-px bg-[#F0EFEF] mx-10 z-0" />
 
@@ -153,8 +153,10 @@ const BookingDetailsPage = () => {
                     </div>
                 </div>
 
+                <div className='w-full border-b border-[#F0EFEF] mb-4'></div>
+
                 {/* Service Details */}
-                <div className="mb-10">
+                <div className="mb-13">
                     <h3 className="text-[14px] font-semibold text-[#686262] font-outfit mb-4">Service Details</h3>
                     <div className="border border-[#F0EFEF] rounded-xl overflow-hidden  flex flex-col sm:flex-row">
                         <div className="w-full sm:w-48 h- relative shrink-0">
@@ -178,43 +180,43 @@ const BookingDetailsPage = () => {
                 </div>
 
                 {/* Payment Details */}
-                <div className="mb-12">
+                <div className="max-w-[1200px] mb-12">
                     <div className="bg-[#F9F9F9] rounded-xl p-6 border border-[#F0EFEF]">
                         <div className="flex justify-between items-center mb-6">
-                            <h3 className="text-[14px] font-semibold text-[#686262] font-outfit">Payment Details</h3>
+                            <h3 className="text-[14px] font-medium text-[#686262] font-outfit">Payment Details</h3>
                             <div className="flex items-center gap-2">
-                                <div className="w-1.5 h-1.5 rounded-full bg-[#FFBF00]" />
-                                <span className="text-[14px] font-bold text-[#FFBF00] font-outfit uppercase">{booking.payment.status}</span>
+                                <div className="w-1.5 h-1.5 rounded-full bg-[#FFA400]" />
+                                <span className="text-[14px] font-semibold text-[#FFA400] font-outfit">{booking.payment.status}</span>
                             </div>
                         </div>
 
                         <div className="bg-white rounded-lg border border-[#F0EFEF] overflow-hidden">
                             <div className="grid grid-cols-1 md:grid-cols-4 border-b border-[#F0EFEF]">
-                                <div className="p-4 border-r flex flex-row gap-4 border-[#F0EFEF]">
-                                    <p className="text-[12px] text-[#A39E9E] font-medium font-outfit mb-1">Base Price</p>
+                                <div className="p-4 border-r flex flex-row justify-between gap-1 border-[#F0EFEF]">
+                                    <p className="text-[14px] text-[#686262] font-medium font-outfit mb-1">Base Price</p>
                                     <p className="text-[14px] font-bold text-[#000000] font-outfit">${booking.payment.basePrice.toFixed(2)} <span className="text-[#686262] font-normal">/Day</span></p>
                                 </div>
-                                <div className="p-4 border-r flex flex-row gap-4 border-[#F0EFEF]">
-                                    <p className="text-[12px] text-[#A39E9E] font-medium font-outfit mb-1">Booking Days</p>
-                                    <p className="text-[14px] font-bold text-[#000000] font-outfit">0{booking.payment.bookingDays} <span className="text-[#686262] font-normal">Days</span></p>
+                                <div className="p-4 border-r flex flex-row justify-between gap-1 border-[#F0EFEF]">
+                                    <p className="text-[14px] text-[#686262] font-medium font-outfit mb-1">Booking Days</p>
+                                    <p className="text-[14px] font-semibold text-[#000000] font-outfit">0{booking.payment.bookingDays} <span className="text-[#686262] font-normal">Days</span></p>
                                 </div>
-                                <div className="p-4 border-r flex flex-row gap-4 border-[#F0EFEF]">
-                                    <p className="text-[12px] text-[#A39E9E] font-medium font-outfit mb-1">Delivery Charge</p>
-                                    <p className="text-[14px] font-bold text-[#000000] font-outfit">${booking.payment.deliveryCharge.toFixed(2)}</p>
+                                <div className="p-4 border-r flex flex-row justify-between gap-1 border-[#F0EFEF]">
+                                    <p className="text-[14px] text-[rgb(104,98,98)] font-medium font-outfit mb-1">Delivery Charge</p>
+                                    <p className="text-[14px] font-semibold text-[#000000] font-outfit">${booking.payment.deliveryCharge.toFixed(2)}</p>
                                 </div>
-                                <div className="p-4 flex flex-row gap-4">
-                                    <p className="text-[12px] text-[#A39E9E] font-medium font-outfit mb-1">Platform Fee</p>
-                                    <p className="text-[14px] font-bold text-[#000000] font-outfit">${booking.payment.platformFee.toFixed(2)}</p>
+                                <div className="p-4 flex flex-row justify-between gap-1">
+                                    <p className="text-[14px] text-[#686262] font-medium font-outfit mb-1">Platform Fee</p>
+                                    <p className="text-[14px] font-semibold text-[#000000] font-outfit">${booking.payment.platformFee.toFixed(2)}</p>
                                 </div>
                             </div>
                             <div className="grid grid-cols-1 md:grid-cols-4">
                                 <div className="p-4 border-r flex flex-row gap-4 border-[#F0EFEF]">
-                                    <p className="text-[12px] text-[#A39E9E] font-medium font-outfit mb-1">Sub Total</p>
-                                    <p className="text-[14px] font-bold text-[#000000] font-outfit">${booking.payment.subTotal.toFixed(2)}</p>
+                                    <p className="text-[14px] text-[#686262] font-medium font-outfit mb-1">Sub Total</p>
+                                    <p className="text-[14px] font-semibold text-[#000000] font-outfit">${booking.payment.subTotal.toFixed(2)}</p>
                                 </div>
                                 <div className="p-4 border-r flex flex-row gap-4 border-[#F0EFEF]">
-                                    <p className="text-[12px] text-[#A39E9E] font-medium font-outfit mb-1">Discount</p>
-                                    <p className="text-[14px] font-bold text-[#000000] font-outfit">${booking.payment.discount.toFixed(2)}</p>
+                                    <p className="text-[14px] text-[#686262] font-medium font-outfit mb-1">Discount</p>
+                                    <p className="text-[14px] font-semibold text-[#000000] font-outfit">${booking.payment.discount.toFixed(2)}</p>
                                 </div>
                                 <div className="p-4 col-span-2 flex items-center justify-between px-6">
                                     <span className="text-[14px] font-semibold text-[#3EC300] font-outfit">Your Net Earning</span>

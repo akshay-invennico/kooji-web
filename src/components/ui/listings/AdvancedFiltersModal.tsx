@@ -89,7 +89,7 @@ export const AdvancedFiltersModal = ({ formik, isOpen, onClose, onToggle }: Adva
 
     return (
         <div
-            className="flex-1 flex items-center justify-between px-4 md:px-8 border-r border-[#F0EFEF] cursor-pointer hover:bg-gray-50 transition-colors py-3 md:py-0 relative h-full"
+            className="flex-1 flex items-center justify-between px-4 md:px-8 border-r border-[#F0EFEF] cursor-pointe  py-3 md:py-0 relative h-full w-[200px]"
             ref={filtersRef}
             onClick={onToggle}
         >
@@ -104,17 +104,17 @@ export const AdvancedFiltersModal = ({ formik, isOpen, onClose, onToggle }: Adva
             </div>
 
             {isOpen && (
-                <div className="absolute top-full left-1/2 -translate-x-1/2 md:left-auto md:right-0 md:translate-x-0 mt-2 w-[95vw] sm:w-[500px] md:w-[600px] max-w-[calc(100vw-2rem)] bg-white border border-gray-100 rounded-2xl shadow-2xl z-80 p-4 sm:p-6 overflow-y-auto max-h-[70vh] animate-in fade-in zoom-in duration-200 origin-top md:origin-top-right" onClick={(e) => e.stopPropagation()}>
+                <div className="absolute top-full left-1/2 -translate-x-1/2 md:left-auto md:right-0 md:translate-x-0 mt-2 w-[95vw] sm:w-[500px] md:w-[600px] max-w-[calc(100vw-2rem)] bg-white border border-gray-100 rounded-xl  z-80 p-4 sm:p-6 overflow-y-auto no-scrollbar max-h-[70vh] animate-in fade-in zoom-in duration-200 origin-top md:origin-top-right" onClick={(e) => e.stopPropagation()}>
                     <div className="flex flex-col gap-6 pb-6">
                         <h2 className="text-[20px] font-semibold text-[#000000]">Filters</h2>
 
                         <div className="flex flex-col gap-4">
                             <h3 className="text-[16px] font-semibold text-[#000000]">Categories</h3>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-8 transition-all duration-300">
-                                {(showAllCategories ? [...FILTER_CATEGORIES, ...FILTER_CATEGORIES] : FILTER_CATEGORIES).map((cat, idx) => (
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-8 transition-all duration-300 items-center">
+                                {(showAllCategories ? FILTER_CATEGORIES : FILTER_CATEGORIES.slice(0, 5)).map((cat, idx) => (
                                     <div key={`${cat.id}-${idx}`} className="flex items-center justify-between group cursor-pointer" onClick={(e) => { e.stopPropagation(); toggleFilter('categories', cat.id); }}>
                                         <div className="flex items-center gap-3">
-                                            <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${formik.values.filters.categories.includes(cat.id) ? "bg-red-500 border-red-500" : "border-gray-300 group-hover:border-red-500"}`}>
+                                            <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${formik.values.filters.categories.includes(cat.id) ? "bg-[#FF3A44] border-[#FF3A44]" : "border-gray-300 "}`}>
                                                 {formik.values.filters.categories.includes(cat.id) && <Check size={14} className="text-white" />}
                                             </div>
                                             <span className="text-[14px] font-semibold text-[#000000]">{cat.label}</span>
@@ -122,32 +122,32 @@ export const AdvancedFiltersModal = ({ formik, isOpen, onClose, onToggle }: Adva
                                         <span className="text-[14px] text-gray-400">({cat.count})</span>
                                     </div>
                                 ))}
+                                {!showAllCategories && FILTER_CATEGORIES.length > 6 && (
+                                    <div
+                                        className="text-[#009FFD] text-[14px] font-semibold cursor-pointer py-1 hover:underline"
+                                        onClick={(e) => { e.stopPropagation(); setShowAllCategories(true); }}
+                                    >
+                                        + more
+                                    </div>
+                                )}
+                                {showAllCategories && (
+                                    <div
+                                        className="text-[#009FFD] text-[14px] font-semibold cursor-pointer py-1 hover:underline"
+                                        onClick={(e) => { e.stopPropagation(); setShowAllCategories(false); }}
+                                    >
+                                        Show less
+                                    </div>
+                                )}
                             </div>
-                            {!showAllCategories && (
-                                <div
-                                    className="text-[#009FFD] text-[14px] font-semibold cursor-pointer py-1 hover:underline"
-                                    onClick={(e) => { e.stopPropagation(); setShowAllCategories(true); }}
-                                >
-                                    +more
-                                </div>
-                            )}
-                            {showAllCategories && (
-                                <div
-                                    className="text-[#009FFD] text-[14px] font-semibold cursor-pointer py-1 hover:underline"
-                                    onClick={(e) => { e.stopPropagation(); setShowAllCategories(false); }}
-                                >
-                                    Show less
-                                </div>
-                            )}
                         </div>
 
-                        <div className="h-px bg-gray-100" />
+
 
                         <div className="flex flex-col gap-4">
                             <h3 className="text-[16px] font-bold text-gray-900">Price Range</h3>
                             <div className="flex items-center justify-between text-[14px] mb-2">
-                                <span className="text-gray-500">From <span className="font-bold text-gray-900">${formik.values.filters.priceRange[0]}</span></span>
-                                <span className="text-gray-500">To <span className="font-bold text-gray-900">${formik.values.filters.priceRange[1]}</span></span>
+                                <span className="text-gray-500">From <span className="font-bold text-[#000000]">${formik.values.filters.priceRange[0]}</span></span>
+                                <span className="text-gray-500">To <span className="font-bold text-[#000000]">${formik.values.filters.priceRange[1]}</span></span>
                             </div>
                             <div className="relative h-6 flex items-center px-2">
                                 <input
@@ -159,7 +159,7 @@ export const AdvancedFiltersModal = ({ formik, isOpen, onClose, onToggle }: Adva
                                         const val = Math.min(parseInt(e.target.value), formik.values.filters.priceRange[1] - 10);
                                         formik.setFieldValue("filters.priceRange", [val, formik.values.filters.priceRange[1]]);
                                     }}
-                                    className="absolute w-full h-1 bg-transparent rounded-full appearance-none pointer-events-none z-20 [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-red-500 [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:rounded-full"
+                                    className="absolute w-full h-1 bg-transparent rounded-full appearance-none pointer-events-none z-20 [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:border-[3px] [&::-webkit-slider-thumb]:border-[#FF3A44] [&::-webkit-slider-thumb]:rounded-full"
                                     onClick={(e) => e.stopPropagation()}
                                 />
                                 <input
@@ -171,11 +171,11 @@ export const AdvancedFiltersModal = ({ formik, isOpen, onClose, onToggle }: Adva
                                         const val = Math.max(parseInt(e.target.value), formik.values.filters.priceRange[0] + 10);
                                         formik.setFieldValue("filters.priceRange", [formik.values.filters.priceRange[0], val]);
                                     }}
-                                    className="absolute w-full h-1 bg-transparent rounded-full appearance-none pointer-events-none z-30 [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-4 [&::-webkit-slider-thumb]:h-4 [&::-webkit-slider-thumb]:bg-red-500 [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-white [&::-webkit-slider-thumb]:rounded-full"
+                                    className="absolute w-full h-1 bg-transparent rounded-full appearance-none pointer-events-none z-30 [&::-webkit-slider-thumb]:pointer-events-auto [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:bg-white [&::-webkit-slider-thumb]:border-[3px] [&::-webkit-slider-thumb]:border-[#FF3A44] [&::-webkit-slider-thumb]:rounded-full"
                                     onClick={(e) => e.stopPropagation()}
                                 />
                                 <div
-                                    className="absolute h-1 bg-red-500 rounded-full z-10"
+                                    className="absolute h-1 bg-[#FF3A44] rounded-full z-10"
                                     style={{
                                         left: `${(formik.values.filters.priceRange[0] / 1000) * 100}%`,
                                         right: `${100 - (formik.values.filters.priceRange[1] / 1000) * 100}%`
@@ -193,7 +193,7 @@ export const AdvancedFiltersModal = ({ formik, isOpen, onClose, onToggle }: Adva
                                 {LISTING_TYPES.map((type) => (
                                     <div key={type.id} className="flex items-center justify-between group cursor-pointer" onClick={(e) => { e.stopPropagation(); toggleFilter('listingTypes', type.id); }}>
                                         <div className="flex items-center gap-3">
-                                            <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${formik.values.filters.listingTypes.includes(type.id) ? "bg-red-500 border-red-500" : "border-gray-300 group-hover:border-red-500"}`}>
+                                            <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${formik.values.filters.listingTypes.includes(type.id) ? "bg-red-500 border-red-500" : "border-gray-300"}`}>
                                                 {formik.values.filters.listingTypes.includes(type.id) && <Check size={14} className="text-white" />}
                                             </div>
                                             <span className="text-[14px] font-semibold text-gray-900">{type.label}</span>
@@ -212,7 +212,7 @@ export const AdvancedFiltersModal = ({ formik, isOpen, onClose, onToggle }: Adva
                                 {RATINGS.map((rate) => (
                                     <div key={rate.id} className="flex items-center justify-between group cursor-pointer" onClick={(e) => { e.stopPropagation(); toggleFilter('ratings', rate.id); }}>
                                         <div className="flex items-center gap-3">
-                                            <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${formik.values.filters.ratings.includes(rate.id) ? "bg-red-500 border-red-500" : "border-gray-300 group-hover:border-red-500"}`}>
+                                            <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${formik.values.filters.ratings.includes(rate.id) ? "bg-red-500 border-red-500" : "border-gray-300 "}`}>
                                                 {formik.values.filters.ratings.includes(rate.id) && <Check size={14} className="text-white" />}
                                             </div>
                                             <span className="text-[14px] font-semibold text-gray-900">{rate.label}</span>
@@ -231,7 +231,7 @@ export const AdvancedFiltersModal = ({ formik, isOpen, onClose, onToggle }: Adva
                                 {EVENT_TYPES.map((type) => (
                                     <div key={type.id} className="flex items-center justify-between group cursor-pointer" onClick={(e) => { e.stopPropagation(); toggleFilter('eventTypes', type.id); }}>
                                         <div className="flex items-center gap-3">
-                                            <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${formik.values.filters.eventTypes.includes(type.id) ? "bg-red-500 border-red-500" : "border-gray-300 group-hover:border-red-500"}`}>
+                                            <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${formik.values.filters.eventTypes.includes(type.id) ? "bg-red-500 border-red-500" : "border-gray-300 "}`}>
                                                 {formik.values.filters.eventTypes.includes(type.id) && <Check size={14} className="text-white" />}
                                             </div>
                                             <span className="text-[14px] font-semibold text-gray-900">{type.label}</span>
@@ -250,7 +250,7 @@ export const AdvancedFiltersModal = ({ formik, isOpen, onClose, onToggle }: Adva
                                 {CREW_SIZES.map((size) => (
                                     <div key={size.id} className="flex items-center justify-between group cursor-pointer" onClick={(e) => { e.stopPropagation(); toggleFilter('crewSizes', size.id); }}>
                                         <div className="flex items-center gap-3">
-                                            <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${formik.values.filters.crewSizes.includes(size.id) ? "bg-red-500 border-red-500" : "border-gray-300 group-hover:border-red-500"}`}>
+                                            <div className={`w-5 h-5 rounded border flex items-center justify-center transition-colors ${formik.values.filters.crewSizes.includes(size.id) ? "bg-red-500 border-red-500" : "border-gray-300 "}`}>
                                                 {formik.values.filters.crewSizes.includes(size.id) && <Check size={14} className="text-white" />}
                                             </div>
                                             <span className="text-[14px] font-semibold text-gray-900">{size.label}</span>
@@ -270,7 +270,7 @@ export const AdvancedFiltersModal = ({ formik, isOpen, onClose, onToggle }: Adva
                             </button>
                             <button
                                 type="button"
-                                className="bg-[#FF3A44] text-white px-8 py-3 rounded font-semibold"
+                                className="bg-[#FF3A44] text-white px-8 py-3 rounded text-[14px] font-semibold"
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     formik.handleSubmit();

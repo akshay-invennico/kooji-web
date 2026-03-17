@@ -29,7 +29,7 @@ const ExploreSection = () => {
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-start mb-10">
                     <p className="text-[#686262] font-semibold text-[14px]  mb-6 p-2 bg-[#FFF8F8] w-fit px-4 text-center rounded">Explore Our Marketplace</p>
-                    <h2 className="text-3xl md:text-4xl lg:text-[36px] font-bold">Explore Our Full Range of Music Rentals and Services</h2>
+                    <h2 className="text-[36px]  text-[#000000] font-bold">Explore Our Full Range of Music Rentals and Services</h2>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">

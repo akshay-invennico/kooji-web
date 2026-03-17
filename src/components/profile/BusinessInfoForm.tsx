@@ -23,7 +23,7 @@ const BusinessInfoForm = () => {
 
       <Formik
         initialValues={{
-          country: "United Kingdom",
+          country: " ",
           streetAddress: "",
           city: "",
           state: "",
@@ -43,6 +43,7 @@ const BusinessInfoForm = () => {
               <Field
                 name="country"
                 type="text"
+                placeholder="United Kingdom"
                 className={clsx(
                   "w-full max-w-[300px] px-4 py-3.5 rounded-md border focus:outline-none transition-all font-outfit text-[#000000]",
                   errors.country && touched.country ? "border-red-500" : "border-[#F0EFEF] focus:border-[#FF3A44]"
@@ -127,7 +128,7 @@ const BusinessInfoForm = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="bg-[#FF3A44] text-white px-10 py-3.5 text-[16px] rounded-mdS font-semibold font-outfit hover:bg-[#E0343C] transition-all"
+              className="bg-[#FF3A44] text-white px-10 py-3.5 text-[16px] rounded-md font-semibold font-outfit"
             >
               Save Changes
             </button>

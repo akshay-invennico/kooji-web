@@ -27,7 +27,7 @@ const VENDOR_OFFERS_DATA = [
 ];
 
 const OffersForm = () => {
-    const [selectedOffers, setSelectedOffers] = useState<string[]>(["1", "4"]); // Default selected as per image
+    const [selectedOffers, setSelectedOffers] = useState<string[]>(["1"]); // Default selected as per image
 
     const toggleOffer = (id: string) => {
         setSelectedOffers(prev =>
@@ -38,12 +38,12 @@ const OffersForm = () => {
     };
 
     return (
-        <div className="flex-1 max-w-[800px]">
+        <div className="flex-1 max-w-[700px]">
             <div className="mb-8">
                 <h2 className="text-[20px] font-semibold text-[#000000] font-outfit">What you Offers</h2>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-x-4 gap-y-4 mb-8">
                 {VENDOR_OFFERS_DATA.map((item) => (
                     <VendorCard
                         key={item.id}

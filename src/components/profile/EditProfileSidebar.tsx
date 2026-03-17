@@ -19,7 +19,7 @@ interface EditProfileSidebarProps {
 
 const EditProfileSidebar: React.FC<EditProfileSidebarProps> = ({ activeSection, setActiveSection }) => {
   return (
-    <aside className="w-full md:w-64 flex flex-col gap-8">
+    <aside className="w-full md:w-64 flex flex-col gap-8 border-r border-[#F0EFEF]">
       <h2 className="text-[24px] font-semibold text-[#000000] font-outfit px-4">Edit Profile</h2>
 
       <nav className="flex flex-col gap-1">

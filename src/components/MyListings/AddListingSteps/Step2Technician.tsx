@@ -65,7 +65,7 @@ const Step2Technician: React.FC<Step2TechnicianProps> = ({
                 value={techExperienceYears}
                 onChange={handleChange}
                 placeholder="Enter Years of Experience"
-                className="w-full bg-transparent border-none outline-none text-[15px] text-[#000000] placeholder:text-[#F0EFEF]"
+                className="w-full bg-transparent border-none outline-none text-[15px] text-[#000000] placeholder:text-[#B9BFC3]"
               />
             </div>
             {touched.techExperienceYears && errors.techExperienceYears && (

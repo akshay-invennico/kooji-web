@@ -22,7 +22,7 @@ const ListingPublishedModal: React.FC<ListingPublishedModalProps> = ({
       />
 
       {/* Modal Content */}
-      <div className="relative w-full max-w-2xl bg-white rounded-md overflow-hidden animate-in fade-in zoom-in-95 duration-300">
+      <div className="relative w-full max-w-[800px] max-h-[550px] bg-white rounded-md overflow-hidden animate-in fade-in zoom-in-95 duration-300">
         <div className="p-10 flex flex-col items-center">
           <h2 className="text-[20px] font-semibold text-[#000000] mb-8 self-start font-outfit">Listing Published Successfully</h2>
 
@@ -38,7 +38,7 @@ const ListingPublishedModal: React.FC<ListingPublishedModalProps> = ({
             </div>
           </div>
 
-          <p className="text-[#000000] text-[14px] font-medium text-center leading-relaxed max-w-lg mb-12">
+          <p className="text-[#000000] text-[14px] font-medium text-start leading-relaxed max-w-3xl mb-12">
             Your listing is now live and visible to customers. You can start receiving booking requests right away. Manage availability, pricing, and bookings anytime from your dashboard.
           </p>
 

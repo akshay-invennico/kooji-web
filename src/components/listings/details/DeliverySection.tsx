@@ -34,7 +34,7 @@ const DeliverySection: React.FC<DeliverySectionProps> = ({ pickupLocation }) => 
           <DeliveryCard pickupLocation={pickupLocation} />
         </div>
 
-        <div className="pt-4">
+        <div>
           <h3 className="text-[16px] font-semibold text-[#000000] mb-2">Delivery & Fulfillment Conditions</h3>
           <ul className="space-y-4">
             {conditions.map((condition, index) => (

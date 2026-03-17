@@ -8,8 +8,8 @@ interface TrustCardProps {
 
 const TrustCard: React.FC<TrustCardProps> = ({ icon, title }) => {
     return (
-        <div className="flex flex-col items-center justify-center gap-4 p-6 border border-[#F0EFEF] rounded-lg bg-white min-h-[140px]">
-            <div className="relative w-8 h-8 shrink-0">
+        <div className="flex flex-col items-start justify-between p-5 border border-[#F0EFEF] rounded-lg bg-white min-h-[110px] w-[200px]">
+            <div className="relative w-10 h-10  shrink-0">
                 <Image
                     src={icon}
                     alt={title}
@@ -17,7 +17,7 @@ const TrustCard: React.FC<TrustCardProps> = ({ icon, title }) => {
                     className="object-contain"
                 />
             </div>
-            <h3 className="text-[12px] font-semibold text-[#000000] leading-tight text-center">
+            <h3 className="text-[14px] font-semibold text-[#000000] leading-tight text-start">
                 {title}
             </h3>
         </div>

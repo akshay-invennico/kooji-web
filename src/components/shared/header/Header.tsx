@@ -10,6 +10,7 @@ import routes from "@/app/routes";
 import Button from "@/components/ui/button/Button";
 import Icon from "@/components/ui/icon/Icon";
 import ProfileMenuSection from "@/components/profile/ProfileMenuSection";
+import { useAuthModal } from "@/context/AuthContext";
 
 const NAV_LINKS = [
   { label: "Listings", href: routes.listings },
@@ -25,6 +26,7 @@ const PROFILE_MENU = [
 
 const Header = () => {
   const pathname = usePathname();
+  const { openModal } = useAuthModal();
   const isHome = pathname === routes.home;
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -111,7 +113,7 @@ const Header = () => {
                   className={clsx(
                     "text-[16px] font-bold whitespace-nowrap transition-colors duration-200 hover:text-[#C5161D]",
                     pathname === href
-                      ? "text-[#C5161D]"
+                      ? "text-[#000000]"
                       : transparentHeader
                         ? "text-white"
                         : "text-black"
@@ -151,21 +153,48 @@ const Header = () => {
                       : "opacity-0 scale-95 pointer-events-none"
                   )}
                 >
-                  {PROFILE_MENU.map(({ label, iconSrc, href }, i) => (
-                    <Link
-                      key={label}
-                      href={href}
-                      role="menuitem"
-                      onClick={closeAll}
-                      className={clsx(
-                        "flex items-center gap-3 px-4 py-3 text-[16px] font-medium text-[#000000] hover:text-[#C5161D] transition-colors duration-200",
-                        i < PROFILE_MENU.length - 1 && "border-b border-gray-100"
-                      )}
-                    >
-                      <Image src={iconSrc} alt={label} width={24} height={24} className="w-6 h-6" />
-                      {label}
-                    </Link>
-                  ))}
+                  {PROFILE_MENU.map(({ label, iconSrc, href }, i) => {
+                    const isLoginLink = label === "Login / Sign up";
+
+                    const content = (
+                      <>
+                        <Image src={iconSrc} alt={label} width={24} height={24} className="w-6 h-6" />
+                        {label}
+                      </>
+                    );
+
+                    const commonClasses = clsx(
+                      "flex items-center gap-3 px-4 py-3 text-[16px] font-medium text-[#000000]  w-full text-left",
+                      i < PROFILE_MENU.length - 1 && "border-b border-gray-100"
+                    );
+
+                    if (isLoginLink) {
+                      return (
+                        <button
+                          key={label}
+                          onClick={() => {
+                            openModal('login');
+                            closeAll();
+                          }}
+                          className={commonClasses}
+                        >
+                          {content}
+                        </button>
+                      );
+                    }
+
+                    return (
+                      <Link
+                        key={label}
+                        href={href}
+                        role="menuitem"
+                        onClick={closeAll}
+                        className={commonClasses}
+                      >
+                        {content}
+                      </Link>
+                    );
+                  })}
                 </div>
               </div>
 
@@ -213,17 +242,42 @@ const Header = () => {
 
             <div className="h-px bg-white/10 my-2" />
 
-            {PROFILE_MENU.map(({ label, iconSrc, href }) => (
-              <Link
-                key={label}
-                href={href}
-                onClick={closeAll}
-                className="flex items-center gap-3 py-2.5 px-3 rounded-lg text-[14px] font-medium text-gray-300 transition-colors duration-200 hover:text-[#C5161D] hover:bg-white/5"
-              >
-                <Image src={iconSrc} alt={label} width={24} height={24} className="w-6 h-6" />
-                {label}
-              </Link>
-            ))}
+            {PROFILE_MENU.map(({ label, iconSrc, href }) => {
+              const isLoginLink = label === "Login / Sign up";
+              const commonClasses = "flex items-center gap-3 py-2.5 px-3 rounded-lg text-[14px] font-medium text-gray-300 transition-colors duration-200 hover:text-[#C5161D] hover:bg-white/5 w-full text-left";
+              const content = (
+                <>
+                  <Image src={iconSrc} alt={label} width={24} height={24} className="w-6 h-6" />
+                  {label}
+                </>
+              );
+
+              if (isLoginLink) {
+                return (
+                  <button
+                    key={label}
+                    onClick={() => {
+                      openModal('login');
+                      closeAll();
+                    }}
+                    className={commonClasses}
+                  >
+                    {content}
+                  </button>
+                );
+              }
+
+              return (
+                <Link
+                  key={label}
+                  href={href}
+                  onClick={closeAll}
+                  className={commonClasses}
+                >
+                  {content}
+                </Link>
+              );
+            })}
 
           </div>
         </div>

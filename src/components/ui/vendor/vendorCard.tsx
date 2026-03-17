@@ -11,7 +11,7 @@ const VendorCard: React.FC<VendorCardProps> = ({ title, icon, selected, onClick 
     return (
         <div
             onClick={onClick}
-            className={`w-[250px] h-[120px] p-4 rounded-lg border transition-all cursor-pointer flex flex-col items-start justify-between bg-white ${selected ? "border-[#FF3A44] " : "border-gray-200 hover:border-gray-300"
+            className={`w-[350px] h-[120px] p-4 rounded-lg border transition-all cursor-pointer flex flex-col items-start justify-between bg-white ${selected ? "border-[#FF3A44] " : "border-gray-200 hover:border-gray-300"
                 }`}
         >
             <div className={`w-12 h-12 rounded-lg flex items-center justify-center ${selected ? "" : "bg-gray-50"}`}>

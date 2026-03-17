@@ -70,7 +70,7 @@ const AddListingView: React.FC<AddListingViewProps> = ({ onClose }) => {
       yearsOfExperience: "",
       performanceLanguages: "",
       performanceDuration: "",
-      providesEquipment: false,
+      providesEquipment: null,
       equipmentCategories: [] as string[],
       technicalRequirements: "",
 
@@ -78,7 +78,7 @@ const AddListingView: React.FC<AddListingViewProps> = ({ onClose }) => {
       techRole: "",
       techExperienceYears: "",
       techServiceType: "",
-      techProvidesEquipment: false,
+      techProvidesEquipment: null,
       techEquipmentCategories: [] as string[],
       techHandlesSetup: false,
 

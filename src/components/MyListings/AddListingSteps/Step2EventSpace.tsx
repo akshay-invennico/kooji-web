@@ -120,7 +120,7 @@ const Step2EventSpace: React.FC<Step2EventSpaceProps> = ({
                 value={propertySize}
                 onChange={handleChange}
                 placeholder="Enter total square footage"
-                className="w-full bg-transparent border-none outline-none text-[15px] text-[#000000] placeholder:text-[#F0EFEF] font-medium"
+                className="w-full bg-transparent border-none outline-none text-[15px] text-[#000000] placeholder:text-[#B9BFC3] font-medium"
               />
             </div>
             {touched.propertySize && errors.propertySize && (

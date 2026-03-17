@@ -10,7 +10,7 @@ const VendorNavbar = () => {
                     className="h-10 w-auto cursor-pointer"
                 />
 
-                <button className="bg-white-600 hover:bg-white-700 text-black-100 px-5 py-2 rounded-md font-semibold transition-all duration-300 shadow-sm border border-black-50 active:scale-95">
+                <button className="bg-white text-medium text-[14px]  text-black px-5 py-2 rounded-md font-semibold  border border-black">
                     Save & Next
                 </button>
             </div>

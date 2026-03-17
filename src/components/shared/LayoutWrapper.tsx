@@ -4,18 +4,11 @@ import { usePathname } from "next/navigation";
 import Header from "@/components/shared/header/Header";
 import Footer from "@/components/shared/footer/Footer";
 import { Toaster } from "react-hot-toast";
+import AuthModal from "@/components/shared/auth/AuthModal";
 
 const NO_LAYOUT_ROUTES = [
-  "/login",
-  "/signup",
-  "/register",
-  "/forgot",
-  "/forgot-password",
-  "/reset",
-  "/reset-password",
-  "/verify",
-  "/verify-otp",
   "/vendor",
+  "/checkout",
 ];
 
 const NO_FOOTER_ROUTES = [
@@ -58,6 +51,7 @@ export default function LayoutWrapper({
       <Header />
       <main className="flex-1 pt-16 md:pt-[95px]">
         {children}
+        <AuthModal />
         <Toaster
           position="top-center"
           toastOptions={{

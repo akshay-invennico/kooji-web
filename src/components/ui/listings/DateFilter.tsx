@@ -32,7 +32,7 @@ export const DateFilter = ({ formik }: { formik: any }) => {
 
     return (
         <div
-            className="flex-1 flex flex-col border-r border-[#F0EFEF] px-4 md:px-8 py-3 md:py-0 relative h-full justify-center"
+            className="flex-1 flex flex-col border-r border-[#F0EFEF] px-4 md:px-8 py-3 md:py-0 relative h-full justify-center w-[280px]"
             ref={dateRef}
         >
             <label className="text-[14px] font-medium text-[#000000] mb-2 truncate">

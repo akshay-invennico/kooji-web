@@ -68,10 +68,12 @@ const TransactionDetailsPage = () => {
                             <div className="flex flex-wrap items-center gap-6 text-[#000000]">
                                 <div className="flex items-center gap-2">
                                     <div className="w-6 h-6 flex items-center text-[#FF3A44] justify-center relative">
-                                        <Image src="/icons/myprofile/profileCalender.svg" alt="Calendar" fill />
+                                        <Image src="/icons/date.svg" alt="date" fill />
                                     </div>
                                     <span className="text-[14px] font-medium">{transactionData.date}</span>
                                 </div>
+
+                                <div className='border-r-2 border-[#F0EFEF] h-8'></div>
                                 <div className="flex items-center gap-2">
                                     <span className="text-[14px] font-medium text-[#000000]">{transactionData.time}</span>
                                 </div>
@@ -96,22 +98,22 @@ const TransactionDetailsPage = () => {
                         </div>
                         <div className="p-6">
                             <div className="grid grid-cols-1 md:grid-cols-3 gap-y-6 md:gap-x-0 bg-white rounded-lg border border-[#F0EFEF] mb-0 overflow-hidden">
-                                <div className="p-4 md:border-r flex flex-row gap-8 border-[#F0EFEF]">
+                                <div className="p-4 md:border-r flex flex-row justify-between gap-2 border-[#F0EFEF]">
                                     <p className="text-[14px] text-[#888] font-medium mb-1">Gross Amount</p>
-                                    <p className="text-[18px] font-bold text-black">${transactionData.payment.grossAmount.toLocaleString('en-US', { minimumFractionDigits: 2 })}</p>
+                                    <p className="text-[16px] font-semibold text-black">${transactionData.payment.grossAmount.toLocaleString('en-US', { minimumFractionDigits: 2 })}</p>
                                 </div>
-                                <div className="p-4 md:border-r flex flex-row gap-8 border-[#F0EFEF]">
+                                <div className="p-4 md:border-r flex flex-row justify-between gap-2 border-[#F0EFEF]">
                                     <p className="text-[14px] text-[#888] font-medium mb-1">Platform Commission ({transactionData.payment.commissionRate}%)</p>
-                                    <p className="text-[18px] font-bold text-black">${transactionData.payment.platformCommission.toLocaleString('en-US', { minimumFractionDigits: 2 })}</p>
+                                    <p className="text-[16px] font-semibold text-black">${transactionData.payment.platformCommission.toLocaleString('en-US', { minimumFractionDigits: 2 })}</p>
                                 </div>
-                                <div className="p-4 flex flex-row gap-8">
+                                <div className="p-4 flex flex-row justify-between gap-2">
                                     <p className="text-[14px] text-[#888] font-medium mb-1">Stripe Processing Fee</p>
-                                    <p className="text-[18px] font-bold text-black">${transactionData.payment.stripeFee.toLocaleString('en-US', { minimumFractionDigits: 2 })}</p>
+                                    <p className="text-[16px] font-semibold text-black">${transactionData.payment.stripeFee.toLocaleString('en-US', { minimumFractionDigits: 2 })}</p>
                                 </div>
                             </div>
-                            <div className="bg-[#F2FAF0] px-6 py-4 flex justify-between items-center rounded-b-lg border-x border-b border-[#F0EFEF]">
-                                <span className="text-[16px] font-semibold text-[#3EC300]">Your Net Earning</span>
-                                <span className="text-[18px] font-semibold text-[#3EC300]">${transactionData.payment.netEarning.toLocaleString('en-US', { minimumFractionDigits: 2 })}</span>
+                            <div className="bg-white px-6 py-4 flex justify-between items-center rounded-b-lg border-x border-b border-[#F0EFEF]">
+                                <span className="text-[14px] font-semibold text-[#3EC300]">Your Net Earning</span>
+                                <span className="text-[14px] font-semibold text-[#3EC300]">${transactionData.payment.netEarning.toLocaleString('en-US', { minimumFractionDigits: 2 })}</span>
                             </div>
                         </div>
                     </div>
@@ -127,8 +129,8 @@ const TransactionDetailsPage = () => {
                         </div>
                     </div>
 
-                    <div className="bg-white rounded-xl border border-[#F0EFEF] p-5 flex flex-col md:flex-row gap-6 relative">
-                        <div className="w-full md:w-[240px] h-[180px] relative rounded-lg overflow-hidden shrink-0">
+                    <div className="bg-white rounded-lg border border-[#F0EFEF]  flex flex-col md:flex-row gap-6 relative">
+                        <div className="w-full md:w-[240px] h-[180px] relative rounded-l-lg overflow-hidden shrink-0">
                             <Image
                                 src={transactionData.booking.itemImage}
                                 alt={transactionData.booking.itemTitle}
@@ -162,7 +164,7 @@ const TransactionDetailsPage = () => {
                                 </div>
                             </div>
 
-                            <div className="mt-6 pt-6 border-t border-[#F0EFEF]">
+                            <div className="mt-6 pt-6 border-t border-[#F0EFEF] mb-3">
                                 <p className="text-[12px] text-[#A39E9E] font-medium mb-1">Renters Location</p>
                                 <div className="flex items-start gap-2">
                                     <div className="w-6 h-6 mt-0.5 shrink-0 relative">

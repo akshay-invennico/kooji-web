@@ -32,7 +32,7 @@ export const SearchLocationFilter = ({ formik }: { formik: any }) => {
     return (
         <>
 
-            <div className="flex-1 flex flex-col border-r border-[#F0EFEF] px-4 md:px-8 py-3 md:py-0 relative h-full justify-center" ref={searchRef}>
+            <div className="flex-1 flex flex-col border-r border-[#F0EFEF] px-2 md:px-8 py-1 md:py-0 relative h-full justify-center w-[250px]" ref={searchRef}>
                 <label className="text-[14px] font-medium text-[#000000] mb-2 truncate">
                     What are you looking for?
                 </label>
@@ -104,7 +104,7 @@ export const SearchLocationFilter = ({ formik }: { formik: any }) => {
             </div>
 
 
-            <div className="flex-1 flex flex-col px-4 md:px-8 py-3 md:py-0 border-r border-[#F0EFEF] h-full justify-center">
+            <div className="flex-1 flex flex-col px-4 md:px-8 py-3 md:py-0 border-r border-[#F0EFEF] h-full justify-center w-[250px]">
                 <label className="text-[14px] font-medium text-[#000000] mb-2 truncate">
                     Where?
                 </label>

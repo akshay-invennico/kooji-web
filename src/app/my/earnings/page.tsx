@@ -86,7 +86,7 @@ const EarningsPage = () => {
         <div className="bg-white min-h-screen">
             <div className="max-w-6xl mx-auto px-6 py-10">
                 {/* Header Section */}
-                <div className="mb-10">
+                <div className="mb-6">
                     <h1 className="text-[20px] font-semibold text-[#000000] font-outfit mb-2">Earnings Overview</h1>
                     <p className="text-[#686262] text-[14px] font-medium font-outfit">Track your income, upcoming payouts, and transaction history.</p>
                 </div>
@@ -132,7 +132,7 @@ const EarningsPage = () => {
 
                     {/* Dynamic SVG Graph */}
                     <div className="bg-white p-8 relative min-h-[400px]">
-                        <div className="absolute left-8 top-8 bottom-16 flex flex-col justify-between text-[12px] text-[#A39E9E] font-medium font-outfit">
+                        <div className="absolute left-2 top-8 bottom-16  flex flex-col justify-between text-[12px] text-[#A39E9E] font-medium font-outfit">
                             <span>$90K</span>
                             <span>$80K</span>
                             <span>$70K</span>
@@ -144,7 +144,7 @@ const EarningsPage = () => {
                             <span>$10K</span>
                         </div>
 
-                        <div className="ml-12 h-[300px] relative">
+                        <div className="ml-4 h-[300px] relative">
                             {/* Grid Lines */}
                             <div className="absolute inset-0 flex flex-col justify-between">
                                 {[...Array(9)].map((_, i) => (

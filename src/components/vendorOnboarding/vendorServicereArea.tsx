@@ -48,7 +48,7 @@ const VendorServiceArea = ({ onPrev, onNext }: VendorServiceAreaProps) => {
                             };
 
                             return (
-                                <Form className="space-y-6 max-w-[800px] mb-32 text-left">
+                                <Form className="space-y-6 max-w-[800px] mb-50 text-left">
                                     <div className="space-y-6">
                                         <h3 className="text-[#000000] font-semibold block text-[18px]">Distance Range</h3>
 
@@ -89,7 +89,7 @@ const VendorServiceArea = ({ onPrev, onNext }: VendorServiceAreaProps) => {
                                             />
                                         </div>
 
-                                        <div className="border-b border-gray-100 pt-10"></div>
+                                        <div className="border-b border-gray-100 pt-10 mb-50"></div>
                                     </div>
 
                                     {/* Navigation Buttons */}
@@ -97,13 +97,13 @@ const VendorServiceArea = ({ onPrev, onNext }: VendorServiceAreaProps) => {
                                         <button
                                             type="button"
                                             onClick={onPrev}
-                                            className="bg-white text-[#686262] px-10 py-3 rounded-md font-semibold border border-gray-200 hover:bg-gray-50 transition-colors shadow-sm"
+                                            className="bg-white text-[#686262] text-[16px] px-10 py-3 rounded-md font-semibold border border-gray-200 "
                                         >
                                             Previous
                                         </button>
                                         <button
                                             type="submit"
-                                            className="bg-[#FF3A44] text-white px-10 py-3 rounded-md font-semibold hover:bg-[#E0343C] transition-colors shadow-sm"
+                                            className="bg-[#FF3A44] text-white text-[16px] px-10 py-3 rounded-md font-semibold"
                                         >
                                             Finish
                                         </button>

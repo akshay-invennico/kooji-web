@@ -23,18 +23,17 @@ const ListingsView = () => {
     };
 
     return (
-        <div className="min-h-screen bg-gray-50/50 pb-12">
+        <div className="min-h-screen  bg-gray-50/50 pb-12">
             <ListingFilterBar showMap={showMap} onShowMapChange={setShowMap} />
 
-            <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:pb-8 py-8">
-                <h1 className="text-[24px] font-bold text-[#000000] mb-8">Listings</h1>
+            <main className={`pb-8 transition-all duration-300 ${showMap ? 'w-full' : 'max-w-7xl mx-auto px-4'}`}>
+                <div className={`flex flex-col lg:flex-row ${showMap ? '' : 'gap-8'}`}>
+                    <div className={`flex-1 transition-all duration-300 ${showMap ? 'lg:pl-[calc((100vw-1280px)/2+16px)] pr-8' : 'w-full'}`}>
+                        <h1 className="text-[24px] font-bold text-[#000000] mt-5 mb-8">Listings</h1>
 
-                <div className="flex flex-col lg:flex-row gap-8">
-
-                    <div className={`flex-1 transition-all duration-300 ${showMap ? 'lg:w-3/5 xl:w-[65%]' : 'w-full'}`}>
-                        <div className={`grid gap-3 justify-items-center ${showMap
-                            ? "grid-cols-1 sm:grid-cols-2 xl:grid-cols-3"
-                            : "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5"
+                        <div className={`grid gap-x-8 gap-y-5 justify-items-start ${showMap
+                            ? "grid-cols-1 sm:grid-cols-1 lg:grid-cols-3 "
+                            : "grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4"
                             }`}>
                             {paginatedListings.map((listings, index) => (
                                 <ListingCard
@@ -46,48 +45,64 @@ const ListingsView = () => {
                                     image={listings.image}
                                     rating={listings.rating}
                                     totalReviews={listings.totalReviews}
+                                    images={listings.images}
                                 />
                             ))}
                         </div>
 
 
-                        <div className="mt-12 flex items-center justify-center gap-2">
+                        <div className="mt-12 flex items-center justify-center gap-6">
                             <button
                                 onClick={() => goToPage(currentPage - 1)}
                                 disabled={currentPage === 1}
-                                className="p-2 rounded-full border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                className="w-12 h-12 rounded-full bg-[#F5F5F5] flex items-center justify-center text-black disabled:opacity-50 transition-colors"
                             >
-                                <ChevronLeft className="w-6 h-6" />
+                                <ChevronLeft className="w-6 h-6" strokeWidth={3} />
                             </button>
 
-                            <div className="flex items-center gap-1">
-                                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                                    <button
-                                        key={page}
-                                        onClick={() => goToPage(page)}
-                                        className={`w-10 h-10 rounded-full text-sm font-medium transition-colors ${currentPage === page
-                                            ? "bg-[#FF3A44] text-white"
-                                            : "bg-white border border-red-200 text-black shadow-sm hover:bg-gray-50"
-                                            }`}
-                                    >
-                                        {page}
-                                    </button>
-                                ))}
+                            <div className="flex items-center gap-2">
+                                {(() => {
+                                    const pages = [];
+                                    if (totalPages <= 5) {
+                                        for (let i = 1; i <= totalPages; i++) pages.push(i);
+                                    } else {
+                                        pages.push(1, 2, 3, '...', totalPages);
+                                    }
+
+                                    return pages.map((page, index) => {
+                                        if (page === '...') {
+                                            return <span key={`ellipsis-${index}`} className="text-black font-bold px-2">...</span>;
+                                        }
+                                        const isPageActive = currentPage === page;
+                                        return (
+                                            <button
+                                                key={page}
+                                                onClick={() => goToPage(page as number)}
+                                                className={`w-12 h-12 rounded-full text-base font-semibold transition-all flex items-center justify-center ${isPageActive
+                                                    ? "border-2 border-[#FF3A44] bg-[#FFF8F8] text-[#FF3A44]"
+                                                    : "text-black "
+                                                    }`}
+                                            >
+                                                {page}
+                                            </button>
+                                        );
+                                    });
+                                })()}
                             </div>
 
                             <button
                                 onClick={() => goToPage(currentPage + 1)}
                                 disabled={currentPage === totalPages}
-                                className="p-2 rounded-full border border-gray-200 bg-white text-gray-600 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+                                className="w-12 h-12 rounded-full bg-[#F5F5F5] flex items-center justify-center text-black disabled:opacity-50 transition-colors"
                             >
-                                <ChevronRight className="w-6 h-6" />
+                                <ChevronRight className="w-6 h-6" strokeWidth={3} />
                             </button>
                         </div>
                     </div>
 
 
                     {showMap && (
-                        <div className="hidden lg:block lg:w-2/5 xl:w-[35%] h-[calc(100vh-160px)] sticky top-24 rounded-xl overflow-hidden border border-gray-200 shadow-sm">
+                        <div className="hidden lg:block lg:w-[20%] xl:w-[27%] h-[calc(100vh-195px)] sticky top-[195px] overflow-hidden">
                             <GoogleMaps />
                         </div>
                     )}

@@ -11,16 +11,16 @@ const RelatedListingsSection: React.FC<RelatedListingsSectionProps> = ({ current
     const relatedListings = useMemo(() => {
         const filtered = LISTINGS_DATA.filter(item => item.id !== currentListingId);
 
-        return [...filtered].sort(() => 0.5 - Math.random()).slice(0, 5);
+        return [...filtered].sort(() => 0.5 - Math.random()).slice(0, 4);
     }, [currentListingId]);
 
     return (
-        <section className="py-6 md:py-12 px-4 md:px-10 border-t border-gray-100">
+        <section className="  max-w-[1700px] mx-auto">
             <h2 className="text-[24px] md:text-[36px] font-bold text-[#000000] mb-6 md:mb-8 font-outfit">
                 You Might be also like
             </h2>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-4 gap-8">
                 {relatedListings.map((listing) => (
                     <ListingCard
                         key={listing.id}
@@ -31,6 +31,7 @@ const RelatedListingsSection: React.FC<RelatedListingsSectionProps> = ({ current
                         rating={listing.rating}
                         totalReviews={listing.totalReviews}
                         image={listing.image}
+                        images={listing.images}
                     />
                 ))}
             </div>
