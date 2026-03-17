@@ -64,12 +64,12 @@ const TransactionsPage = () => {
                 {/* Transactions List */}
                 <div className="flex flex-col gap-4 mb-10">
                     {currentTransactions.map((tx) => (
-                        <div 
-                            key={tx.id} 
+                        <div
+                            key={tx.id}
                             onClick={() => router.push('/my/transactions/details')}
-                            className="bg-white p-2 rounded-lg border border-[#F0EFEF] flex flex-col md:flex-row gap-4 items-center cursor-pointer hover:border-gray-300 transition-all group"
+                            className="bg-white pr-4  rounded-lg border border-[#F0EFEF] flex flex-col md:flex-row gap-4 items-center cursor-pointer "
                         >
-                            <div className="w-full md:w-60 h-50 relative rounded-lg overflow-hidden shrink-0">
+                            <div className="w-full md:w-60 h-50 relative rounded-l-lg overflow-hidden shrink-0">
                                 <Image src={tx.image} alt={tx.title} fill className="object-cover" />
                             </div>
                             <div className="flex-1 w-full">
@@ -77,8 +77,8 @@ const TransactionsPage = () => {
                                     <div className="flex items-center gap-2">
                                         <span className="text-[16px] text-[#000000] font-medium font-outfit">Transaction ID</span>
                                         <span className="text-[16px] font-medium text-[#009FFD] font-outfit">{tx.id}</span>
-                                        <Copy 
-                                            className="w-3.5 h-3.5 text-[#009FFD] cursor-pointer hover:opacity-70 transition-opacity" 
+                                        <Copy
+                                            className="w-3.5 h-3.5 text-[#009FFD] cursor-pointer hover:opacity-70 transition-opacity"
                                             onClick={(e) => {
                                                 e.stopPropagation();
                                                 navigator.clipboard.writeText(tx.id);
@@ -121,7 +121,7 @@ const TransactionsPage = () => {
                             key={i + 1}
                             onClick={() => setCurrentPage(i + 1)}
                             className={`w-10 h-10 rounded-full text-[14px] font-semibold font-outfit transition-all ${currentPage === i + 1
-                                ? "bg-[#FFF8F8] text-black border-[#FF3A44]"
+                                ? "bg-[#FFF8F8] text-[#FF3A44] border border-[#FF3A44]"
                                 : "text-[#686262] border border-[#F0EFEF] hover:bg-gray-50"
                                 }`}
                         >

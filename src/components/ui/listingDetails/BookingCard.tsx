@@ -43,19 +43,19 @@ const BookingCard: React.FC<BookingCardProps> = ({ price, formik, isEventSpace }
 
             <div className="grid grid-cols-2 gap-4 mb-6">
                 <div onClick={() => setIsDateOpen(!isDateOpen)}>
-                    <label className="block text-[#000000] font-medium text- mb-2 ml-1 cursor-pointer">From</label>
+                    <label className="block text-[#000000] font-medium text-[14px] mb-2 ml-1 cursor-pointer">From</label>
                     <div className="flex items-center gap-3 bg-white p-2 rounded-lg border border-gray-50  cursor-pointer">
-                        <img src="/icons/hero/calenderIcon.svg" alt="calendar" className="w-6 h-6 shrink-0" />
-                        <span className={`font-normal truncate ${formik.values.startDate ? "text-gray-900" : "text-gray-400"}`}>
+                        <img src="/icons/hero/calenderIcon.svg" alt="calendar" className="w-5 h-5 shrink-0" />
+                        <span className={`font-normal truncate ${formik.values.startDate ? "text-[#000000] font-medium  text-[14px]" : "text-[#B9BFC3] font-medium text-[14px]"}`}>
                             {fmtSingleDate(formik.values.startDate) || "Select Date"}
                         </span>
                     </div>
                 </div>
                 <div onClick={() => setIsDateOpen(!isDateOpen)}>
-                    <label className="block text-[#000000] font-medium text- mb-2 ml-1 cursor-pointer">To</label>
+                    <label className="block text-[#000000] font-medium text-[14px] mb-2 ml-1 cursor-pointer">To</label>
                     <div className="flex items-center gap-3 bg-white p-2 rounded-lg border border-gray-50  cursor-pointer ">
-                        <img src="/icons/hero/calenderIcon.svg" alt="calendar" className="w-6 h-6 shrink-0" />
-                        <span className={`font-normal truncate ${formik.values.endDate ? "text-gray-900" : "text-gray-400"}`}>
+                        <img src="/icons/hero/calenderIcon.svg" alt="calendar" className="w-5 h-5 shrink-0" />
+                        <span className={`font-normal truncate ${formik.values.endDate ? "text-[#000000] font-medium text-[14px]" : "text-[#B9BFC3] font-medium text-[14px]"}`}>
                             {fmtSingleDate(formik.values.endDate) || "Select Date"}
                         </span>
                     </div>
@@ -71,7 +71,7 @@ const BookingCard: React.FC<BookingCardProps> = ({ price, formik, isEventSpace }
                             type="number"
                             name="attendees"
                             placeholder="30"
-                            className="w-full bg-transparent border-none  text-gray-900 font-normal p-0 placeholder:text-gray-300"
+                            className="w-full bg-transparent border-none focus:outline-none focus:ring-0 text-gray-900 font-normal p-0 placeholder:text-gray-300 [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                             value={formik.values.attendees}
                             onChange={(e) => formik.setFieldValue("attendees", e.target.value)}
                         />
@@ -87,8 +87,8 @@ const BookingCard: React.FC<BookingCardProps> = ({ price, formik, isEventSpace }
             )}
 
             {isDateOpen && (
-                <div className="absolute top-full left-0 right-0  mt-2">
-                    <CalendarDropdown formik={formik} onClose={() => setIsDateOpen(false)} />
+                <div className="absolute right-0 mt-2 z-50">
+                    <CalendarDropdown formik={formik} onClose={() => setIsDateOpen(false)} align="right" />
                 </div>
             )}
 

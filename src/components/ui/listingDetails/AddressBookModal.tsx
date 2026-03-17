@@ -84,20 +84,29 @@ const AddressBookModal: React.FC<AddressBookModalProps> = ({
 
     return (
         <div className="fixed inset-0 z-[1000] flex items-center justify-center p-4">
+            <style dangerouslySetInnerHTML={{ __html: `
+                .hide-scrollbar::-webkit-scrollbar {
+                    display: none;
+                }
+                .hide-scrollbar {
+                    -ms-overflow-style: none;
+                    scrollbar-width: none;
+                }
+            `}} />
             <div className="absolute inset-0 bg-black/50 backdrop-blur-sm" onClick={onClose} />
 
-            <div className="relative bg-white rounded-3xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl">
+            <div className={`relative bg-white rounded-xl w-full max-w-5xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl hide-scrollbar`}>
                 <div className="flex items-center justify-between p-4 md:p-6 border-b border-gray-100 shrink-0">
-                    <h2 className="text-[18px] md:text-[20px] font-semibold text-[#000000]">Address Book</h2>
+                    <h2 className="text-[18px]  font-semibold text-[#000000]">Address Book</h2>
                     <button onClick={onClose} className="p-2 hover:bg-gray-100 rounded-full transition-colors">
                         <X size={20} className="text-gray-500" />
                     </button>
                 </div>
 
-                <div className="flex flex-col md:flex-row flex-1 overflow-auto h-full">
-                    <div className="w-full md:w-[350px] p-4 md:p-6 border-b md:border-b-0 md:border-r border-gray-100 md:overflow-y-auto bg-gray-50/30 shrink-0">
-                        <h3 className="text-[16px] font-semibold text-gray-900 mb-4">Saved Address</h3>
-                        <div className="space-y-4 max-h-[250px] md:max-h-full overflow-y-auto pr-2 md:pr-0">
+                <div className="flex flex-col md:flex-row flex-1 overflow-auto h-full hide-scrollbar">
+                    <div className="w-full md:w-[350px] p-4 md:p-6 border-b md:border-b-0 md:border-r border-gray-100 md:overflow-y-auto hide-scrollbar bg-gray-50/30 shrink-0">
+                        <h3 className="text-[16px] font-semibold text-[#000000] mb-4">Saved Address</h3>
+                        <div className="space-y-4 max-h-[250px] md:max-h-full overflow-y-auto hide-scrollbar">
                             {savedAddresses.map((addr) => (
                                 <AddressCard
                                     key={addr.id}
@@ -117,22 +126,22 @@ const AddressBookModal: React.FC<AddressBookModalProps> = ({
                     </div>
 
 
-                    <div className="flex-1 p-4 md:p-8 md:overflow-y-auto">
-                        <h3 className="text-[16px] md:text-[18px] font-semibold text-gray-900 mb-4 md:mb-6">
+                    <div className="flex-1 p-4 md:p-8 md:overflow-y-auto hide-scrollbar">
+                        <h3 className="text-[16px]  font-semibold text-[#000000] mb-4 md:mb-6">
                             {editingAddress ? "Edit Address" : "Add new Address"}
                         </h3>
 
                         <form onSubmit={formik.handleSubmit} className="space-y-6">
 
                             <div>
-                                <label className="block text-[14px] font-semibold text-gray-900 mb-3">Address Label</label>
+                                <label className="block text-[14px] font-semibold text-[#000000] mb-3">Address Label</label>
                                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                                     {labelOptions.map((opt) => (
                                         <button
                                             key={opt.id}
                                             type="button"
                                             onClick={() => formik.setFieldValue("label", opt.id)}
-                                            className={`flex flex-col items-center justify-center gap-2 p-3 rounded-xl border-2 transition-all ${formik.values.label === opt.id
+                                            className={`flex flex-col items-center justify-center gap-2 p-3 rounded-xl border-2  ${formik.values.label === opt.id
                                                 ? "border-[#FF4D4D] bg-[#FFF5F5]"
                                                 : "border-gray-100 bg-white hover:border-gray-200"
                                                 }`}
@@ -149,10 +158,10 @@ const AddressBookModal: React.FC<AddressBookModalProps> = ({
 
 
                             <div>
-                                <h4 className="text-[14px] font-semibold text-gray-900 mb-4">Recipient Details</h4>
+                                <h4 className="text-[16px] font-semibold text-[#0000000] mb-4">Recipient Details</h4>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div className="space-y-2">
-                                        <label className="text-[12px] font-semibold text-gray-700 ml-1">Full Name</label>
+                                        <label className="text-[14px] font-semibold text-[#000000] ml-1">Full Name</label>
                                         <input
                                             type="text"
                                             name="recipientName"
@@ -166,7 +175,7 @@ const AddressBookModal: React.FC<AddressBookModalProps> = ({
                                         )}
                                     </div>
                                     <div className="space-y-2">
-                                        <label className="text-[12px] font-semibold text-gray-700 ml-1">Phone Number</label>
+                                        <label className="text-[14px] font-semibold text-gray-700 ml-1">Phone Number</label>
                                         <input
                                             type="text"
                                             name="phoneNumber"
@@ -186,7 +195,7 @@ const AddressBookModal: React.FC<AddressBookModalProps> = ({
                             <div className="space-y-4">
                                 <h4 className="text-[14px] font-semibold text-gray-900">Address Location</h4>
                                 <div className="space-y-2">
-                                    <label className="text-[12px] font-semibold text-gray-700 ml-1">Street Address (Line 1)</label>
+                                    <label className="text-[14px] font-semibold text-[#000000] ml-1">Street Address (Line 1)</label>
                                     <input
                                         type="text"
                                         name="street1"
@@ -200,7 +209,7 @@ const AddressBookModal: React.FC<AddressBookModalProps> = ({
                                     )}
                                 </div>
                                 <div className="space-y-2">
-                                    <label className="text-[12px] font-semibold text-gray-700 ml-1">Street Address (Line 2)</label>
+                                    <label className="text-[14px] font-semibold text-[#000000] ml-1">Street Address (Line 2)</label>
                                     <input
                                         type="text"
                                         name="street2"
@@ -212,7 +221,7 @@ const AddressBookModal: React.FC<AddressBookModalProps> = ({
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div className="space-y-2">
-                                        <label className="text-[12px] font-semibold text-gray-700 ml-1">City</label>
+                                        <label className="text-[14px] font-semibold text-[#000000] ml-1">City</label>
                                         <input
                                             type="text"
                                             name="city"
@@ -223,7 +232,7 @@ const AddressBookModal: React.FC<AddressBookModalProps> = ({
                                         />
                                     </div>
                                     <div className="space-y-2">
-                                        <label className="text-[12px] font-semibold text-gray-700 ml-1">State</label>
+                                        <label className="text-[14px] font-semibold text-[#000000] ml-1">State</label>
                                         <input
                                             type="text"
                                             name="state"
@@ -236,7 +245,7 @@ const AddressBookModal: React.FC<AddressBookModalProps> = ({
                                 </div>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                     <div className="space-y-2">
-                                        <label className="text-[12px] font-semibold text-gray-700 ml-1">ZIP / Postal Code</label>
+                                        <label className="text-[14px] font-semibold text-[#000000] ml-1">ZIP / Postal Code</label>
                                         <input
                                             type="text"
                                             name="zipCode"
@@ -247,7 +256,7 @@ const AddressBookModal: React.FC<AddressBookModalProps> = ({
                                         />
                                     </div>
                                     <div className="space-y-2">
-                                        <label className="text-[12px] font-semibold text-gray-700 ml-1">Country</label>
+                                        <label className="text-[14px] font-semibold text-[#000000] ml-1">Country</label>
                                         <input
                                             type="text"
                                             name="country"
@@ -260,34 +269,33 @@ const AddressBookModal: React.FC<AddressBookModalProps> = ({
                                 </div>
                             </div>
 
-                            <div className="flex items-center gap-2">
-                                <label className="relative inline-flex items-center cursor-pointer">
+                            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pt-6 border-t border-gray-100">
+                                <div className="flex items-center gap-2">
                                     <input
                                         type="checkbox"
                                         name="isDefault"
                                         checked={formik.values.isDefault}
                                         onChange={formik.handleChange}
-                                        className="sr-only peer"
+                                        className="w-5 h-5 accent-[#FF3A44] cursor-pointer rounded-sm border-gray-300"
                                     />
-                                    <div className="w-10 h-5 bg-gray-200 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#FF4D4D]"></div>
-                                </label>
-                                <span className="text-[13px] font-semibold text-gray-700">Set as default delivery address</span>
-                            </div>
+                                    <span className="text-[13px] font-semibold text-gray-700">Set as default delivery address</span>
+                                </div>
 
-                            <div className="flex items-center justify-end gap-4 pt-6 border-t border-gray-100">
-                                <button
-                                    type="button"
-                                    onClick={editingAddress ? handleCancelEdit : onClose}
-                                    className="px-6 py-3 rounded-lg text-[14px] font-bold text-gray-500 hover:text-gray-900 transition-all"
-                                >
-                                    Cancel
-                                </button>
-                                <button
-                                    type="submit"
-                                    className="px-10 py-3 rounded-lg text-[14px] font-bold text-white bg-[#FF3A44]"
-                                >
-                                    {editingAddress ? "Update Address" : "Save Address"}
-                                </button>
+                                <div className="flex items-center gap-4 w-full sm:w-auto justify-end">
+                                    <button
+                                        type="button"
+                                        onClick={editingAddress ? handleCancelEdit : onClose}
+                                        className="px-6 py-3 rounded-lg text-[14px] font-bold text-gray-500 hover:text-gray-900 transition-all"
+                                    >
+                                        Cancel
+                                    </button>
+                                    <button
+                                        type="submit"
+                                        className="px-10 py-3 rounded-sm text-[14px] font-semibold text-white bg-[#FF3A44]"
+                                    >
+                                        {editingAddress ? "Update Address" : "Save Address"}
+                                    </button>
+                                </div>
                             </div>
                         </form>
                     </div>

@@ -80,7 +80,7 @@ const Step2Equipment: React.FC<Step2EquipmentProps> = ({
                 value={brand}
                 onChange={handleChange}
                 placeholder="Brand Name"
-                className="w-full bg-transparent border-none outline-none text-[15px] text-[#000000] placeholder:text-[#F0EFEF]"
+                className="w-full bg-transparent border-none outline-none text-[15px] text-[#000000] placeholder:text-[#B9BFC3]"
               />
             </div>
             {touched.brand && errors.brand && (
@@ -96,7 +96,7 @@ const Step2Equipment: React.FC<Step2EquipmentProps> = ({
                 value={model}
                 onChange={handleChange}
                 placeholder="Model Name/No."
-                className="w-full bg-transparent border-none outline-none text-[15px] text-[#000000] placeholder:text-[#F0EFEF]"
+                className="w-full bg-transparent border-none outline-none text-[15px] text-[#000000] placeholder:text-[#B9BFC3]"
               />
             </div>
             {touched.model && errors.model && (
@@ -119,7 +119,7 @@ const Step2Equipment: React.FC<Step2EquipmentProps> = ({
                 value={powerOutput}
                 onChange={handleChange}
                 placeholder="Power Output (kW)"
-                className="w-full bg-transparent border-none outline-none text-[15px] text-[#000000] placeholder:text-[#F0EFEF]"
+                className="w-full bg-transparent border-none outline-none text-[15px] text-[#000000] placeholder:text-[#B9BFC3]"
               />
             </div>
           </div>
@@ -132,7 +132,7 @@ const Step2Equipment: React.FC<Step2EquipmentProps> = ({
                 value={weight}
                 onChange={handleChange}
                 placeholder="Weight (kg)"
-                className="w-full bg-transparent border-none outline-none text-[15px] text-[#000000] placeholder:text-[#F0EFEF]"
+                className="w-full bg-transparent border-none outline-none text-[15px] text-[#000000] placeholder:text-[#B9BFC3]"
               />
             </div>
           </div>
@@ -206,7 +206,7 @@ const Step2Equipment: React.FC<Step2EquipmentProps> = ({
               value={accessories}
               onChange={handleChange}
               placeholder="e.g. Cables, stands, carrying case"
-              className="w-full bg-transparent border-none outline-none text-[15px] text-[#000000] placeholder:text-[#F0EFEF]"
+              className="w-full bg-transparent border-none outline-none text-[15px] text-[#000000] placeholder:text-[#B9BFC3]"
             />
           </div>
         </div>

@@ -53,7 +53,7 @@ const VendorOffers = ({ onNext }: VendorOffersProps) => {
                     <h2 className="text-[24px] font-semibold text-[#000000]">What Do You Offer?</h2>
                 </div>
 
-                <div className="flex flex-wrap justify-start gap-4 mb-32">
+                <div className="flex flex-wrap justify-start gap-4 mb-50">
                     {VENDOR_OFFERS_DATA.map((item) => (
                         <VendorCard
                             key={item.id}
@@ -66,9 +66,9 @@ const VendorOffers = ({ onNext }: VendorOffersProps) => {
                 </div>
 
                 {/* Navigation Buttons */}
-                <div className="max-w-[1200px] mx-auto flex items-center justify-end">
+                <div className="max-w-[1200px] mx-auto  flex item-end justify-end">
                     <button
-                        className="bg-[#FF3A44] text-white px-10 py-3 rounded-md font-semibold hover:bg-[#E0343C] transition-colors disabled:opacity-50 disabled:cursor-not-allowed shadow-sm"
+                        className="bg-[#FF3A44] text-white px-10 py-3 rounded-md text-[16px] font-semibold"
                         disabled={selectedOffers.length === 0}
                         onClick={onNext}
                     >

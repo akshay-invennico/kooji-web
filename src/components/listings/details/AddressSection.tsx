@@ -58,17 +58,17 @@ const AddressSection = ({ onAddressSelected }: { onAddressSelected?: (id: string
                     <img src="/icons/address/truck.svg" alt="delivery" className="w-10 h-10" />
                 </div>
                 <div>
-                    <h3 className="text-[12px] font-medium text-[#000000] leading-tight">Delivery Address</h3>
+                    <h3 className="text-[18px] font-semibold text-[#000000] leading-tight">Delivery Address</h3>
                     <p className="text-[12px] text-[#686262] font-medium">Choose Where You Want To Receive This Booking</p>
                 </div>
             </div>
 
             <div className="space-y-6 ml-0 md:ml-12">
                 <div>
-                    <label className="block text-[14px] font-semibold text-[#686262] mb-3">Delivery Address</label>
+                    <label className="block text-[12px] font-medium text-[#686262] mb-3">Delivery Address</label>
                     <div className="flex items-center gap-3">
-                        <div className="relative w-5 h-5 flex items-center justify-center shrink-0">
-                            <img src="/icons/details/deliveryAddressIcon.svg" alt="" />
+                        <div className="relative flex items-center justify-center shrink-0">
+                            <img src="/icons/details/deliveryAddressIcon.svg" alt="" className="w-[28px] h-[28px]" />
                         </div>
                         <p className="text-[14px] font-bold text-gray-900 truncate">
                             {selectedAddress.recipientName}, {selectedAddress.street1}, {selectedAddress.city}, {selectedAddress.zipCode}..

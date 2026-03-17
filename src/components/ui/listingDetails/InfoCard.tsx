@@ -18,7 +18,7 @@ const InfoCard: React.FC<InfoCardProps> = ({ title, category, type, rating, tota
     const [isMapOpen, setIsMapOpen] = useState(false);
 
     return (
-        <div className="w-full max-w-4xl pb-8 border-b border-[#F0EFEF]">
+        <div className="w-full max-w-3xl pb-8 border-b border-[#F0EFEF]">
             <div className="container mx-auto px-4 md:px-10">
                 <div className="flex flex-col gap-4">
                     {/* Title and Action Buttons */}
@@ -26,7 +26,7 @@ const InfoCard: React.FC<InfoCardProps> = ({ title, category, type, rating, tota
                         <h1 className="text-2xl md:text-[28px] font-bold text-[#000000] tracking-tight">
                             {title}
                         </h1>
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center  ">
                             <button className="p-2 rounded  bg-white" aria-label="Share">
                                 <Image src="/icons/details/shareIcon.svg" alt="Share" width={40} height={40} className="w-10 h-10" />
                             </button>
@@ -39,9 +39,9 @@ const InfoCard: React.FC<InfoCardProps> = ({ title, category, type, rating, tota
                     {/* Metadata Line */}
                     <div className="flex flex-wrap items-center gap-3 text-sm md:text-[14px] font-medium text-[#686262]">
                         <span>{category}</span>
-                        <span className="text-[#D1D1D1]">|</span>
+                        <img src="/assets/round.svg" alt="" className="w-1.5 h-1.5" />
                         <span>{type}</span>
-                        <span className="text-[#D1D1D1]">|</span>
+                        <img src="/assets/round.svg" alt="" className="w-1.5 h-1.5" />
                         <div className="flex items-center gap-1.5">
                             <Image src="/icons/details/starIcon.svg" alt="Rating" width={16} height={16} className="w-4 h-4" />
                             <span className="text-[#686262] text-[16px] font-medium">{rating}</span>

@@ -142,7 +142,7 @@ const NotificationsPage = () => {
                                         <h3 className="text-[16px] font-bold text-[#000000] font-outfit">{notif.title}</h3>
                                         <div className="flex items-center gap-2">
                                             {notif.isUnread && <div className="w-2 h-2 rounded-full bg-[#FF3A44]" />}
-                                            <span className="text-[12px] text-[#A39E9E] font-medium">• {notif.time}</span>
+                                            <span className="text-[12px] text-[#A39E9E] font-medium"> {notif.time}</span>
                                         </div>
                                     </div>
                                     <p

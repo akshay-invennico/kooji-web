@@ -57,7 +57,7 @@ const VendorProfile = ({ onPrev, onNext }: VendorProfileProps) => {
                                                 className="w-full h-full  object-cover"
                                             />
                                         ) : (
-                                            <div className="w-24 h-24 ml-5 text-gray-300">
+                                            <div className="w-24 h-24 ml-6  mt-3 text-gray-300">
                                                 <img src="/assets/userProfileIcon.svg" alt="userprofileicon" />
                                             </div>
                                         )}
@@ -97,14 +97,15 @@ const VendorProfile = ({ onPrev, onNext }: VendorProfileProps) => {
                             <div className="space-y-2">
                                 <div className="flex justify-between items-center max-w-[500px]">
                                     <label className="text-[#000000] font-semibold text-[16px]">Description</label>
-                                    <span className="text-[#686262] text-sm">({values.description.length}/500)</span>
+                                    <span className="text-[#686262] text-sm">(Max 500 characters)</span>
                                 </div>
                                 <Field
                                     as="textarea"
                                     name="description"
                                     placeholder="Write here.."
-                                    rows={6}
-                                    className={`w-full max-w-[500px] px-6 py-4 rounded-md border focus:outline-none focus:ring-2 transition-all text-base resize-none ${errors.description && touched.description
+                                    rows={5}
+
+                                    className={`w-full max-w-[800px] px-6 py-4 rounded-md border focus:outline-none focus:ring-2 transition-all text-base resize-none ${errors.description && touched.description
                                         ? "border-[#FF3A44] focus:ring-red-100"
                                         : "border-gray-200 focus:ring-red-50/50 focus:border-[#FF3A44]"
                                         }`}
@@ -117,13 +118,13 @@ const VendorProfile = ({ onPrev, onNext }: VendorProfileProps) => {
                                 <button
                                     type="button"
                                     onClick={onPrev}
-                                    className="bg-white text-[#686262] px-10 py-3 rounded-md font-semibold border border-gray-200 hover:bg-gray-50 transition-colors shadow-sm"
+                                    className="bg-white text-[#686262] text-[16px] px-10 py-3 rounded-md font-semibold border border-gray-200 "
                                 >
                                     Previous
                                 </button>
                                 <button
                                     type="submit"
-                                    className="bg-[#FF3A44] text-white px-10 py-3 rounded-md font-semibold hover:bg-[#E0343C] transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                                    className="bg-[#FF3A44] text-white px-10 py-3 rounded-md font-semibold"
                                 >
                                     Next
                                 </button>

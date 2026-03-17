@@ -86,14 +86,14 @@ const DashboardSection = () => {
                 <h1 className="text-[24px] font-semibold text-[#000000] font-outfit mb-5">Dashboard</h1>
 
                 {/* Stats Grid */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
                     {STATS_DATA.map((stat, index) => (
                         <DashboardStatCard key={index} {...stat} />
                     ))}
                 </div>
 
                 {/* Recent Bookings Header */}
-                <div className="flex items-center justify-between mb-6">
+                <div className="flex  items-center justify-between mb-6">
                     <h2 className="text-[20px] font-medium text-[#000000] font-outfit">Recent Bookings</h2>
                     <Link href={routes.bookings} className="flex items-center text-[#009FFD] text-[14px] font-medium font-outfit hover:underline group">
                         View all

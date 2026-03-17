@@ -15,7 +15,7 @@ const SpecificationCard: React.FC<SpecificationCardProps> = ({ specification }) 
                     <div key={index} className="flex items-start gap-2">
                         <div className="w-1.5 h-1.5 rounded-full bg-gray-400 mt-2 flex-shrink-0" />
                         <p className="text-base text-gray-600">
-                            <span className="text-[14px] text-[#686262] font-medium">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>{" "}
+                            <span className="text-[14px] text-[#686262] font-medium capitalize">{key.replace(/([A-Z])/g, ' $1').trim()}:</span>{" "}
                             <span className="font-medium text-[14px] text-[#000000] ml-1">{value}</span>
                         </p>
                     </div>

@@ -54,7 +54,7 @@ const Page = () => {
 
     return (
         <main className="min-h-screen bg-white">
-            <div className="max-w-7xl mx-auto sm:pb-6 lg:pb-8 pb-8">
+            <div className="max-w-7xl mx-auto sm:pb-6 lg:pb-6 pb-8">
                 <GallerySection images={listing.images || [listing.image]} />
 
                 <div className="grid grid-cols-1 lg:grid-cols-[1fr_360px] gap-2 mt-2 items-start">
@@ -97,7 +97,7 @@ const Page = () => {
 
 
                     {/* right section */}
-                    <div className="space-y-6 px-8 sm:px-16 lg:px-0">
+                    <div className="w-[400px]">
                         <BookingSection
                             price={listing.price}
                             category={listing.category}

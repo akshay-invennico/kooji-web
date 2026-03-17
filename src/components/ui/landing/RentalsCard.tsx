@@ -1,7 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
+import { Heart } from "lucide-react";
+import { clsx } from "clsx";
+
 const ratingImg = "/assets/rentalsImg/ratingIcon.svg";
 const addressImg = "/assets/rentalsImg/addressIcon.svg";
-const heart = "/assets/rentalsImg/heart.svg"
+// const heart = "/assets/rentalsImg/heart.svg"
 
 interface RentalsCardProps {
     rating: number,
@@ -13,6 +16,13 @@ interface RentalsCardProps {
 }
 
 const RentalsCard: React.FC<RentalsCardProps> = ({ rating, totalReviews, title, address, price, image }) => {
+    const [isLiked, setIsLiked] = useState(false);
+
+    const handleLikeClick = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        setIsLiked(!isLiked);
+    };
+
     return (
         <div className="w-[351px] h-[400px] bg-white rounded-lg overflow-hidden  border border-gray-100 group cursor-pointer">
 
@@ -31,8 +41,16 @@ const RentalsCard: React.FC<RentalsCardProps> = ({ rating, totalReviews, title, 
                         <span className="text-[10px] text-white font-medium">({totalReviews})</span>
                     </div>
 
-                    <button className=" bg-black/20 backdrop-blur-md rounded-md  text-white">
-                        <img src={heart} alt="heart" className="w-8 h-8" />
+                    <button
+                        onClick={handleLikeClick}
+                        className="bg-black/60 backdrop-blur-md rounded-md p-1 flex items-center justify-center transition-colors duration-200"
+                    >
+                        <Heart
+                            className={clsx(
+                                "w-6 h-6 transition-all duration-300",
+                                isLiked ? "fill-[#FF3A44] text-[#FF3A44]" : "text-white"
+                            )}
+                        />
                     </button>
                 </div>
             </div>

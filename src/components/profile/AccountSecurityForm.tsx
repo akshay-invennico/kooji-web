@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import { Eye, EyeOff, Lock, X } from "lucide-react";
+import Image from "next/image";
+import { Eye, EyeOff, X } from "lucide-react";
 
 const passwordSchema = Yup.object().shape({
   currentPassword: Yup.string().required("Current password is required"),
@@ -42,7 +43,7 @@ const ChangePasswordModal = ({ onClose }: { onClose: () => void }) => {
       <div className="absolute inset-0 bg-black/40" onClick={onClose} />
 
       {/* Modal */}
-      <div className="relative z-10 bg-white rounded-lg  w-full max-w-[420px] mx-4 p-8">
+      <div className="relative top-10 z-10 bg-white rounded-lg  w-full max-w-[420px] mx-4 p-10">
         {/* Header */}
         <div className="flex items-start justify-between mb-2">
           <div>
@@ -71,7 +72,7 @@ const ChangePasswordModal = ({ onClose }: { onClose: () => void }) => {
                 <div key={name} className="space-y-1.5">
                   <label className="text-[#000000] text-[14px] font-medium font-outfit block">{label}</label>
                   <div className={`flex items-center gap-3 px-4 py-3 rounded-md border transition-all ${errors[name] && touched[name] ? "border-red-500" : "border-[#F0EFEF] focus-within:border-[#FF3A44]"}`}>
-                    <Lock className="w-4 h-4 text-[#A39E9E]" />
+                    <Image src="/icons/passwordIcon.svg" alt="password" width={20} height={20} className="w-5 h-5" />
                     <Field
                       name={name}
                       type={show ? "text" : "password"}
@@ -129,7 +130,7 @@ const DeleteAccountModal = ({ onClose }: { onClose: () => void }) => {
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center">
         <div className="absolute inset-0 bg-black/50" onClick={onClose} />
-        <div className="relative z-10 bg-white rounded-2xl shadow-2xl w-full max-w-[460px] mx-4 p-8">
+        <div className="relative top-10 z-10 bg-white rounded-lg  w-full max-w-[600px] mx-4 p-8">
           <h3 className="text-[20px] font-semibold text-[#000000] font-outfit mb-3">Delete Your Account?</h3>
           <p className="text-[#686262] text-[14px] font-medium font-outfit leading-relaxed mb-6">
             To proceed with your account deletion, please confirm your identity by entering your password. This action will permanently erase your profile and all associated data from our systems.
@@ -138,7 +139,7 @@ const DeleteAccountModal = ({ onClose }: { onClose: () => void }) => {
           <div className="space-y-2 mb-8">
             <label className="text-[#000000] text-[14px] font-medium font-outfit block">Your Password</label>
             <div className="flex items-center gap-3 px-4 py-3.5 rounded-lg border border-[#F0EFEF] focus-within:border-[#FF3A44] transition-all">
-              <Lock className="w-4 h-4 text-[#A39E9E]" />
+              <Image src="/icons/passwordIcon.svg" alt="password" width={20} height={20} className="w-5 h-5" />
               <input
                 type={showPassword ? "text" : "password"}
                 value={password}
@@ -164,7 +165,7 @@ const DeleteAccountModal = ({ onClose }: { onClose: () => void }) => {
               type="button"
               disabled={!password}
               onClick={() => console.log("Account deletion confirmed", { reasons: selectedReasons, otherReason, password })}
-              className="py-3.5 text-[16px] font-medium font-outfit text-white bg-[#C5161D] hover:bg-[#B01820] rounded-lg transition-all disabled:opacity-50"
+              className="py-3.5 text-[16px] font-medium font-outfit text-white bg-[#C5161D] rounded-lg disabled:opacity-50"
             >
               Confirm Deletion
             </button>
@@ -181,7 +182,7 @@ const DeleteAccountModal = ({ onClose }: { onClose: () => void }) => {
       <div className="absolute inset-0 bg-black/50" onClick={onClose} />
 
       {/* Modal */}
-      <div className="relative z-10 bg-white rounded-lg w-full max-w-[480px] mx-4 overflow-hidden">
+      <div className="relative top-12 z-10 bg-white rounded-lg w-full max-w-[480px] max-h-[610px] mx-4 p-4  overflow-hidden">
         {/* Body */}
         <div className="p-3">
           <h3 className="text-[20px] font-semibold text-[#000000] font-outfit mb-3">Delete Your Account?</h3>
@@ -190,9 +191,9 @@ const DeleteAccountModal = ({ onClose }: { onClose: () => void }) => {
           </p>
         </div>
 
-        <div className="p-8">
+        <div className="p-3">
           <div>
-            <h4 className="text-[14px] font-medium text-[#000000] font-outfit mb-4">Reason for Deletion</h4>
+            <h4 className="text-[14px] font-medium text-[#000000] font-outfit mb-2">Reason for Deletion</h4>
             <div className="space-y-3">
               {DELETE_REASONS.map((reason) => {
                 const isChecked = selectedReasons.includes(reason);
@@ -216,9 +217,9 @@ const DeleteAccountModal = ({ onClose }: { onClose: () => void }) => {
             </div>
 
             {showTextarea && (
-              <div className="mt-4">
-                <div className="flex justify-between items-center mb-1">
-                  <span className="text-[14px] font-medium text-[#000000] font-outfit">Reason</span>
+              <div className="mt-2">
+                <div className="flex justify-between items-center ">
+                  <span className="text-[14px] font-medium text-[#686262] font-outfit">Reason</span>
                   <span className="text-[12px] text-[#A39E9E] font-outfit">(Character Limit: 250)</span>
                 </div>
                 <textarea
@@ -234,7 +235,7 @@ const DeleteAccountModal = ({ onClose }: { onClose: () => void }) => {
         </div>
 
         {/* Footer Buttons */}
-        <div className="p-4 grid grid-cols-2 gap-2  border-gray-100">
+        <div className="p-2 grid grid-cols-2 gap-2  border-gray-100">
           <button
             type="button"
             onClick={onClose}
@@ -246,7 +247,7 @@ const DeleteAccountModal = ({ onClose }: { onClose: () => void }) => {
             type="button"
             disabled={selectedReasons.length === 0}
             onClick={() => setStep(2)}
-            className="py-4 text-[16px] font-medium font-outfit rounded-md text-white bg-[#C5161D] hover:bg-[#B01820] transition-all disabled:opacity-50"
+            className="py-4 text-[16px] font-medium font-outfit rounded-md text-white bg-[#C5161D]  disabled:opacity-50"
           >
             Continue
           </button>

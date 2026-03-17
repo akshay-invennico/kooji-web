@@ -35,8 +35,11 @@ const EditProfilePage = () => {
           {/* Sidebar */}
           <EditProfileSidebar activeSection={activeSection} setActiveSection={setActiveSection} />
 
+
+
           {/* Form Content */}
           {renderSection()}
+
         </div>
       </div>
     </div>

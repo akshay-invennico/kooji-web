@@ -43,7 +43,7 @@ const CancelBookingModal: React.FC<CancelBookingModalProps> = ({
   return (
     <div className="fixed inset-0 z-100 flex items-center justify-center p-4 bg-black/40 backdrop-blur-sm">
       <div
-        className="w-full max-w-[600px] bg-white rounded-[20px] p-8 flex flex-col gap-6 max-h-[90vh] overflow-y-auto"
+        className="w-full max-w-[600px] bg-white rounded-[20px] p-8 flex flex-col gap-6 max-h-[90vh] overflow-y-auto no-scrollbar"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex justify-between items-start">
@@ -60,19 +60,19 @@ const CancelBookingModal: React.FC<CancelBookingModalProps> = ({
 
         <div className="grid grid-cols-2 gap-y-4 py-4 border-b border-[#F0EFEF]">
           <div className="flex flex-row gap-3">
-            <span className="text-[12px] text-[#A39E9E] font-medium font-outfit">Booking ID</span>
+            <span className="text-[14px] text-[#A39E9E] font-medium font-outfit">Booking ID</span>
             <span className="text-[14px] font-bold text-[#000000] font-outfit">#{bookingId}</span>
           </div>
           <div className="flex flex-row gap-3">
-            <span className="text-[12px] text-[#A39E9E] font-medium font-outfit">Renter</span>
+            <span className="text-[14px] text-[#A39E9E] font-medium font-outfit">Renter</span>
             <span className="text-[14px] font-bold text-[#000000] font-outfit">{renterName}</span>
           </div>
           <div className="flex flex-row gap-3">
-            <span className="text-[12px] text-[#A39E9E] font-medium font-outfit">Event Date</span>
+            <span className="text-[14px] text-[#A39E9E] font-medium font-outfit">Event Date</span>
             <span className="text-[14px] font-bold text-[#000000] font-outfit">{eventDate}</span>
           </div>
           <div className="flex flex-row gap-3">
-            <span className="text-[12px] text-[#A39E9E] font-medium font-outfit">Service</span>
+            <span className="text-[14px] text-[#A39E9E] font-medium font-outfit">Service</span>
             <span className="text-[14px] font-bold text-[#000000] font-outfit">{service}</span>
           </div>
         </div>
@@ -97,7 +97,7 @@ const CancelBookingModal: React.FC<CancelBookingModalProps> = ({
                     </svg>
                   )}
                 </div>
-                <span className={`text-[15px] font-medium font-outfit ${selectedReason === reason ? "text-[#000000]" : "text-[#686262]"
+                <span className={`text-[14px] font-medium font-outfit ${selectedReason === reason ? "text-[#000000]" : "text-[#686262]"
                   }`}>
                   {reason}
                 </span>
@@ -109,7 +109,7 @@ const CancelBookingModal: React.FC<CancelBookingModalProps> = ({
         {selectedReason === "Other" && (
           <div className="flex flex-col gap-2">
             <div className="flex justify-between items-center">
-              <label className="text-[14px] font-bold text-[#686262] font-outfit">Reason</label>
+              <label className="text-[14px] font-medium text-[#686262] font-outfit">Reason</label>
               <span className="text-[12px] text-[#A39E9E] font-medium font-outfit">(Character Limit: 250)</span>
             </div>
             <textarea

@@ -51,8 +51,8 @@ const Step5Photos: React.FC<Step5PhotosProps> = ({
         {/* Cover Photo */}
         <div>
           <div className="flex justify-between items-center mb-3">
-            <label className="text-[14px] font-medium text-[#000000]">Cover Photo</label>
-            <div className="flex items-center text-gray-400 text-[13px] gap-1.5 font-medium">
+            <label className="text-[14px] font-medium text-[#686262]">Cover Photo</label>
+            <div className="flex items-center text-[#686262] text-[13px] gap-1.5 font-medium">
               <Icon component={Info} size="xs" />
               <span>Required</span>
             </div>
@@ -81,7 +81,7 @@ const Step5Photos: React.FC<Step5PhotosProps> = ({
             ) : (
               <>
                 <img src="/icons/imageIcon.svg" alt="add photo" className="w-8 h-8 mb-3" />
-                <span className={`text-[15px] font-bold ${touched.coverPhoto && errors.coverPhoto ? 'text-red-500' : 'text-[#F0EFEF]'}`}>Add Cover Photo</span>
+                <span className={`text-[14px] font-medium ${touched.coverPhoto && errors.coverPhoto ? 'text-red-500' : 'text-[#686262]'}`}>Add Cover Photo</span>
               </>
             )}
             <input
@@ -100,7 +100,7 @@ const Step5Photos: React.FC<Step5PhotosProps> = ({
         {/* Gallery Photos */}
         <div>
           <div className="flex justify-between items-center mb-3">
-            <label className="text-[14px] font-medium text-[#000000]">Gallery Photos/Video</label>
+            <label className="text-[14px] font-medium text-[#686262]">Gallery Photos/Video</label>
             <div className="flex items-center text-gray-400 text-[13px] gap-1.5 font-medium">
               <Icon component={Info} size="xs" />
               <span>Min 04 Photos Required, Max 01 Video Upload</span>
@@ -133,7 +133,7 @@ const Step5Photos: React.FC<Step5PhotosProps> = ({
                 ) : (
                   <>
                     <img src="/icons/imageIcon.svg" alt="add photo" className="w-6 h-6 mb-2" />
-                    <span className="text-[15px] font-bold text-[#F0EFEF]">Add Photo</span>
+                    <span className="text-[14px] font-medium text-[#686262]">Add Photo</span>
                   </>
                 )}
                 <input

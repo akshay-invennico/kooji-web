@@ -137,7 +137,7 @@ const Hero = () => {
                       type="text"
                       placeholder="Instruments, Singer, Lightings.."
                       onFocus={() => setIsSearchOpen(true)}
-                      className="w-full pl-8 pr-3 py-1 bg-transparent text-[14px] font-semibold text-gray-900  placeholder:font-normal placeholder:text-gray-400"
+                      className="w-full pl-8 pr-3 py-1 bg-transparent text-[14px] font-semibold text-gray-900 focus:outline-none placeholder:font-normal placeholder:text-gray-400"
                     />
                     {values.searchQuery && (
                       <X size={18} className="absolute right-1 text-gray-900 cursor-pointer" onClick={() => setFieldValue("searchQuery", "")} />

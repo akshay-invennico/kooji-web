@@ -49,7 +49,7 @@ const Step3Availability: React.FC<Step3AvailabilityProps> = ({
             onClick={() => setIsDateRangeOpen(!isDateRangeOpen)}
           >
             <h3 className="text-[17px] font-semibold text-[#000000]">Date Range</h3>
-            <Icon component={isDateRangeOpen ? Minus : Plus} size="sm" className="text-[#000000]" />
+            <Icon component={isDateRangeOpen ? Minus : Plus} size="md" className="text-[#000000]" />
           </div>
 
           {isDateRangeOpen && (
@@ -62,10 +62,10 @@ const Step3Availability: React.FC<Step3AvailabilityProps> = ({
                     className={`w-full rounded-md border px-4 py-3.5 bg-white cursor-pointer flex items-center gap-3 transition-colors ${touched.startDate && errors.startDate ? "border-red-500 bg-red-50" : "border-[#F0EFEF]"}`}
                     onClick={() => setIsCalendarOpen(true)}
                   >
-                    <img 
-                      src="/icons/hero/calenderIcon.svg" 
-                      alt="calendar" 
-                      className={`w-5 h-5 shrink-0 ${touched.startDate && errors.startDate ? "" : ""}`} 
+                    <img
+                      src="/icons/redCalender.svg"
+                      alt="calendar"
+                      className={`w-5 h-5 shrink-0 ${touched.startDate && errors.startDate ? "" : ""}`}
                     />
                     <span className={`${touched.startDate && errors.startDate ? "text-red-500" : "text-[#000000]"} text-[15px]`}>
                       {formatDate(startDate)}
@@ -83,10 +83,10 @@ const Step3Availability: React.FC<Step3AvailabilityProps> = ({
                     className={`w-full rounded-md border px-4 py-3.5 bg-white cursor-pointer flex items-center gap-3 transition-colors ${touched.endDate && errors.endDate ? "border-red-500 bg-red-50" : "border-[#F0EFEF]"}`}
                     onClick={() => setIsCalendarOpen(true)}
                   >
-                    <img 
-                      src="/icons/hero/calenderIcon.svg" 
-                      alt="calendar" 
-                      className={`w-5 h-5 shrink-0 ${touched.endDate && errors.endDate ? "" : ""}`} 
+                    <img
+                      src="/icons/redCalender.svg"
+                      alt="calendar"
+                      className={`w-5 h-5 shrink-0 ${touched.endDate && errors.endDate ? "" : ""}`}
                     />
                     <span className={`${touched.endDate && errors.endDate ? "text-red-500" : "text-[#000000]"} text-[15px]`}>
                       {formatDate(endDate)}
@@ -98,9 +98,9 @@ const Step3Availability: React.FC<Step3AvailabilityProps> = ({
                 </div>
 
                 {isCalendarOpen && (
-                  <CalendarDropdown 
-                    formik={formik} 
-                    onClose={() => setIsCalendarOpen(false)} 
+                  <CalendarDropdown
+                    formik={formik}
+                    onClose={() => setIsCalendarOpen(false)}
                     variant="modal"
                   />
                 )}
@@ -126,7 +126,7 @@ const Step3Availability: React.FC<Step3AvailabilityProps> = ({
             onClick={() => setIsWeeklyOpen(!isWeeklyOpen)}
           >
             <h3 className="text-[17px] font-semibold text-[#000000]">Weekly Availability</h3>
-            <Icon component={isWeeklyOpen ? Minus : Plus} size="sm" className="text-[#000000]" />
+            <Icon component={isWeeklyOpen ? Minus : Plus} size="md" className="text-[#000000]" />
           </div>
 
           {isWeeklyOpen && (
@@ -139,8 +139,8 @@ const Step3Availability: React.FC<Step3AvailabilityProps> = ({
                       key={day}
                       onClick={() => toggleDay(day)}
                       className={`flex-1 min-w-[70px] sm:min-w-[80px] h-12 flex items-center justify-center rounded-md border text-[14px] font-bold transition-all ${isSelected
-                          ? "border-[#FF3A44] bg-[#FF3A44]/10 text-[#FF3A44]"
-                          : "border-[#F0EFEF] bg-white text-[#000000]"
+                        ? "border-[#FF3A44] bg-[#FF3A44]/10 text-[#FF3A44]"
+                        : "border-[#F0EFEF] bg-white text-[#000000]"
                         }`}
                     >
                       {day}

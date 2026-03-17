@@ -62,7 +62,7 @@ const ListingFilterBar: React.FC<ListingFilterBarProps> = ({ showMap, onShowMapC
         },
     });
 
-    const FilterContent = () => (
+    const filterContent = (
         <>
             <SearchLocationFilter formik={formik} />
             <DateFilter formik={formik} />
@@ -74,8 +74,8 @@ const ListingFilterBar: React.FC<ListingFilterBarProps> = ({ showMap, onShowMapC
                 onToggle={() => setIsFiltersOpen(o => !o)}
             />
             {/* Map Toggle (Included in both desktop and mobile modal) */}
-            <div className="flex items-center gap-3 px-4 md:px-8 py-3 md:py-0 min-w-[140px] h-full border-t md:border-t-0 md:border-l border-[#F0EFEF]">
-                <span className="text-[16px] font-bold text-black whitespace-nowrap">Show Map</span>
+            <div className="flex items-center gap-3 px-4 md:px-8 py-3 md:py-0 min-w-[50px] h-full border-t md:border-t-0 md:border-l border-[#F0EFEF]">
+                <span className="text-[16px] font-semibold text-black whitespace-nowrap">Show Map</span>
                 <div
                     className="w-[46px] h-[26px] bg-[#F3F4F6] rounded-full relative cursor-pointer flex items-center overflow-hidden"
                     onClick={() => onShowMapChange(!showMap)}
@@ -102,7 +102,7 @@ const ListingFilterBar: React.FC<ListingFilterBarProps> = ({ showMap, onShowMapC
                 <div className="flex items-center justify-end lg:justify-between w-full h-full">
                     {/* Desktop Filters */}
                     <div className="hidden lg:flex flex-1 h-full items-center">
-                        <FilterContent />
+                        {filterContent}
                     </div>
 
                     {/* Mobile Filter Button (Standalone at the right) */}
@@ -132,7 +132,7 @@ const ListingFilterBar: React.FC<ListingFilterBarProps> = ({ showMap, onShowMapC
                     </div>
                     <div className="flex-1 overflow-y-auto p-4">
                         <div className="flex flex-col gap-6">
-                            <FilterContent />
+                            {filterContent}
                         </div>
                     </div>
                     <div className="p-4 border-t border-[#F0EFEF] bg-white">

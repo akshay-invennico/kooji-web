@@ -94,7 +94,7 @@ const Step2Musician: React.FC<Step2MusicianProps> = ({
                 value={yearsOfExperience}
                 onChange={handleChange}
                 placeholder="Enter Years of Experience"
-                className="w-full bg-transparent border-none outline-none text-[15px] text-[#000000] placeholder:text-[#F0EFEF]"
+                className="w-full bg-transparent border-none outline-none text-[15px] text-[#000000] placeholder:text-[#B9BFC3]"
               />
             </div>
             {touched.yearsOfExperience && errors.yearsOfExperience && (
@@ -149,27 +149,35 @@ const Step2Musician: React.FC<Step2MusicianProps> = ({
         <div className="flex items-center justify-between pb-2">
           <label className="text-[14px] font-medium text-[#000000]">Do You Provide Your Own Equipment?</label>
           <div className="flex items-center gap-3">
-            <button
-              onClick={() => {
-                setFieldValue("providesEquipment", false);
-                setFieldValue("equipmentCategories", []);
-              }}
-              className={`w-10 h-10 rounded-md flex items-center justify-center border-2 transition-all ${!providesEquipment
-                ? "border-[#FF3A44] bg-[#FF3A44]/10 text-[#FF3A44]"
-                : "border-[#F0EFEF] text-[#F0EFEF]"
-                }`}
-            >
-              <Icon component={X} size="sm" strokeWidth={2.5} />
-            </button>
-            <button
-              onClick={() => setFieldValue("providesEquipment", true)}
-              className={`w-10 h-10 rounded-md flex items-center justify-center border-2 transition-all ${providesEquipment
-                ? "border-green-500 bg-green-50 text-green-500"
-                : "border-[#F0EFEF] text-[#F0EFEF]"
-                }`}
-            >
-              <Icon component={Check} size="sm" strokeWidth={2.5} />
-            </button>
+            {providesEquipment === null ? (
+              <div className="flex items-center gap-3">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setFieldValue("providesEquipment", false);
+                    setFieldValue("equipmentCategories", []);
+                  }}
+                  className="w-10 h-10 rounded-md flex items-center justify-center border-2  transition-all border-[#FF3A44] text-[#FF3A44]"
+                >
+                  <Icon component={X} size="sm" strokeWidth={2.5} />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setFieldValue("providesEquipment", true)}
+                  className="w-10 h-10 rounded-md flex items-center justify-center border-2  transition-all border-green-500 text-green-500"
+                >
+                  <Icon component={Check} size="sm" strokeWidth={2.5} />
+                </button>
+              </div>
+            ) : (
+              <button
+                type="button"
+                onClick={() => setFieldValue("providesEquipment", null)}
+                className={`text-[14px] font-medium transition-all ${providesEquipment ? "text-green-500" : "text-[#FF3A44]"}`}
+              >
+                {providesEquipment ? "Yes" : "No"}
+              </button>
+            )}
           </div>
         </div>
 
@@ -207,7 +215,7 @@ const Step2Musician: React.FC<Step2MusicianProps> = ({
               value={technicalRequirements}
               onChange={handleChange}
               placeholder="Mention any technical setup required from the venue (e.g., stage size, power outlets)"
-              className="w-full min-h-[120px] bg-transparent border-none outline-none text-[15px] text-[#000000] placeholder:text-[#F0EFEF] resize-none"
+              className="w-full min-h-[120px] bg-transparent border-none outline-none text-[15px] text-[#000000] placeholder:text-[#B9BFC3] resize-none"
             />
           </div>
         </div>

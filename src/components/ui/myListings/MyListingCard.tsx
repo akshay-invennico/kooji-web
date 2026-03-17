@@ -40,7 +40,7 @@ const DeleteListingModal: React.FC<DeleteListingModalProps> = ({ onClose, onConf
     return (
       <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
         <div className="absolute inset-0 bg-black/50" onClick={onClose} />
-        <div className="relative z-10 bg-white rounded-2xl w-full max-w-[480px] shadow-2xl p-8">
+        <div className="relative  z-10 bg-white rounded-lg w-full max-w-[600px] max-h-[610px] p-8">
           <h3 className="text-[20px] font-semibold text-[#000000] font-outfit mb-3">Confirm Delete Listing</h3>
           <p className="text-[#686262] text-[14px] font-medium font-outfit leading-relaxed mb-8">
             Deleting this listing will remove it from public search results. Existing confirmed bookings will not be affected.
@@ -59,7 +59,7 @@ const DeleteListingModal: React.FC<DeleteListingModalProps> = ({ onClose, onConf
                 onConfirm();
                 onClose();
               }}
-              className="py-4 text-[16px] font-medium font-outfit text-white bg-[#C5161D] hover:bg-[#B01820] rounded-md transition-all"
+              className="py-4 text-[16px] font-medium font-outfit text-white bg-[#C5161D] rounded-lg "
             >
               Confirm Deletion
             </button>
@@ -76,14 +76,14 @@ const DeleteListingModal: React.FC<DeleteListingModalProps> = ({ onClose, onConf
       <div className="absolute inset-0 bg-black/50" onClick={onClose} />
 
       {/* Modal */}
-      <div className="relative z-10 bg-white rounded-2xl w-full max-w-[520px] overflow-hidden shadow-2xl">
+      <div className="relative top-10 z-10 bg-white rounded-2xl w-full max-w-[520px] overflow-hidden shadow-2xl">
         {/* Header */}
-        <div className="px-6 py-5 border-b border-dashed border-gray-200">
+        <div className="px-6 py-2 border-b border-dashed border-gray-200">
           <h3 className="text-[20px] font-semibold text-[#000000] font-outfit">Delete Listing</h3>
         </div>
 
         {/* Body */}
-        <div className="px-6 py-5 ">
+        <div className="px-6 py-2 ">
           <p className="text-[16px] font-semibold text-[#000000] font-outfit mb-4">
             Please let us know why you&apos;re deleting this listing.
           </p>
@@ -116,7 +116,7 @@ const DeleteListingModal: React.FC<DeleteListingModalProps> = ({ onClose, onConf
           </div>
 
           {showTextarea && (
-            <div className="mt-5">
+            <div className="mt-2">
               <div className="flex justify-between items-center mb-1.5">
                 <span className="text-[14px] font-medium text-[#000000] font-outfit">Reason</span>
                 <span className="text-[12px] text-[#A39E9E] font-outfit">(Character Limit: 250)</span>
@@ -124,7 +124,7 @@ const DeleteListingModal: React.FC<DeleteListingModalProps> = ({ onClose, onConf
               <textarea
                 value={otherReason}
                 onChange={e => setOtherReason(e.target.value.slice(0, 250))}
-                rows={4}
+                rows={3}
                 placeholder="Please share your reason."
                 className="w-full px-4 py-3 border border-gray-200 rounded-lg text-[14px] font-outfit text-[#000000] placeholder:text-[#D4D0D0] focus:outline-none focus:border-[#FF3A44] resize-none transition-all"
               />
@@ -133,7 +133,7 @@ const DeleteListingModal: React.FC<DeleteListingModalProps> = ({ onClose, onConf
         </div>
 
         {/* Footer */}
-        <div className="grid grid-cols-2 gap-3 px-4 pb-5">
+        <div className="grid grid-cols-2 gap-3 px-4 pb-2">
           <button
             type="button"
             onClick={onClose}

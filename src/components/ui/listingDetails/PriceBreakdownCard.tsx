@@ -39,9 +39,9 @@ const PriceBreakdownCard: React.FC<PriceBreakdownCardProps> = ({ price, bookingD
     );
 
     return (
-        <div className="bg-white rounded-lg border border-[#F0EFEF] p-6 mb-2">
+        <div className="bg-white rounded-lg  p-6 mb-2">
             {showBreakdown && (
-                <>
+                <div className=" mb-3 border border-[#F0EFEF] rounded-lg p-6">
                     <h3 className="text-[18px] font-semibold text-[#000000] mb-2">Price Breakdown</h3>
                     <div className="mt-2 mb-4 text-[#686262]">
                         <Row label="Price" value={`$${price}`} />
@@ -52,12 +52,12 @@ const PriceBreakdownCard: React.FC<PriceBreakdownCardProps> = ({ price, bookingD
                         <Row label="Discount" value={`-$${DISCOUNT}`} green labelGreen />
                         <Row label="Payable Amount" value={`$${payableAmount}`} bold />
                     </div>
-                </>
+                </div>
             )}
 
             <button
                 onClick={onBookNow}
-                className="w-full py-4 rounded-lg bg-[#C5161D]  text-white text-[14px] font-semibold tracking-wide"
+                className="w-full py-4 rounded-lg bg-[#C5161D]  text-white text-[14px] font-semibold "
             >
                 Book Now
             </button>

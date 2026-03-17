@@ -26,10 +26,10 @@ const PersonalDetailsForm = () => {
 
       <Formik
         initialValues={{
-          displayName: "Jemmie's Sound",
-          email: "example@email.com",
-          phoneNumber: "+44 7700 900044",
-          description: "Write here..",
+          displayName: "",
+          email: "",
+          phoneNumber: "",
+          description: "",
           profilePhoto: null,
         }}
         validationSchema={validationSchema}
@@ -51,8 +51,8 @@ const PersonalDetailsForm = () => {
                       className="w-full h-full object-cover"
                     />
                   ) : (
-                    <div className="w-20 h-20 text-gray-200">
-                      <Image src="/assets/userProfileIcon.svg" alt="user" width={80} height={80} />
+                    <div className="w-20 h-20 text-gray-200 ml-5 mt-3">
+                      <Image src="/assets/userProfileIcon.svg" alt="user" width={60} height={60} />
                     </div>
                   )}
                 </div>
@@ -78,6 +78,7 @@ const PersonalDetailsForm = () => {
               <Field
                 name="displayName"
                 type="text"
+                placeholder="e.g. Jemmie's Sound"
                 className={clsx(
                   "w-full px-4 py-3.5 rounded-md border focus:outline-none transition-all font-outfit text-[#000000]",
                   errors.displayName && touched.displayName ? "border-red-500" : "border-[#F0EFEF] focus:border-[#FF3A44]"
@@ -93,6 +94,7 @@ const PersonalDetailsForm = () => {
                 <Field
                   name="email"
                   type="email"
+                  placeholder="e.g. example@email.com"
                   className={clsx(
                     "w-full px-4 py-3.5 rounded-md border transition-all font-outfit text-[#686262] bg-[#F5F5F5]",
                     errors.email && touched.email ? "border-red-500" : "border-[#F0EFEF]"
@@ -105,6 +107,7 @@ const PersonalDetailsForm = () => {
                 <Field
                   name="phoneNumber"
                   type="text"
+                  placeholder="e.g. +44 7700 900044"
                   className={clsx(
                     "w-full px-4 py-3.5 rounded-md border focus:outline-none transition-all font-outfit text-[#000000]",
                     errors.phoneNumber && touched.phoneNumber ? "border-red-500" : "border-[#F0EFEF] focus:border-[#FF3A44]"
@@ -128,6 +131,7 @@ const PersonalDetailsForm = () => {
               <Field
                 as="textarea"
                 name="description"
+                placeholder="Write here.."
                 rows={5}
                 className={clsx(
                   "w-full px-4 py-3.5 rounded-md border focus:outline-none transition-all font-outfit text-[#000000] resize-none",
@@ -139,7 +143,7 @@ const PersonalDetailsForm = () => {
             {/* Submit Button */}
             <button
               type="submit"
-              className="bg-[#FF3A44] text-white px-10 py-3.5 text-[16px] rounded-md font-semibold font-outfit hover:bg-[#E0343C] transition-all"
+              className="bg-[#FF3A44] text-white px-10 py-3.5 text-[16px] rounded-md font-semibold font-outfit"
             >
               Save Changes
             </button>

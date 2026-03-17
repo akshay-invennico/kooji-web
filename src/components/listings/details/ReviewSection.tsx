@@ -32,7 +32,7 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({ overallRating, totalRevie
     };
 
     return (
-        <section className="py-6 md:py-12 px-4 md:px-8 max-w-7xl mx-auto border-t border-[#F0EFEF]">
+        <section className="py-3 px-4 md:px-8 max-w-7xl mx-auto ">
             {pathname !== "/my/profile" && (
                 <>
                     <h2 className="text-[20px] font-semibold text-[#000000] mb-6">Reviews & Ratings</h2>
@@ -59,14 +59,14 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({ overallRating, totalRevie
                             disabled={currentIndex === 0}
                             className={`p-2 ${currentIndex === 0 ? "opacity-30 cursor-not-allowed" : "hover:bg-gray-50"}`}
                         >
-                            <MoveLeft size={24} className="text-gray-400" />
+                            <MoveLeft size={24} className="text-[#000000]" />
                         </button>
                         <button
                             onClick={handleNext}
                             disabled={currentIndex + 2 >= reviewList.length}
                             className={`p-2 ${currentIndex + 2 >= reviewList.length ? "opacity-30 cursor-not-allowed" : "hover:bg-gray-50"}`}
                         >
-                            <MoveRight size={24} className="text-[#111111]" />
+                            <MoveRight size={24} className="text-[#000000]" />
                         </button>
                     </div>
                 )}
@@ -93,7 +93,7 @@ const ReviewSection: React.FC<ReviewSectionProps> = ({ overallRating, totalRevie
             {reviewList.length > 2 && (
                 <button
                     onClick={() => setIsShowAll(!isShowAll)}
-                    className="bg-[#FFF8F8] text-[#FF3A44] px-8 py-3 rounded font-semibold text-[14px]"
+                    className="bg-[#FFF8F8] text-[#FF3A44] px-8 py-3 rounded border border-[#FFF8F8] font-semibold text-[14px]"
                 >
                     {isShowAll ? "Show less" : "Show all Reviews"}
                 </button>

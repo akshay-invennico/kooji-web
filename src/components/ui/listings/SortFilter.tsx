@@ -35,7 +35,7 @@ export const SortFilter = ({ formik }: { formik: any }) => {
 
     return (
         <div
-            className="flex-1 flex flex-col border-r border-[#F0EFEF] px-4 md:px-8 cursor-pointer hover:bg-gray-50 transition-colors py-3 md:py-0 relative h-full justify-center"
+            className="flex-1 flex flex-col border-r border-[#F0EFEF] px-4 md:px-8 cursor-pointer hover:bg-gray-50 transition-colors py-3 md:py-0 relative h-full justify-center w-[150px]"
             onClick={() => setIsSortOpen(!isSortOpen)}
             ref={sortRef}
         >
@@ -43,7 +43,7 @@ export const SortFilter = ({ formik }: { formik: any }) => {
                 Sort by
             </label>
             <div className="flex items-center justify-between gap-4">
-                <span className="text-[14px] text-[#000000] font-semibold truncate">{formik.values.sortMode.label}</span>
+                <span className="text-[14px] text-[#000000] font-medium truncate">{formik.values.sortMode.label}</span>
                 <div className={`transition-transform duration-200 ${isSortOpen ? "rotate-180" : ""}`}>
                     <Image src="/icons/filters/filterIcon4.svg" alt="Sort" width={16} height={16} />
                 </div>
@@ -54,7 +54,7 @@ export const SortFilter = ({ formik }: { formik: any }) => {
                     {SORT_OPTIONS.map((option) => (
                         <div
                             key={option.id}
-                            className={`px-4 py-2.5 text-[14px] font-medium lg:text-[14px] flex items-center justify-between cursor-pointer hover:bg-gray-50 ${formik.values.sortMode.id === option.id ? "text-black font-semibold " : "text-gray-600"}`}
+                            className={`px-4 py-2.5 text-[14px] font-medium text-[#000000] flex items-center justify-between cursor-pointer hover:bg-gray-50 ${formik.values.sortMode.id === option.id ? "text-black font-semibold " : "text-gray-600"}`}
                             onClick={(e) => {
                                 e.stopPropagation();
                                 formik.setFieldValue("sortMode", option);

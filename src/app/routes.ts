@@ -12,7 +12,7 @@ const routes = {
     blogs: '/blogs',
     privacyPolicy: '/privacy/policy',
     termsAndConditions: '/terms-and-conditions',
-    
+
     // Profile related routes
     profile: '/my/profile',
     dashboard: '/my/dashboard',
