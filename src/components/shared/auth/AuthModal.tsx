@@ -147,20 +147,15 @@ const LoginView = () => {
                 <img src="/icons/login/logoGoogle.svg" className="w-6 h-6" alt="Google" />
                 <span>Continue with Google</span>
               </button>
-              <button
-                type="button"
-                className="w-full flex items-center justify-center space-x-3 px-4 py-4 border border-[#F0EFEF] rounded-md font-medium text-[14px] text-[#534D4B]"
-              >
-                <img src="/icons/login/logoApple.svg" className="w-6 h-6" alt="Apple" />
-                <span>Continue with Apple</span>
-              </button>
             </div>
           </Form>
         )}
       </Formik>
 
-      <div className="mt-7 text-center">
-        <p className="text-[#534D4B] text-[14px] font-semibold">
+
+
+      <div className="mt-10 border-t border-[#F7F7F7] text-center">
+        <p className="text-[#534D4B] text-[14px] font-semibold mt-3">
           Don&apos;t have an account?{' '}
           <button
             onClick={() => setView('signup')}
@@ -348,20 +343,14 @@ const SignupView = () => {
                 <img src="/icons/login/logoGoogle.svg" className="w-6 h-6" alt="Google" />
                 <span>Continue with Google</span>
               </button>
-              <button
-                type="button"
-                className="w-full flex items-center justify-center space-x-3 px-4 py-4 border border-[#F0EFEF] rounded-md font-medium text-[14px] text-[#534D4B]"
-              >
-                <img src="/icons/login/logoApple.svg" className="w-6 h-6" alt="Apple" />
-                <span>Continue with Apple</span>
-              </button>
+
             </div>
           </Form>
         )}
       </Formik>
 
-      <div className="mt-10 text-center">
-        <p className="text-[#534D4B] text-[14px] font-semibold">
+      <div className="mt-10 border-t border-[#F7F7F7] text-center">
+        <p className="text-[#534D4B] text-[14px] font-semibold mt-3">
           Already have an account?{' '}
           <button
             onClick={() => setView('login')}
@@ -646,7 +635,7 @@ const AuthModal = () => {
       >
         <button
           onClick={closeModal}
-          className="absolute right-6 top-6 text-gray-400 hover:text-black transition-colors"
+          className="absolute right-6 top-6 text-[#686262] hover:text-black transition-colors"
         >
           <X className="w-6 h-6" />
         </button>

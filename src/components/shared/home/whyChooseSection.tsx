@@ -40,7 +40,7 @@ const WhyChooseSection = () => {
                     style={{ backgroundImage: "url('/icons/why/bgImage.png')" }}
                 >
                     <div className="w-full h-full flex items-center justify-center lg:justify-end p-4 sm:p-6 md:p-8 lg:p-4">
-                        <div className="w-full sm:w-[85%] md:w-[75%] lg:w-[500px] bg-[#FFFFFFB2] backdrop-blur-xl p-6 md:p-8 lg:p-6 rounded-xl border border-[#F0EFEF] shadow-xl">
+                        <div className="w-full sm:w-[85%] md:w-[75%] lg:w-[500px] bg-[#FFFFFFB2] backdrop-blur-sm p-6 md:p-8 lg:p-6 rounded-xl border border-[#F0EFEF] shadow-xl">
                             <div className="space-y-4 lg:space-y-2">
                                 {WHY_CHOOSE_DATA.map((data, index) => (
                                     <React.Fragment key={index}>
